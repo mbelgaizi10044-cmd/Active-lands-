@@ -583,17 +583,19 @@ window.AC = (function () {
     d.data.filter((r) => r.sites).sort((a, b) => b.sites - a.sites).forEach((r) => {
       const c = mk('button', 'ac-ec'); c.type = 'button'; c.dataset.key = r.entity;
       c.appendChild(mk('span', 'go', '←')); c.appendChild(mk('div', 'nm', r.entity));
-      const big = mk('b', 'big', fmt(r.sites)); big.dataset.source = 'by_entity'; big.dataset.field = 'sites'; big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
+      const big = mk('b', 'big', fmt(r.sites)); big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
       const ln = mk('div', 'ln'); const add = (t) => { const x = mk('div'); x.textContent = t; ln.appendChild(x); };
       if (r.top1) add(`${r.top1}: ${fmt(r.top1_n)}`); if (r.top2) add(`${r.top2}: ${fmt(r.top2_n)}`);
       c.appendChild(ln);
       const bar = mk('div', 'bar'); const sp = mk('span'); sp.style.width = (r.coverage || 0) + '%'; bar.appendChild(sp); c.appendChild(bar); c.appendChild(mk('span', 'ok', 'اضغط لفتح ملف الجهة'));
-      c.onclick = () => openFile(r.entity, c);
+      c.querySelectorAll('*').forEach((x) => { x.style.pointerEvents = 'none'; });
+      c.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); openFile(r.entity, c); }, true);
       el.appendChild(c); });
   });
   function openFile(ent, card) {
     const stage = document.getElementById('entStage'), file = document.getElementById('entFile'), grid = stage && stage.querySelector('.ac-ents-grid');
-    const src = dash.data('ent_sites'); if (!stage || !file || !grid || src.status !== 'ok') return;
+    const src = dash.data('ent_sites'); if (!stage || !file || !grid) return;
+    if (src.status !== 'ok' || !src.data) { card.style.opacity = '.6'; setTimeout(() => { card.style.opacity = ''; openFile(ent, card); }, 400); return; }
     const rows = src.data.filter((x) => x.entity === ent);
     const cats = d3.rollups(rows, (v) => v.length, (x) => x.category).sort((a, b) => b[1] - a[1]);
     const areas = d3.rollups(rows.filter((x) => x.area), (v) => v.length, (x) => x.area).sort((a, b) => b[1] - a[1]).slice(0, 10);
