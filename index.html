@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>لوحة المواقع الحيوية في إمارة دبي</title>
+<title>المواقع الهامة والحيوية في إمارة دبي</title>
 <style>
 html,body{margin:0;background:#010604}
 #dash-root{max-width:1240px;margin:0 auto;padding:14px;--font-anthropic-sans:'Dubai','Segoe UI',Tahoma,Arial,sans-serif}
@@ -91,7 +91,7 @@ body.unlocked #lock{display:none}
 <body>
 <div id="lock"><form class="box" id="lockForm" autocomplete="off">
   <div class="logos"><div><img class="pol" src="assets/police_official.png" alt="شرطة دبي"><img class="acis" src="assets/acis_official.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img class="gov" src="assets/gov_full.png" alt="حكومة دبي"></div>
-  <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
+  <h1>المواقع الهامة والحيوية في إمارة دبي</h1>
   <p>هذه اللوحة محمية. يُرجى إدخال كلمة المرور لعرضها.</p>
   <input id="lockPw" type="password" inputmode="numeric" aria-label="كلمة المرور" placeholder="كلمة المرور">
   <button type="submit">دخول</button>
@@ -264,6 +264,69 @@ body.unlocked #lock{display:none}
 .ac-file .fi{opacity:0;animation:acFadeUp .6s ease forwards}
 @keyframes acFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (max-width:760px){.ac-file .st{grid-template-columns:repeat(2,1fr)}.ac-file .fb{grid-template-columns:1fr}.ac-file .cr{grid-template-columns:120px 1fr 34px}.ac-file .back{position:static;margin-bottom:10px}}
+.ac-sa-stage{position:relative;perspective:2000px;transform-style:preserve-3d}
+.ac-sa-stage [hidden]{display:none!important}
+.ac-sa-launch{font-family:inherit;width:100%;text-align:right;cursor:pointer;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(212,178,106,.5);padding:34px 32px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+  background:radial-gradient(600px 300px at 15% 50%,rgba(45,190,126,.22),transparent 60%),radial-gradient(500px 260px at 90% 0%,rgba(212,178,106,.25),transparent 60%),linear-gradient(135deg,#071A14,#0A2A22 45%,#08131C);
+  box-shadow:0 30px 80px rgba(0,0,0,.45);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.ac-sa-launch:hover{transform:rotateX(4deg) rotateY(-5deg) translateZ(20px);box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 40px rgba(45,190,126,.18)}
+.ac-sa-launch::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);pointer-events:none}
+.ac-sa-launch::after{content:'';position:absolute;inset:-50% 0 auto 0;height:40%;background:linear-gradient(180deg,transparent,rgba(45,190,126,.18),transparent);animation:acScan 3.6s linear infinite;pointer-events:none}
+@keyframes acScan{to{transform:translateY(420%)}}
+.ac-sa-launch .k{font-size:12px;color:var(--gold);letter-spacing:.02em}
+.ac-sa-launch h3{font-size:clamp(22px,3.2vw,32px)!important;margin:6px 0 8px!important;color:#fff}
+.ac-sa-launch p{margin:0;font-size:13.5px;color:#CFE0D8;line-height:1.9;max-width:620px}
+.ac-sa-launch .cta{display:inline-flex;gap:10px;align-items:center;margin-top:16px;font-size:13.5px;font-weight:700;color:#1A1405;background:linear-gradient(90deg,#E9CF8F,#D4B26A);padding:9px 20px;border-radius:99px;box-shadow:0 0 22px rgba(212,178,106,.35)}
+.ac-sa-orb{position:relative;width:150px;height:150px;transform-style:preserve-3d;animation:acSpin 14s linear infinite}
+.ac-sa-orb i{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(45,190,126,.55)}
+.ac-sa-orb i:nth-child(2){transform:rotateX(70deg);border-color:rgba(212,178,106,.6)}
+.ac-sa-orb i:nth-child(3){transform:rotateY(70deg);border-color:rgba(91,184,214,.55)}
+.ac-sa-orb i:nth-child(4){inset:42%;background:radial-gradient(circle,#E9CF8F,#2DBE7E);border:0;box-shadow:0 0 30px #2DBE7E}
+@keyframes acSpin{to{transform:rotateY(360deg) rotateX(20deg)}}
+.ac-sa{border:1px solid rgba(212,178,106,.45);border-radius:22px;overflow:hidden;background:#08130F;box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.ac-sa.in{animation:acFileIn .9s cubic-bezier(.16,.9,.24,1) both;transform-origin:50% 0}
+.ac-sa.out{animation:acFileOut .4s cubic-bezier(.5,0,.75,0) forwards}
+.ac-sa-launch.out{animation:acGridOut .45s cubic-bezier(.5,0,.75,0) forwards}
+.ac-sa-launch.back{animation:acGridBack .6s cubic-bezier(.2,.8,.2,1) both}
+.ac-sa .sh{position:relative;padding:24px 26px 20px;background:radial-gradient(520px 240px at 85% -30%,rgba(212,178,106,.30),transparent 60%),linear-gradient(135deg,#0D4A3F,#0B3438 50%,#0A1E2B);border-bottom:1px solid rgba(212,178,106,.4)}
+.ac-sa .sh h3{font-size:clamp(22px,3vw,30px)!important;margin:4px 0 6px!important;color:#fff}
+.ac-sa .sh p{margin:0 0 16px;font-size:12.5px;color:rgba(238,245,241,.78)}
+.ac-sa .sb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:20px 22px 24px}
+.ac-sa .card{background:linear-gradient(160deg,#112A21,#0C1C16 70%);border:1px solid var(--bd);border-radius:16px;padding:16px 18px;min-width:0}
+.ac-sa .card.w{grid-column:1/-1}
+.ac-sa .card h4{margin:0 0 4px;font-size:14.5px;color:#fff}
+.ac-sa .card .sub{font-size:11.5px;color:var(--mu);margin:0 0 12px;line-height:1.8}
+.ac-sa .tiers{display:flex;flex-direction:column;gap:10px}
+.ac-sa .tier{display:grid;grid-template-columns:110px 1fr 54px;gap:10px;align-items:center;font-size:12.5px}
+.ac-sa .tier i{height:14px;border-radius:8px;background:rgba(255,255,255,.06);overflow:hidden;display:block}
+.ac-sa .tier i span{display:block;height:100%;width:0;border-radius:8px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.ac-sa .tier b{color:#fff;text-align:left}
+.ac-sa .tier small{display:block;color:var(--mu);font-size:11px;grid-column:1/-1;margin-top:-4px}
+.ac-sa .map3d{perspective:900px;display:grid;place-items:center;padding:6px 0 0}
+.ac-sa .map3d svg{width:100%;max-width:640px;height:auto;direction:ltr;transform:rotateX(46deg) rotateZ(-6deg) scale(.96);transform-origin:50% 60%;transition:transform 1s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 24px 30px rgba(0,0,0,.5))}
+.ac-sa .map3d:hover svg{transform:rotateX(18deg) rotateZ(-2deg) scale(1)}
+.ac-sa .map3d circle.t1{animation:acBlink 2.4s ease-in-out infinite}
+@keyframes acBlink{50%{opacity:.45}}
+.ac-sa .lg{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--mu);margin-top:6px;justify-content:center}
+.ac-sa .lg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:6px;vertical-align:-1px}
+.ac-sa .rows{display:flex;flex-direction:column;gap:8px}
+.ac-sa .ar{display:grid;grid-template-columns:130px 1fr 44px;gap:10px;align-items:center;font-size:12.5px}
+.ac-sa .ar i{height:10px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden;display:flex}
+.ac-sa .ar i span{display:block;height:100%;width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.ac-sa .ar b{color:#fff;text-align:left}
+.ac-sa .big3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ac-sa .big3 div{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center}
+.ac-sa .big3 b{display:block;font-size:26px;color:#fff;line-height:1.2}
+.ac-sa .big3 small{font-size:11.5px;color:var(--mu)}
+.ac-sa .tasks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px}
+.ac-sa .tasks li{position:relative;background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:12px;padding:12px 14px 12px 14px;font-size:12.5px;line-height:1.9;color:#DCE8E2;border-inline-start:3px solid var(--tc,#D4B26A)}
+.ac-sa .tasks li b{display:block;color:#fff;font-size:13px}
+.ac-sa .fi{opacity:0;animation:acFadeUp .6s ease forwards}
+.ac-sa .tag{font-size:12px;color:var(--gold)}
+@media (max-width:760px){.ac-sa .sh .st{grid-template-columns:repeat(2,1fr)!important}.ac-sa .sh .back{position:static!important;margin-bottom:10px}}
+@media (max-width:760px){.ac-sa .sb{grid-template-columns:1fr}.ac-sa-launch{grid-template-columns:1fr}.ac-sa-orb{display:none}.ac-sa .big3{grid-template-columns:1fr 1fr 1fr}.ac-sa .ar{grid-template-columns:100px 1fr 36px}}
+@media (prefers-reduced-motion:reduce){.ac-sa.in,.ac-sa.out,.ac-sa-launch.out,.ac-sa-launch.back,.ac-sa .fi,.ac-sa-orb,.ac-sa-launch::after,.ac-sa .map3d circle.t1{animation:none;opacity:1}}
+
 @media (prefers-reduced-motion:reduce){.ac-file.in,.ac-file.out,.ac-ents-grid.out,.ac-ents-grid.back,.ac-file .fi{animation:none;opacity:1}}
 /* ── data quality ── */
 .ac-q3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
@@ -330,9 +393,9 @@ body.unlocked #lock{display:none}
   <section class='ac-hero' id='hero'>
     <div>
       <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
-      <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
-      <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لأربع عشرة جهة</div>
-      <p class='ac-lede' id='lede'>يضم السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> موقعاً مسجلاً لدى <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، وهي فعلياً <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> مكاناً مختلفاً، لأن بعض المواقع مسجّلة لدى أكثر من جهة. أكبر فئة هي <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> بعدد <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> موقعاً، وتتوفر الإحداثيات لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من المواقع. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
+      <h1>المواقع الهامة والحيوية في إمارة دبي</h1>
+      <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: بيانات المواقع الحيوية لأربع عشرة جهة</div>
+      <p class='ac-lede' id='lede'>تضم اللوحة <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> موقعاً مسجلاً لدى <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، وهي فعلياً <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> مكاناً مختلفاً، لأن بعض المواقع مسجّلة لدى أكثر من جهة. أكبر فئة هي <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> بعدد <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> موقعاً، وتتوفر الإحداثيات لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من المواقع. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
     </div>
     <div class='ac-ring' data-draw='covRing' data-source='kpis'>
       <svg viewBox='0 0 184 184' aria-hidden='true'>
@@ -349,7 +412,8 @@ body.unlocked #lock{display:none}
   <nav class='ac-nav' id='acNav' aria-label='أقسام اللوحة'>
     <a href='#sec-numbers' data-t='sec-numbers'><span>01</span>المؤشرات الرئيسية</a>
     <a href='#sec-ents' data-t='sec-ents'><span>02</span>الجهات</a>
-    <a href='#sec-sites' data-t='sec-sites'><span>03</span>سجل المواقع</a>
+    <a href='#sec-sites' data-t='sec-sites'><span>03</span>دليل المواقع</a>
+    <a href='#sec-sa' data-t='sec-sa'><span>04</span>التحليل الأمني</a>
   </nav>
 
   <div class='ac-filters' id='filters'>
@@ -375,11 +439,11 @@ body.unlocked #lock{display:none}
     <div class='ac-file' id='entFile' hidden></div>
   </div>
 
-  <h2 class='ac-sec' id='sec-sites'><span>03</span>سجل المواقع</h2>
+  <h2 class='ac-sec' id='sec-sites'><span>03</span>دليل المواقع</h2>
   <section class='ac-p ac-rv' id='sites-panel'>
     <p class='ac-sub' style='margin-top:0'>كل موقع يظهر مرة واحدة، وتحته أسماء الجهات التي سجّلته. اضغط على الإحداثيات لفتح الموقع في خرائط Google.</p>
     <div class='ac-tbl'>
-      <table data-source='sites_view' data-row-key='id' aria-label='سجل المواقع'>
+      <table data-source='sites_view' data-row-key='id' aria-label='دليل المواقع'>
         <thead><tr><th data-field='site'>الموقع والجهات</th><th data-field='category'>الفئة</th><th data-field='area'>المنطقة</th><th data-field='makani'>الرقم المكاني</th><th data-field='coords'>الإحداثيات</th></tr></thead>
         <tbody data-draw='siteRows'></tbody>
       </table>
@@ -387,6 +451,21 @@ body.unlocked #lock{display:none}
     <p class='ac-count' data-draw='siteCount'>—</p>
     <p class='ac-ks' style='margin-top:6px'><span class='ac-pill w'>موقع تقريبي</span> تعني أن الإحداثية تدل على المنطقة القريبة وليس على المبنى بالضبط.</p>
   </section>
+
+  <h2 class='ac-sec' id='sec-sa'><span>04</span>التحليل الأمني</h2>
+  <p class='ac-sub' style='margin-top:-6px'>قراءة تحليلية للمواقع: مستوى الحساسية، والانتشار، ومناطق التركز، وتوزيع المسؤولية بين الجهات، والمهام المقترحة.</p>
+  <div class='ac-sa-stage ac-rv' id='saStage'>
+    <button class='ac-sa-launch' id='saLaunch' type='button' data-source='security'>
+      <div>
+        <div class='k'>إدارة أمن الهيئات والمنشآت الحيوية</div>
+        <h3>التحليل الأمني للمواقع</h3>
+        <p>تصنيف المواقع حسب حساسيتها، وخريطة انتشار ثلاثية الأبعاد، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
+        <span class='cta'>افتح التحليل الأمني ←</span>
+      </div>
+      <div class='ac-sa-orb' aria-hidden='true'><i></i><i></i><i></i><i></i></div>
+    </button>
+    <div class='ac-sa' id='saPanel' data-source='security' hidden></div>
+  </div>
 
   <details id='notes'>
     <summary>كيف حُسبت الأرقام؟</summary>
@@ -460,7 +539,7 @@ window.AC = (function () {
   };
   dash.calc('kpis', {
     inputs: ['sites'], title: 'المؤشرات الرئيسية',
-    description: 'تُحتسب من سجل المواقع بعد تطبيق التصفية: إجمالي المواقع المسجلة، والمواقع الفعلية (بعد دمج الموقع المسجّل لدى أكثر من جهة)، والمنشآت الدبلوماسية، والجهات، ونسبة توفر الإحداثيات.',
+    description: 'تُحتسب من بيانات المواقع بعد تطبيق التصفية: إجمالي المواقع المسجلة، والمواقع الفعلية (بعد دمج الموقع المسجّل لدى أكثر من جهة)، والمنشآت الدبلوماسية، والجهات، ونسبة توفر الإحداثيات.',
     fn: (sites) => {
       const r = pick(sites);
       const byCat = d3.rollups(r, (v) => v.length, (d) => d.category).sort((a, b) => b[1] - a[1]);
@@ -488,6 +567,28 @@ window.AC = (function () {
     inputs: ['sites'], title: 'المواقع حسب الفئة', description: 'عدد المواقع في كل فئة من الفئات السبع عشرة (مع تصفية الجهة والبحث).',
     fn: (sites) => { const r = pick(sites, false, true); const tot = r.length || 1;
       return CATS.map((c) => { const n = r.filter((d) => d.category === c).length; return { category: c, sites: n, share: Math.round((n / tot) * 1000) / 10 }; }); }
+  });
+  dash.calc('security', {
+    inputs: ['sites'], title: 'التحليل الأمني',
+    description: 'تحليل المواقع المستقلة (كل مكان مرة واحدة) بعد التصفية: مستوى الحساسية حسب الفئة، ومناطق التركز، وعدد الجهات المسؤولة عن كل موقع، ودقة الإحداثيات، والبعثات الدبلوماسية.',
+    fn: (sites) => {
+      const T1 = ['المنشآت الدبلوماسية', 'المراكز العسكرية', 'الجهات الحكومية', 'المنافذ', 'خزانات المياه الرئيسية'];
+      const T2 = ['محطات المترو', 'البنوك والمصارف', 'المراكز الإعلامية', 'المراكز الطبية', 'الفنادق', 'دور العبادة'];
+      const tier = (c) => (T1.includes(c) ? 1 : T2.includes(c) ? 2 : 3);
+      const u = d3.groups(pick(sites), (d) => d.uid).map(([id, v]) => { const g = v.find(inDubai) || v[0];
+        return { site: g.site, category: g.category, area: g.area || '', lat: +g.lat, lon: +g.lon, t: tier(g.category), ents: new Set(v.map((x) => x.entity)).size, approx: v.every((x) => x.coord_conf === 'متوسطة') ? 1 : 0 }; });
+      const n = u.length || 1;
+      const tiers = [1, 2, 3].map((t) => ({ t, n: u.filter((x) => x.t === t).length }));
+      const areas = d3.rollups(u.filter((x) => x.area), (v) => ({ n: v.length, t1: v.filter((x) => x.t === 1).length, t2: v.filter((x) => x.t === 2).length }), (x) => x.area)
+        .map(([a, o]) => ({ area: a, ...o })).sort((a, b) => b.n - a.n);
+      const cov = [1, 2, 3].map((k) => ({ k, n: u.filter((x) => (k === 3 ? x.ents >= 3 : x.ents === k)).length }));
+      const dip = u.filter((x) => x.category === DIP);
+      return [{ total: u.length, tiers, top_areas: areas.slice(0, 8), dense: areas.filter((a) => a.n >= 15).length, cov,
+        t1_single: u.filter((x) => x.t === 1 && x.ents === 1).length, approx: u.filter((x) => x.approx).length, exact_pct: Math.round(((n - u.filter((x) => x.approx).length) / n) * 1000) / 10,
+        consulates: dip.filter((x) => !/^منزل/.test(x.site)).length, residences: dip.filter((x) => /^منزل/.test(x.site)).length,
+        hatta: u.filter((x) => x.lon > 55.75).length,
+        pts: u.filter((x) => x.lon <= 55.75).map((x) => [Math.round(x.lat * 1e4) / 1e4, Math.round(x.lon * 1e4) / 1e4, x.t]) }];
+    }
   });
   dash.calc('ent_sites', {
     inputs: ['sites'], title: 'ملفات الجهات', description: 'كل مواقع كل جهة كما وردت في ورقتها، لعرضها داخل ملف الجهة.',
@@ -584,19 +685,17 @@ window.AC = (function () {
     d.data.filter((r) => r.sites).sort((a, b) => b.sites - a.sites).forEach((r) => {
       const c = mk('button', 'ac-ec'); c.type = 'button'; c.dataset.key = r.entity;
       c.appendChild(mk('span', 'go', '←')); c.appendChild(mk('div', 'nm', r.entity));
-      const big = mk('b', 'big', fmt(r.sites)); big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
+      const big = mk('b', 'big', fmt(r.sites)); big.dataset.source = 'by_entity'; big.dataset.field = 'sites'; big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
       const ln = mk('div', 'ln'); const add = (t) => { const x = mk('div'); x.textContent = t; ln.appendChild(x); };
       if (r.top1) add(`${r.top1}: ${fmt(r.top1_n)}`); if (r.top2) add(`${r.top2}: ${fmt(r.top2_n)}`);
       c.appendChild(ln);
       const bar = mk('div', 'bar'); const sp = mk('span'); sp.style.width = (r.coverage || 0) + '%'; bar.appendChild(sp); c.appendChild(bar); c.appendChild(mk('span', 'ok', 'اضغط لفتح ملف الجهة'));
-      c.querySelectorAll('*').forEach((x) => { x.style.pointerEvents = 'none'; });
-      c.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); openFile(r.entity, c); }, true);
+      c.onclick = () => openFile(r.entity, c);
       el.appendChild(c); });
   });
   function openFile(ent, card) {
     const stage = document.getElementById('entStage'), file = document.getElementById('entFile'), grid = stage && stage.querySelector('.ac-ents-grid');
-    const src = dash.data('ent_sites'); if (!stage || !file || !grid) return;
-    if (src.status !== 'ok' || !src.data) { card.style.opacity = '.6'; setTimeout(() => { card.style.opacity = ''; openFile(ent, card); }, 400); return; }
+    const src = dash.data('ent_sites'); if (!stage || !file || !grid || src.status !== 'ok') return;
     const rows = src.data.filter((x) => x.entity === ent);
     const cats = d3.rollups(rows, (v) => v.length, (x) => x.category).sort((a, b) => b[1] - a[1]);
     const areas = d3.rollups(rows.filter((x) => x.area), (v) => v.length, (x) => x.area).sort((a, b) => b[1] - a[1]).slice(0, 10);
@@ -638,6 +737,74 @@ window.AC = (function () {
       requestAnimationFrame(() => spans.forEach(([s, w]) => { s.style.width = w + '%'; }));
       const t = document.getElementById('sec-ents'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
   }
+  const TC = { 1: '#E07171', 2: '#D4B26A', 3: '#2DBE7E' }, TL = { 1: 'حرجة', 2: 'عالية', 3: 'تجمعات بشرية' };
+  const TD = { 1: 'دبلوماسية، عسكرية، حكومية، منافذ، خزانات مياه', 2: 'مترو، بنوك، إعلام، مستشفيات، فنادق، دور عبادة', 3: 'مراكز تجارية، تجمعات خارجية، رياضة، تعليم، واجهات بحرية' };
+  function saOpen() {
+    const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel');
+    if (!st || !L || !P) return;
+    const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) { L.style.opacity = '.6'; setTimeout(() => { L.style.opacity = ''; saOpen(); }, 400); return; }
+    if (!P.hidden) { st.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    const r = d.data[0]; P.replaceChildren(); const grow = [];
+    const sh = mk('div', 'sh'); const back = mk('button', 'back', '→ رجوع'); back.type = 'button'; back.className = 'back'; back.onclick = saClose;
+    back.style.cssText = 'font-family:inherit;position:absolute;left:18px;top:18px;cursor:pointer;font-size:12.5px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:6px 14px';
+    sh.appendChild(back); sh.appendChild(mk('div', 'tag fi', 'التحليل الأمني')); const h = mk('h3', 'fi', 'قراءة أمنية للمواقع الحيوية'); h.style.animationDelay = '.05s'; sh.appendChild(h);
+    sh.appendChild(mk('p', 'fi', 'كل الأرقام هنا للمواقع الفعلية (كل مكان مرة واحدة) وتتغير مع عوامل التصفية أعلى اللوحة.'));
+    const stt = mk('div', 'st'); stt.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:10px';
+    [[r.tiers[0].n, 'مواقع حرجة'], [r.dense, 'مناطق عالية التركز'], [r.cov[1].n + r.cov[2].n, 'مواقع تتابعها أكثر من جهة'], [r.exact_pct + '%', 'إحداثيات دقيقة']].forEach(([v, l], i) => {
+      const b = mk('div', 'fi'); b.style.cssText = 'background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;animation-delay:' + (0.12 + i * 0.06) + 's';
+      const bb = mk('b', null, typeof v === 'number' ? fmt(v) : v); bb.style.cssText = 'display:block;font-size:24px;color:#fff;line-height:1.3'; b.appendChild(bb); const sm = mk('small', null, l); sm.style.cssText = 'font-size:11.5px;color:rgba(238,245,241,.75)'; b.appendChild(sm); stt.appendChild(b); });
+    sh.appendChild(stt); P.appendChild(sh);
+    const sb = mk('div', 'sb'); let dl = 0.3; const card = (title, sub, wide) => { const c = mk('div', 'card fi' + (wide ? ' w' : '')); c.style.animationDelay = (dl += 0.07) + 's'; c.appendChild(mk('h4', null, title)); if (sub) c.appendChild(mk('p', 'sub', sub)); sb.appendChild(c); return c; };
+    // 1 tiers
+    const c1 = card('مستوى الحساسية', 'تصنيف مقترح للفئات إلى ثلاثة مستويات حسب أثر أي حادث على الموقع.');
+    const tw = mk('div', 'tiers'); r.tiers.forEach((x) => { const row = mk('div', 'tier'); row.appendChild(mk('span', null, TL[x.t])); const i = mk('i'); const s = mk('span'); s.style.background = TC[x.t]; i.appendChild(s); row.appendChild(i);
+      row.appendChild(mk('b', null, fmt(x.n))); row.appendChild(mk('small', null, TD[x.t] + ' — ' + Math.round((x.n / (r.total || 1)) * 100) + '%')); grow.push([s, (x.n / (r.total || 1)) * 100]); tw.appendChild(row); }); c1.appendChild(tw);
+    // 2 coverage
+    const c2 = card('توزيع المسؤولية بين الجهات', 'كم جهة تتابع كل موقع. الموقع الحرج الذي تتابعه جهة واحدة فقط يستحق متابعة إضافية.');
+    const b3 = mk('div', 'big3'); [[r.cov[0].n, 'جهة واحدة'], [r.cov[1].n, 'جهتان'], [r.cov[2].n, '3 جهات أو أكثر']].forEach(([v, l]) => { const x = mk('div'); x.appendChild(mk('b', null, fmt(v))); x.appendChild(mk('small', null, l)); b3.appendChild(x); }); c2.appendChild(b3);
+    const note = mk('p', 'sub', `منها ${fmt(r.t1_single)} موقعاً حرجاً تتابعه جهة واحدة فقط.`); note.style.margin = '12px 0 0'; note.style.color = '#E9CF8F'; c2.appendChild(note);
+    // 3 map
+    const c3 = card('خريطة الانتشار', `كل نقطة موقع فعلي، ولونها حسب مستوى الحساسية. مرّر المؤشر على الخريطة لتعديل زاوية العرض.${r.hatta ? ` (إضافة إلى ${fmt(r.hatta)} مواقع في حتا خارج إطار الخريطة)` : ''}`, true);
+    const W = 640, H = 400, x0 = 54.98, x1 = 55.72, y0 = 24.70, y1 = 25.36; const px = (lon) => ((lon - x0) / (x1 - x0)) * W, py = (lat) => H - ((lat - y0) / (y1 - y0)) * H;
+    const NS = 'http://www.w3.org/2000/svg'; const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'خريطة انتشار المواقع');
+    const bg = document.createElementNS(NS, 'rect'); bg.setAttribute('width', W); bg.setAttribute('height', H); bg.setAttribute('rx', 18); bg.setAttribute('fill', '#0B1F18'); bg.setAttribute('stroke', 'rgba(212,178,106,.35)'); svg.appendChild(bg);
+    for (let g = 1; g < 8; g++) { const l1 = document.createElementNS(NS, 'line'); l1.setAttribute('x1', (W / 8) * g); l1.setAttribute('x2', (W / 8) * g); l1.setAttribute('y1', 0); l1.setAttribute('y2', H); l1.setAttribute('stroke', 'rgba(255,255,255,.05)'); svg.appendChild(l1);
+      const l2 = document.createElementNS(NS, 'line'); l2.setAttribute('y1', (H / 8) * g); l2.setAttribute('y2', (H / 8) * g); l2.setAttribute('x1', 0); l2.setAttribute('x2', W); l2.setAttribute('stroke', 'rgba(255,255,255,.05)'); svg.appendChild(l2); }
+    r.pts.slice().sort((a, b) => b[2] - a[2]).forEach(([la, lo, t]) => { const c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', px(lo).toFixed(1)); c.setAttribute('cy', py(la).toFixed(1)); c.setAttribute('r', t === 1 ? 3.4 : 2.6); c.setAttribute('fill', TC[t]); c.setAttribute('fill-opacity', t === 3 ? .7 : .9); if (t === 1) c.setAttribute('class', 't1'); svg.appendChild(c); });
+    const mw = mk('div', 'map3d'); mw.appendChild(svg); c3.appendChild(mw);
+    const lg = mk('div', 'lg'); [1, 2, 3].forEach((t) => { const s = mk('span'); const i = mk('i'); i.style.background = TC[t]; s.appendChild(i); s.appendChild(document.createTextNode(TL[t])); lg.appendChild(s); }); c3.appendChild(lg);
+    // 4 areas
+    const c4 = card('أكثر المناطق تركزاً', 'عدد المواقع الفعلية في كل منطقة، مقسمة حسب مستوى الحساسية.');
+    const rw = mk('div', 'rows'); const amx = r.top_areas.length ? r.top_areas[0].n : 1;
+    r.top_areas.forEach((a) => { const row = mk('div', 'ar'); row.appendChild(mk('span', null, a.area)); const i = mk('i');
+      [[a.t1, 1], [a.t2, 2], [a.n - a.t1 - a.t2, 3]].forEach(([v, t]) => { const s = mk('span'); s.style.background = TC[t]; i.appendChild(s); grow.push([s, (v / amx) * 100]); });
+      row.appendChild(i); row.appendChild(mk('b', null, fmt(a.n))); rw.appendChild(row); }); c4.appendChild(rw);
+    // 5 diplomatic
+    const c5 = card('البعثات الدبلوماسية', 'القنصليات ومساكن رؤساء البعثات ضمن المواقع الفعلية.');
+    const b5 = mk('div', 'big3'); [[r.consulates, 'قنصليات ومكاتب'], [r.residences, 'مساكن رؤساء البعثات'], [r.consulates + r.residences, 'الإجمالي']].forEach(([v, l]) => { const x = mk('div'); x.appendChild(mk('b', null, fmt(v))); x.appendChild(mk('small', null, l)); b5.appendChild(x); }); c5.appendChild(b5);
+    // 6 tasks
+    const c6 = card('المهام المقترحة', 'مهام عملية مبنية على الأرقام أعلاه.', true);
+    const ul = mk('ul', 'tasks'); const top = r.top_areas[0];
+    [[`تأكيد ${fmt(r.approx)} موقعاً ميدانياً`, 'إحداثياتها تدل على المنطقة وليس على المبنى. يكفي إرسال الرقم المكاني لكل منها.', '#D4B26A'],
+     [`متابعة ${fmt(r.t1_single)} موقعاً حرجاً`, 'تتابعها جهة واحدة فقط؛ يُقترح إشراك مركز الشرطة المختص أو جهة ثانية.', '#E07171'],
+     top ? [`أولوية لمنطقة ${top.area}`, `أعلى تركز بـ ${fmt(top.n)} موقعاً، منها ${fmt(top.t1)} مواقع حرجة؛ مناسبة لخطط الانتشار والدوريات.`, '#5BB8D6'] : null,
+     [`${fmt(r.dense)} مناطق يتجاوز فيها عدد المواقع 15 موقعاً`, 'تُراجع خطط الاستجابة فيها لأن أي حادث قد يمس أكثر من موقع.', '#2DBE7E'],
+     [`تحديث بيانات ${fmt(r.residences)} مسكناً دبلوماسياً`, 'المساكن تتغير مع تغير رؤساء البعثات؛ يُقترح تحديثها كل ستة أشهر.', '#B58CFF']].filter(Boolean).forEach(([t, d, c]) => {
+      const li = mk('li'); li.style.setProperty('--tc', c); li.appendChild(mk('b', null, t)); li.appendChild(document.createTextNode(d)); ul.appendChild(li); });
+    c6.appendChild(ul);
+    P.appendChild(sb);
+    L.classList.remove('back'); L.classList.add('out');
+    setTimeout(() => { L.hidden = true; L.classList.remove('out'); P.hidden = false; P.classList.remove('out'); void P.offsetWidth; P.classList.add('in');
+      setTimeout(() => grow.forEach(([s, w]) => { s.style.width = Math.max(0, w) + '%'; }), 350);
+      st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
+  }
+  function saClose() {
+    const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel'); if (!L || !P) return;
+    P.classList.remove('in'); P.classList.add('out');
+    setTimeout(() => { P.hidden = true; P.classList.remove('out'); L.hidden = false; L.classList.add('back'); if (st) st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 380);
+  }
+  window.__acOpenSA = saOpen;
+  (function bindSA() { const L = document.getElementById('saLaunch'); if (L && !L.dataset.bound) { L.dataset.bound = '1'; L.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); saOpen(); }, true); L.querySelectorAll('*').forEach((x) => { x.style.pointerEvents = 'none'; }); } })();
   function closeFile() {
     const stage = document.getElementById('entStage'), file = document.getElementById('entFile'), grid = stage && stage.querySelector('.ac-ents-grid');
     if (!file || !grid) return;
@@ -669,7 +836,7 @@ window.AC = (function () {
   const nav = document.getElementById('acNav');
   if (nav) {
     const links = [...nav.querySelectorAll('a')];
-    links.forEach((a) => a.addEventListener('click', (ev) => { const s = document.getElementById(a.dataset.t); if (s) { ev.preventDefault(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
+    links.forEach((a) => a.addEventListener('click', (ev) => { const s = document.getElementById(a.dataset.t); if (s) { ev.preventDefault(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (a.dataset.t === 'sec-sa' && window.__acOpenSA) setTimeout(window.__acOpenSA, 500); } }));
     if ('IntersectionObserver' in window) {
       const spy = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) links.forEach((a) => a.classList.toggle('on', a.dataset.t === e.target.id)); }), { rootMargin: '-20% 0px -70% 0px' });
       links.forEach((a) => { const s = document.getElementById(a.dataset.t); if (s) spy.observe(s); });
