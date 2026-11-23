@@ -14,9 +14,10 @@ body:not(.unlocked) #dash-root{display:none}
 #lock{min-height:100vh;display:grid;place-items:center;padding:20px;font-family:'29LT Bukra','Dubai','Segoe UI',Tahoma,sans-serif;color:#EEF5F1;
   background:radial-gradient(900px 420px at 85% -10%,rgba(25,227,141,.16),transparent 60%),linear-gradient(rgba(25,227,141,.035) 1px,transparent 1px) 0 0/100% 28px,linear-gradient(90deg,rgba(25,227,141,.035) 1px,transparent 1px) 0 0/28px 100%,#030C09}
 body.unlocked #lock{display:none}
+#lock{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23D4B26A' stroke-opacity='.17' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0L24 24M88 0L64 24M0 88L24 64M88 88L64 64M44 0V15M44 73V88M0 44H15M73 44H88'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,radial-gradient(640px 300px at 88% -10%,rgba(212,178,106,.28),transparent 62%),linear-gradient(135deg,#0D4A3F 0%,#0B3438 46%,#0A1E2B 100%)!important}#lock .box{background:rgba(5,20,22,.55);border-color:rgba(212,178,106,.45);backdrop-filter:blur(8px)}#lock button{background:#D4B26A!important;box-shadow:0 0 18px rgba(212,178,106,.35)!important;color:#1A1405!important}#lock input:focus{outline-color:#D4B26A!important}
 #lock .box{width:min(440px,100%);background:rgba(8,34,24,.72);border:1px solid rgba(25,227,141,.25);border-radius:18px;padding:26px 24px;text-align:center}
 #lock .logos{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px}
-#lock .logos img{height:40px}#lock .logos img.acis{height:26px}#lock .logos img.emb{height:52px}#lock .logos div{display:flex;gap:10px;align-items:center}
+#lock .logos img{height:40px}#lock .logos img.acis{height:26px}#lock .logos div{display:flex;gap:10px;align-items:center}
 #lock h1{font:700 20px '29LT Bukra','Dubai Medium','Dubai',sans-serif;margin:0 0 6px;color:#fff}
 #lock p{margin:0 0 18px;color:#8FB5A4;font-size:13px}
 #lock input{width:100%;height:46px;border-radius:12px;border:1px solid rgba(25,227,141,.3);background:#06190F;color:#fff;font-size:20px;text-align:center;letter-spacing:.3em;font-family:inherit}
@@ -89,7 +90,7 @@ body.unlocked #lock{display:none}
 </head>
 <body>
 <div id="lock"><form class="box" id="lockForm" autocomplete="off">
-  <div class="logos"><div><img class="emb" src="assets/police_emblem.png" alt="شعار شرطة دبي"><img class="acis" src="assets/acis.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img class="emb" src="assets/gov_emblem.png" alt="شعار حكومة دبي"></div>
+  <div class="logos"><div><img src="assets/police.png" alt="شرطة دبي"><img class="acis" src="assets/acis.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img src="assets/gov.png" alt="حكومة دبي"></div>
   <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
   <p>هذه اللوحة محمية. يُرجى إدخال كلمة المرور لعرضها.</p>
   <input id="lockPw" type="password" inputmode="numeric" aria-label="كلمة المرور" placeholder="كلمة المرور">
@@ -106,16 +107,18 @@ body.unlocked #lock{display:none}
   border-radius:18px;padding:28px 30px 22px;font-variant-numeric:tabular-nums;line-height:1.7;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .ac *{box-sizing:border-box}
 .ac b,.ac strong,.ac th,.ac h1,.ac h2,.ac h3{font-weight:700}
-.ac-brand{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--bd)}
-.ac-brand .r{display:flex;align-items:center;gap:22px}
-.ac-brand img{display:block;height:54px;width:auto;max-width:100%}
-.ac-brand img.acis{height:34px}
-.ac-brand img.emb{height:64px}
-.ac-head{padding:24px 0 6px}
-.ac-over{font-size:12px;color:var(--ac);letter-spacing:.02em}
-.ac h1{font-size:clamp(22px,3vw,30px);line-height:1.35;margin:6px 0 6px;color:#fff}
-.ac-meta{font-size:12px;color:var(--mu)}
-.ac-lede{margin:16px 0 0;padding:14px 18px;background:var(--s1);border:1px solid var(--bd);border-radius:12px;font-size:14px;line-height:2;color:#D5E3DC}
+.ac-banner{position:relative;margin:calc(-1 * var(--pt,28px)) calc(-1 * var(--px,30px)) 0;padding:24px var(--px,30px) 30px;border-radius:18px 18px 0 0;overflow:hidden;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23D4B26A' stroke-opacity='.17' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0L24 24M88 0L64 24M0 88L24 64M88 88L64 64M44 0V15M44 73V88M0 44H15M73 44H88'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,radial-gradient(640px 300px at 88% -10%,rgba(212,178,106,.28),transparent 62%),radial-gradient(520px 260px at 0% 110%,rgba(45,190,126,.18),transparent 60%),linear-gradient(135deg,#0D4A3F 0%,#0B3438 46%,#0A1E2B 100%);
+  border-bottom:1px solid rgba(212,178,106,.55);box-shadow:inset 0 -40px 60px -40px rgba(0,0,0,.45)}
+.ac-brand{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.14)}
+.ac-brand .r{display:flex;align-items:center;gap:24px}
+.ac-brand img{display:block;height:58px;width:auto;max-width:100%;filter:drop-shadow(0 2px 10px rgba(0,0,0,.35))}
+.ac-brand img.acis{height:36px}
+.ac-head{position:relative;padding:26px 0 0}
+.ac-over{display:inline-block;font-size:12px;color:#D4B26A;border:1px solid rgba(212,178,106,.5);border-radius:99px;padding:3px 14px;background:rgba(212,178,106,.08)}
+.ac h1{font-size:clamp(24px,3.4vw,36px);line-height:1.3;margin:12px 0 6px;color:#fff;letter-spacing:-.01em}
+.ac-meta{font-size:12.5px;color:rgba(238,245,241,.72)}
+.ac-lede{margin:20px 0 0;padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:14px;font-size:14px;line-height:2;color:#E3EEE8;backdrop-filter:blur(6px)}
 .ac-lede b{color:#fff}
 .ac-filters{display:grid;grid-template-columns:1fr 1fr 1.4fr auto;gap:12px;align-items:end;margin:22px 0 4px}
 .ac-filters label{font-size:12px;color:var(--mu);display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -128,7 +131,7 @@ body.unlocked #lock{display:none}
 .ac-chips{display:flex;flex-wrap:wrap;gap:8px;min-height:8px;margin:10px 0 0}
 .ac-chip{font-family:inherit;font-size:12px;border:1px solid var(--ac);color:var(--ac);border-radius:99px;padding:3px 12px;background:rgba(45,190,126,.08);cursor:pointer}
 .ac-sec{display:flex;align-items:baseline;gap:10px;margin:30px 0 14px;font-size:18px;color:#fff}
-.ac-sec span{font-size:13px;color:var(--ac)}
+.ac-sec span{font-size:13px;color:#D4B26A}
 .ac-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .ac-k{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:18px 20px}
 .ac-kl{font-size:13px;color:var(--mu)}
@@ -175,17 +178,18 @@ body.unlocked #lock{display:none}
 .ac summary{cursor:pointer;color:var(--tx)}
 .ac-foot{margin-top:18px;font-size:11.5px;color:var(--mu);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:1px solid var(--bd);padding-top:14px}
 @media (max-width:900px){.ac-kpis{grid-template-columns:repeat(2,1fr)}.ac-rtypes{grid-template-columns:repeat(2,1fr)}.ac-filters{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.ac{padding:18px 14px}.ac-brand img{height:36px}.ac-brand img.acis{height:22px}.ac-brand img.emb{height:42px}.ac-brand .r{gap:10px}.ac-kpis,.ac-filters{grid-template-columns:1fr}}
+@media (max-width:560px){.ac{padding:18px 14px;--pt:18px;--px:14px}.ac-brand img{height:36px}.ac-brand img.acis{height:22px}.ac-brand img.emb{height:42px}.ac-brand .r{gap:10px}.ac-kpis,.ac-filters{grid-template-columns:1fr}}
 @media print{.ac-filters,.ac-chips,#sec-sites,#sites-panel{display:none}.ac-tbl{max-height:none;overflow:visible}.ac-p,.ac-k,.ac-rt{break-inside:avoid}.ac-sec{break-after:avoid}}
 </style>
 
 <div class='ac' id='top'>
+  <div class='ac-banner'>
   <header class='ac-brand' id='brand'>
     <div class='r'>
-      <img class='emb' src='assets/police_emblem.png' alt='شعار شرطة دبي'>
+      <img src='assets/police.png' alt='شرطة دبي'>
       <img class='acis' src='assets/acis.png' alt='إدارة أمن الهيئات والمنشآت الحيوية'>
     </div>
-    <img class='emb' src='assets/gov_emblem.png' alt='شعار حكومة دبي'>
+    <img src='assets/gov.png' alt='حكومة دبي'>
   </header>
 
   <section class='ac-head' id='hero'>
@@ -194,6 +198,7 @@ body.unlocked #lock{display:none}
     <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لست عشرة جهة</div>
     <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
   </section>
+  </div>
 
   <div class='ac-filters' id='filters'>
     <label>الجهة<select class='dash-select' data-draw='entitySel' aria-label='الجهة' data-source='by_entity'></select></label>
