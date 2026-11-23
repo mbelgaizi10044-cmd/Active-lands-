@@ -242,6 +242,7 @@ body.unlocked #lock{display:none}
       </table>
     </div>
     <p class='ac-count' data-draw='siteCount'>—</p>
+    <p class='ac-ks' style='margin-top:6px'>الإحداثيات الموسومة «مُضافة» استُكملت في 23/11/2026 من الرقم المكاني أو من مطابقة داخلية أو من خرائط Google والمصادر العامة، و«تقريبية» تعني أنها تدل على الموقع العام لا على المدخل. مرّر المؤشر على الوسم لمعرفة المصدر. تبقى هذه الإحداثيات بحاجة إلى تأكيد ميداني.</p>
   </section>
 
   <h2 class='ac-sec' id='sec-quality'><span>04</span>جودة البيانات</h2>
@@ -372,7 +373,7 @@ window.AC = (function () {
   dash.calc('sites_view', {
     inputs: ['sites'], title: 'المواقع المعروضة', description: 'المواقع بعد تطبيق التصفية والبحث، مع الإحداثيات بصيغة N/E.',
     fn: (sites) => pick(sites).map((d) => ({ id: d.id, site: d.site, category: d.category, entity: d.entity, area: d.area, makani: d.makani,
-      lat: d.lat, lon: d.lon, valid: inDubai(d) ? 1 : 0, coords: d.lat != null ? `N${(+d.lat).toFixed(5)} E${(+d.lon).toFixed(5)}` : '' }))
+      lat: d.lat, lon: d.lon, valid: inDubai(d) ? 1 : 0, src: d.coord_src || '', conf: d.coord_conf || '', note: d.coord_note || '', coords: d.lat != null ? `N${(+d.lat).toFixed(5)} E${(+d.lon).toFixed(5)}` : '' }))
   });
   const pickReview = (items, skipType) => {
     const p = dash.params() || {}; const q = norm(String(p.q || '').trim());
@@ -465,7 +466,7 @@ window.AC = (function () {
     d.data.slice(0, LIM).forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = String(r.id);
       td(tr, r.site); td(tr, r.category === DIP ? pill(r.category, 't') : r.category); td(tr, r.entity); td(tr, r.area);
       td(tr, r.makani ? String(r.makani).replace(/^(\d+)(\d{5})$/, '$1 $2') : '—');
-      if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr'; td(tr, a); }
+      if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr'; const c = td(tr, a); if (r.src) { const g = pill(r.conf === 'متوسطة' ? 'مُضافة · تقريبية' : 'مُضافة', r.conf === 'متوسطة' ? 'w' : 't'); g.title = r.src + ' — ' + r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
       else td(tr, r.coords ? pill('تستوجب التحقق', 'w') : '—');
       tb.appendChild(tr); });
   });
