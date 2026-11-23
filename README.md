@@ -10,7 +10,8 @@ Authorities & Critical Infrastructure Security (ACIS) · Dubai Police
 
 | الملف | الوصف |
 |---|---|
-| `index.html` | نسخة الويب من اللوحة: الأرقام الرئيسية، التوزيع حسب الجهة والتصنيف، جودة البيانات، والبنود التي تحتاج تحقق. تُفتح في أي متصفح |
+| `index.html` | اللوحة التفاعلية نفسها: التصفية حسب الجهة والتصنيف، البحث، سجل المواقع، جودة البيانات، والبنود التي تحتاج تحقق. **محمية بكلمة مرور** |
+| `data/data.enc.json` | بيانات اللوحة مشفّرة (AES-256-GCM، والمفتاح مشتق من كلمة المرور بـ PBKDF2-SHA256، مليون دورة). لا تُقرأ بدون كلمة المرور |
 | `vital-sites-dashboard-2026-11-23.pdf` | اللوحة في 4 صفحات |
 | `vital-sites-deck-2026-11-23.pptx` | العرض التقديمي في 12 شريحة |
 | `assets/` | شعارات حكومة دبي وشرطة دبي وإدارة أمن الهيئات والمنشآت الحيوية (النسخ البيضاء) |
@@ -26,14 +27,12 @@ Authorities & Critical Infrastructure Security (ACIS) · Dubai Police
 | تغطية الإحداثيات | 88.3% |
 | بنود تحتاج تحقق | 19 |
 
-## ملاحظة عن النسخة العامة
+## الحماية
 
-هذا المستودع عام، لذلك:
-
-- الإحداثيات والأرقام المكانية مخفية في بطاقات البنود التي تحتاج تحقق.
-- لا يتضمن المستودع السجل الكامل للمواقع ولا ملف الإكسل. النسخة الكاملة محفوظة لدى الإدارة فقط.
-- لا تُرفع ملفات خطي 29LT Bukra و Dubai لأنهما مرخّصان. صفحة الويب والعرض التقديمي يستخدمان الخطين إذا كانا مثبتين على الجهاز، وإلا يظهر خط بديل. ملف PDF يعرض الخطوط بشكل صحيح على أي جهاز.
+- اللوحة التفاعلية تعرض السجل الكامل بالإحداثيات والأرقام المكانية، لكن بياناتها مخزّنة مشفّرة ولا تُفك إلا في المتصفح بعد إدخال كلمة المرور. كلمة المرور غير مكتوبة في أي ملف في هذا المستودع.
+- ملف PDF والعرض التقديمي نسخ عامة: الإحداثيات والأرقام المكانية مخفية فيها.
+- لا تُرفع ملفات خطي 29LT Bukra و Dubai لأنهما مرخّصان. الصفحة والعرض التقديمي يستخدمان الخطين إذا كانا مثبتين على الجهاز، وإلا يظهر خط بديل.
 
 ---
 
-This is a public repository: coordinates and Makani numbers are hidden, and the full site register, the Excel file and the licensed font files are not included.
+The interactive dashboard's data is stored encrypted and is only decrypted in the browser with the password, which is not stored in this repository. The PDF and the deck are public versions with coordinates hidden. Licensed font files are not included.
