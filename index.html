@@ -387,7 +387,7 @@ body.unlocked #lock{display:none}
 .ac-sa .simres .hr i{width:8px;height:8px;border-radius:50%}
 .ac-sa .simres .hr em{font-style:normal;color:var(--mu);font-size:11px;direction:ltr}
 .ac-sa .rlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.ac-sa .rrow{font-family:inherit;display:grid;grid-template-columns:26px minmax(0,1fr) 110px 34px;gap:10px;align-items:center;text-align:right;color:var(--tx);cursor:pointer;background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:12px;padding:9px 12px;border-inline-start:3px solid var(--rc)}
+.ac-sa .rrow{font-family:inherit;display:grid;grid-template-columns:26px minmax(0,1fr) 96px 30px auto;gap:10px;align-items:center;text-align:right;color:var(--tx);cursor:pointer;background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:12px;padding:9px 12px;border-inline-start:3px solid var(--rc)}
 .ac-sa .rrow:hover{background:rgba(255,255,255,.06)}
 .ac-sa .rrow .rn{font-size:11px;color:var(--gold);text-align:center}
 .ac-sa .rrow .rt b{display:block;font-size:12.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -404,7 +404,20 @@ body.unlocked #lock{display:none}
 .ac-sa .cl .cm{text-align:center}
 .ac-sa .cl .cm b{font-size:20px;color:#E9CF8F}
 @media (max-width:900px){.ac-sa .simwrap{grid-template-columns:1fr}.ac-sa .rlist{grid-template-columns:1fr}}
-@media (max-width:560px){.ac-sa .rrow{grid-template-columns:22px minmax(0,1fr) 30px}.ac-sa .rrow i{display:none}}
+.ac-sa .whyb{display:inline-block;font-size:11px;font-weight:700;color:#E9CF8F;border:1px solid rgba(212,178,106,.55);background:rgba(212,178,106,.1);border-radius:99px;padding:2px 10px;cursor:pointer;white-space:nowrap}
+.ac-sa .whyb:hover,.ac-sa .whyb.on{background:#E9CF8F;color:#1A1405}
+.ac-sa .rv .whyb{margin-top:6px}
+.ac-sa .why{grid-column:1/-1;border:1px solid rgba(212,178,106,.35);border-radius:12px;background:rgba(212,178,106,.05);padding:12px 14px;display:flex;flex-direction:column;gap:10px;animation:acFadeUp .35s ease both}
+.ac-sa .why .wt{font-size:13.5px;font-weight:700;color:#fff}
+.ac-sa .why .wr{display:flex;flex-direction:column;gap:4px}
+.ac-sa .why .wh{display:flex;justify-content:space-between;font-size:12.5px}
+.ac-sa .why .wh b{color:#fff}.ac-sa .why .wh span{color:var(--gold);direction:rtl}
+.ac-sa .why i{display:block;height:6px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
+.ac-sa .why i span{display:block;height:100%;border-radius:4px}
+.ac-sa .why small{font-size:11.5px;color:#CFE0D8;line-height:1.7}
+.ac-sa .why .wtip{border-top:1px solid var(--bd);padding-top:8px;font-size:12px;color:#DCE8E2}
+.ac-sa .why .wtip b{color:var(--gold)}.ac-sa .why .wtip p{margin:4px 0 0;line-height:1.8}
+@media (max-width:560px){.ac-sa .rrow{grid-template-columns:22px minmax(0,1fr) 30px auto}.ac-sa .rrow i{display:none}}
 @media (prefers-reduced-motion:reduce){.ac-sa.in,.ac-sa.out,.ac-sa-launch.out,.ac-sa-launch.back,.ac-sa .fi,.ac-sa-orb,.ac-sa-launch::after,.ac-sa .map3d circle.t1{animation:none;opacity:1}}
 
 @media (prefers-reduced-motion:reduce){.ac-file.in,.ac-file.out,.ac-ents-grid.out,.ac-ents-grid.back,.ac-file .fi{animation:none;opacity:1}}
@@ -826,6 +839,24 @@ window.AC = (function () {
   const TD = { 1: 'دبلوماسية، عسكرية، حكومية، منافذ، خزانات مياه', 2: 'مترو، بنوك، إعلام، مستشفيات، فنادق، دور عبادة', 3: 'مراكز تجارية، تجمعات خارجية، رياضة، تعليم، واجهات بحرية' };
   const kmd = (a, b) => { const dx = (a.lo - b.lo) * 111.32 * Math.cos(((a.la + b.la) / 2) * Math.PI / 180), dy = (a.la - b.la) * 110.57; return Math.sqrt(dx * dx + dy * dy); };
   const riskCol = (r) => (r >= 70 ? '#E07171' : r >= 50 ? '#D4B26A' : '#2DBE7E');
+  const whyBox = (x) => {
+    const w = mk('div', 'why'); w.appendChild(mk('div', 'wt', `لماذا ${x.r} من 100؟`));
+    [['فئة الموقع', `${x.c}، ${x.t === 1 ? 'وهي من الفئات الحرجة' : x.t === 2 ? 'وهي من الفئات عالية الحساسية' : 'وهي من مواقع التجمعات البشرية'}`, x.f.cat, 45, '#E07171'],
+     ['مواقع حرجة قريبة', x.nr ? `${x.nr} ${x.nr === 1 ? 'موقع حرج' : 'مواقع حرجة'} ضمن 500 م منه، فأي حادث هنا قد يمسها` : 'لا توجد مواقع حرجة ضمن 500 م منه', x.f.near, 30, '#D4B26A'],
+     ['الجهات المتابعة', x.ne === 1 ? `تتابعه جهة واحدة فقط (${x.e})` : x.ne === 2 ? `تتابعه جهتان (${x.e})` : `تتابعه ${x.ne} جهات (${x.e})`, x.f.cov, 15, '#5BB8D6'],
+     ['دقة الإحداثيات', x.ap ? 'الإحداثية تقريبية وتدل على المنطقة وليس على المبنى' : 'الإحداثية دقيقة', x.f.unc, 10, '#9BB0A7']].forEach(([t, d, v, m, c]) => {
+      const r = mk('div', 'wr'); const h = mk('div', 'wh'); h.appendChild(mk('b', null, t)); h.appendChild(mk('span', null, `+${v} من ${m}`)); r.appendChild(h);
+      const i = mk('i'); const s = mk('span'); s.style.background = c; s.style.width = (v / m) * 100 + '%'; i.appendChild(s); r.appendChild(i); r.appendChild(mk('small', null, d)); w.appendChild(r); });
+    const tips = [];
+    if (x.ne === 1) tips.push('إشراك جهة ثانية في متابعته يخفض الدرجة 8 نقاط.'); else if (x.ne === 2) tips.push('إشراك جهة ثالثة في متابعته يخفض الدرجة 7 نقاط.');
+    if (x.ap) tips.push('تأكيد إحداثيته الدقيقة (الرقم المكاني) يخفض الدرجة 10 نقاط.');
+    if (x.nr >= 3) tips.push('يقع وسط تجمع مواقع حرجة، فيُفضّل أن تكون له خطة استجابة مشتركة مع المواقع المجاورة.');
+    if (tips.length) { const tp = mk('div', 'wtip'); tp.appendChild(mk('b', null, 'ما الذي يخفض الدرجة:')); tips.forEach((t) => tp.appendChild(mk('p', null, '• ' + t))); w.appendChild(tp); }
+    return w;
+  };
+  const whyBtn = (x, host, after) => { const b = mk('span', 'whyb', 'السبب'); b.setAttribute('role', 'button'); b.tabIndex = 0;
+    const go = (ev) => { ev.preventDefault(); ev.stopPropagation(); const open = b._box && b._box.isConnected; if (open) { b._box.remove(); b.classList.remove('on'); return; } b._box = whyBox(x); if (after) after.after(b._box); else host.appendChild(b._box); b.classList.add('on'); };
+    b.addEventListener('click', go); b.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') go(ev); }); return b; };
   function saOpen() {
     const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel');
     if (!st || !L || !P) return;
@@ -847,7 +878,7 @@ window.AC = (function () {
       const row = mk('button', 'rrow'); row.type = 'button'; row.appendChild(mk('span', 'rn', String(i + 1)));
       const nm = mk('div', 'rt'); nm.appendChild(mk('b', null, x.s)); nm.appendChild(mk('small', null, `${x.c} · ${x.a || '—'} · ${x.ne === 1 ? 'تتابعه جهة واحدة' : 'تتابعه ' + x.ne + ' جهات'}${x.nr ? ' · ' + x.nr + ' مواقع حرجة قريبة' : ''}`)); row.appendChild(nm);
       const bar = mk('i'); [[x.f.cat, '#E07171'], [x.f.near, '#D4B26A'], [x.f.cov, '#5BB8D6'], [x.f.unc, '#9BB0A7']].forEach(([v, c]) => { const s = mk('span'); s.style.background = c; bar.appendChild(s); grow.push([s, v]); }); row.appendChild(bar);
-      row.appendChild(mk('strong', null, String(x.r))); row.style.setProperty('--rc', riskCol(x.r));
+      row.appendChild(mk('strong', null, String(x.r))); row.appendChild(whyBtn(x, null, row)); row.style.setProperty('--rc', riskCol(x.r));
       row.onclick = () => { if (window.__acMap) window.__acMap.go(x.la, x.lo, x.s, 5); };
       rl.appendChild(row); });
     cr.appendChild(rl);
@@ -961,7 +992,7 @@ window.AC = (function () {
       res.replaceChildren();
       if (p.site) { const x = p.site; const sc = mk('div', 'sc'); sc.style.setProperty('--rc', riskCol(x.r));
         const top = mk('div', 'st1'); const nm = mk('div'); nm.appendChild(mk('b', null, x.s)); nm.appendChild(mk('small', null, `${x.c} · ${x.a || '—'}`)); top.appendChild(nm);
-        const rv = mk('div', 'rv'); rv.appendChild(mk('b', null, String(x.r))); rv.appendChild(mk('small', null, 'مؤشر الخطورة')); top.appendChild(rv); sc.appendChild(top);
+        const rv = mk('div', 'rv'); rv.appendChild(mk('b', null, String(x.r))); rv.appendChild(mk('small', null, 'مؤشر الخطورة')); top.appendChild(rv); sc.appendChild(top); const wb = whyBtn(x, sc); rv.appendChild(wb);
         const ec = mk('div', 'ec'); ec.appendChild(mk('small', null, x.ne === 1 ? 'تتابعه جهة واحدة:' : `تتابعه ${x.ne} جهات:`)); x.e.split('، ').forEach((e) => ec.appendChild(pill(e))); sc.appendChild(ec);
         const ln = mk('div', 'ln'); const a = mk('a', null, `N${x.la.toFixed(5)} E${x.lo.toFixed(5)}`); a.href = `https://www.google.com/maps?q=${x.la},${x.lo}`; a.target = '_blank'; a.rel = 'noopener'; a.dir = 'ltr'; ln.appendChild(a);
         if (x.ap) { const g = pill('موقع تقريبي', 'w'); ln.appendChild(g); } if (x.nr) ln.appendChild(pill(`${x.nr} مواقع حرجة ضمن 500 م`, 'b')); sc.appendChild(ln);
