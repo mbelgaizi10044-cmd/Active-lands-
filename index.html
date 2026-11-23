@@ -16,7 +16,7 @@ body:not(.unlocked) #dash-root{display:none}
 body.unlocked #lock{display:none}
 #lock .box{width:min(440px,100%);background:rgba(8,34,24,.72);border:1px solid rgba(25,227,141,.25);border-radius:18px;padding:26px 24px;text-align:center}
 #lock .logos{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px}
-#lock .logos img{height:40px}#lock .logos img.acis{height:26px}#lock .logos div{display:flex;gap:10px;align-items:center}
+#lock .logos img{height:40px}#lock .logos img.acis{height:26px}#lock .logos img.emb{height:52px}#lock .logos div{display:flex;gap:10px;align-items:center}
 #lock h1{font:700 20px '29LT Bukra','Dubai Medium','Dubai',sans-serif;margin:0 0 6px;color:#fff}
 #lock p{margin:0 0 18px;color:#8FB5A4;font-size:13px}
 #lock input{width:100%;height:46px;border-radius:12px;border:1px solid rgba(25,227,141,.3);background:#06190F;color:#fff;font-size:20px;text-align:center;letter-spacing:.3em;font-family:inherit}
@@ -89,7 +89,7 @@ body.unlocked #lock{display:none}
 </head>
 <body>
 <div id="lock"><form class="box" id="lockForm" autocomplete="off">
-  <div class="logos"><div><img src="assets/police.png" alt="شرطة دبي"><img class="acis" src="assets/acis.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img src="assets/gov.png" alt="حكومة دبي"></div>
+  <div class="logos"><div><img class="emb" src="assets/police_emblem.png" alt="شعار شرطة دبي"><img class="acis" src="assets/acis.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img class="emb" src="assets/gov_emblem.png" alt="شعار حكومة دبي"></div>
   <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
   <p>هذه اللوحة محمية. يُرجى إدخال كلمة المرور لعرضها.</p>
   <input id="lockPw" type="password" inputmode="numeric" aria-label="كلمة المرور" placeholder="كلمة المرور">
@@ -110,6 +110,7 @@ body.unlocked #lock{display:none}
 .ac-brand .r{display:flex;align-items:center;gap:22px}
 .ac-brand img{display:block;height:54px;width:auto;max-width:100%}
 .ac-brand img.acis{height:34px}
+.ac-brand img.emb{height:64px}
 .ac-head{padding:24px 0 6px}
 .ac-over{font-size:12px;color:var(--ac);letter-spacing:.02em}
 .ac h1{font-size:clamp(22px,3vw,30px);line-height:1.35;margin:6px 0 6px;color:#fff}
@@ -174,24 +175,24 @@ body.unlocked #lock{display:none}
 .ac summary{cursor:pointer;color:var(--tx)}
 .ac-foot{margin-top:18px;font-size:11.5px;color:var(--mu);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:1px solid var(--bd);padding-top:14px}
 @media (max-width:900px){.ac-kpis{grid-template-columns:repeat(2,1fr)}.ac-rtypes{grid-template-columns:repeat(2,1fr)}.ac-filters{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.ac{padding:18px 14px}.ac-brand img{height:36px}.ac-brand img.acis{height:22px}.ac-brand .r{gap:10px}.ac-kpis,.ac-filters{grid-template-columns:1fr}}
+@media (max-width:560px){.ac{padding:18px 14px}.ac-brand img{height:36px}.ac-brand img.acis{height:22px}.ac-brand img.emb{height:42px}.ac-brand .r{gap:10px}.ac-kpis,.ac-filters{grid-template-columns:1fr}}
 @media print{.ac-filters,.ac-chips,#sec-sites,#sites-panel{display:none}.ac-tbl{max-height:none;overflow:visible}.ac-p,.ac-k,.ac-rt{break-inside:avoid}.ac-sec{break-after:avoid}}
 </style>
 
 <div class='ac' id='top'>
   <header class='ac-brand' id='brand'>
     <div class='r'>
-      <img src='assets/police.png' alt='شرطة دبي'>
+      <img class='emb' src='assets/police_emblem.png' alt='شعار شرطة دبي'>
       <img class='acis' src='assets/acis.png' alt='إدارة أمن الهيئات والمنشآت الحيوية'>
     </div>
-    <img src='assets/gov.png' alt='حكومة دبي'>
+    <img class='emb' src='assets/gov_emblem.png' alt='شعار حكومة دبي'>
   </header>
 
   <section class='ac-head' id='hero'>
     <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
     <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
     <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لست عشرة جهة</div>
-    <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود.</p>
+    <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
   </section>
 
   <div class='ac-filters' id='filters'>
