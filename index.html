@@ -125,7 +125,7 @@ body.unlocked #lock{display:none}
 .ac-brand .mid{height:1px;background:linear-gradient(90deg,transparent,rgba(212,178,106,.45),transparent)}
 
 /* ── hero ── */
-.ac-hero{position:relative;margin:0 calc(-1 * var(--px));padding:30px var(--px) 30px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;overflow:hidden;
+.ac-hero{position:relative;margin:0 calc(-1 * var(--px));padding:30px var(--px) 30px;display:grid;grid-template-columns:1fr;gap:30px;align-items:center;overflow:hidden;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23D4B26A' stroke-opacity='.15' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0L24 24M88 0L64 24M0 88L24 64M88 88L64 64M44 0V15M44 73V88M0 44H15M73 44H88'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,
   radial-gradient(640px 300px at 90% -20%,rgba(212,178,106,.26),transparent 62%),radial-gradient(520px 280px at 0% 120%,rgba(45,190,126,.20),transparent 60%),linear-gradient(135deg,#0D4A3F 0%,#0B3438 46%,#0A1E2B 100%);
   border-bottom:1px solid rgba(212,178,106,.45)}
@@ -341,6 +341,34 @@ body.unlocked #lock{display:none}
 .ac-sa .mapbox .pulse{animation:acPulseR 2.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes acPulseR{50%{opacity:.35}}
 .ac-sa .simwrap{align-items:start}
+.ac-map{padding:16px 18px 14px;background:linear-gradient(180deg,#07121A,#08130F)}
+.ac-map .simwrap{grid-template-columns:minmax(0,2.1fr) minmax(280px,1fr)}
+.ac-map .simwrap{align-items:stretch}
+.ac-map .simres{max-height:none;contain:size;min-height:0}
+.ac-sa .mapbox{position:relative}
+.ac-sa .mapbox .hit{cursor:pointer}
+.ac-sa .rl{font-size:12px;color:var(--mu);margin-inline-start:6px}
+.ac-sa .zb{position:absolute;left:12px;top:12px;display:flex;flex-direction:column;gap:6px}
+.ac-sa .zb button{font-family:inherit;width:34px;height:34px;border-radius:10px;border:1px solid rgba(91,140,214,.45);background:rgba(3,16,26,.85);color:#fff;font-size:17px;line-height:1;cursor:pointer}
+.ac-sa .zb button:hover{background:rgba(91,140,214,.25)}
+.ac-sa .simres .how{display:flex;flex-direction:column;gap:6px}
+.ac-sa .simres .how p{margin:0;display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:12px;line-height:1.8;color:#CFE0D8}
+.ac-sa .simres .how b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(212,178,106,.15);color:var(--gold);font-size:10.5px}
+.ac-sa .simres button.hr{font-family:inherit;background:none;border:0;color:var(--tx);text-align:right;cursor:pointer;padding:3px 4px;border-radius:6px}
+.ac-sa .simres button.hr:hover{background:rgba(255,255,255,.05)}
+.ac-sa .simres .cb i{display:grid;place-items:center;width:18px;height:18px;background:#E9CF8F;color:#1A1405;font-style:normal;font-size:10px;font-weight:700}
+.ac-sa .simres .sc{border:1px solid var(--bd);border-inline-start:4px solid var(--rc);border-radius:12px;padding:12px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:8px}
+.ac-sa .simres .st1{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ac-sa .simres .st1 b{display:block;font-size:15px;color:#fff;line-height:1.5}
+.ac-sa .simres .st1 small{font-size:11.5px;color:var(--mu)}
+.ac-sa .simres .rv{text-align:center;flex:none}
+.ac-sa .simres .rv b{font-size:26px;color:var(--rc);line-height:1.1}
+.ac-sa .simres .rv small{font-size:10px}
+.ac-sa .simres .ln{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.ac-sa .simres .ln a{color:var(--ac2);text-decoration:none}
+.ac-onmap{font-family:inherit;font-size:11px;margin-inline-start:8px;padding:2px 10px;border-radius:99px;border:1px solid rgba(91,140,214,.5);background:rgba(91,140,214,.1);color:#9CC3F0;cursor:pointer}
+.ac-onmap:hover{background:rgba(91,140,214,.25)}
+@media (max-width:900px){.ac-map .simwrap{grid-template-columns:1fr}.ac-map .simres{contain:none;max-height:520px}}
 .ac-sa .mapbox{background:#03101A;border-color:rgba(91,140,214,.4);box-shadow:0 0 0 1px rgba(91,140,214,.08),0 18px 50px rgba(0,0,0,.45)}
 .ac-sa .mapbox image.esri{filter:saturate(1.15) brightness(1.1) contrast(1.05)}
 .ac-sa .mapbox circle.hot{filter:drop-shadow(0 0 6px rgba(224,113,113,.9))}
@@ -447,25 +475,16 @@ body.unlocked #lock{display:none}
       <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
       <h1>المواقع الهامة والحيوية في إمارة دبي</h1>
       <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: بيانات المواقع الحيوية لأربع عشرة جهة</div>
-      <p class='ac-lede' id='lede'>تضم اللوحة <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> موقعاً مسجلاً لدى <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، وهي فعلياً <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> مكاناً مختلفاً، لأن بعض المواقع مسجّلة لدى أكثر من جهة. أكبر فئة هي <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> بعدد <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> موقعاً، وتتوفر الإحداثيات لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من المواقع. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
-    </div>
-    <div class='ac-ring' data-draw='covRing' data-source='kpis'>
-      <svg viewBox='0 0 184 184' aria-hidden='true'>
-        <defs><linearGradient id='acRingG' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#E9CF8F'/><stop offset='.55' stop-color='#2DBE7E'/><stop offset='1' stop-color='#5BB8D6'/></linearGradient></defs>
-        <circle cx='92' cy='92' r='78' fill='none' stroke='rgba(255,255,255,.10)' stroke-width='12'/>
-        <circle cx='92' cy='92' r='64' fill='none' stroke='rgba(212,178,106,.25)' stroke-width='1' stroke-dasharray='2 5'/>
-        <circle class='arc' cx='92' cy='92' r='78' fill='none' stroke='url(#acRingG)' stroke-width='12' stroke-linecap='round' transform='rotate(-90 92 92)' stroke-dasharray='490.1' stroke-dashoffset='490.1'/>
-      </svg>
-      <div class='val'><b data-source='kpis' data-field='coord_pct' data-row='0'>—</b><small>توفر الإحداثيات</small></div>
-      <p data-source='kpis' data-field='coord_ok' data-row='0'>—</p>
+      <p class='ac-lede' id='lede'>تضم اللوحة <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> موقعاً مسجلاً لدى <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، وهي فعلياً <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> مكاناً مختلفاً، لأن بعض المواقع مسجّلة لدى أكثر من جهة. أكبر فئة هي <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> بعدد <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> موقعاً. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
     </div>
   </section>
 
   <nav class='ac-nav' id='acNav' aria-label='أقسام اللوحة'>
     <a href='#sec-numbers' data-t='sec-numbers'><span>01</span>المؤشرات الرئيسية</a>
-    <a href='#sec-ents' data-t='sec-ents'><span>02</span>الجهات</a>
-    <a href='#sec-sites' data-t='sec-sites'><span>03</span>دليل المواقع</a>
-    <a href='#sec-sa' data-t='sec-sa'><span>04</span>التحليل الأمني</a>
+    <a href='#sec-map' data-t='sec-map'><span>02</span>خريطة المواقع</a>
+    <a href='#sec-ents' data-t='sec-ents'><span>03</span>الجهات</a>
+    <a href='#sec-sites' data-t='sec-sites'><span>04</span>دليل المواقع</a>
+    <a href='#sec-sa' data-t='sec-sa'><span>05</span>التحليل الأمني</a>
   </nav>
 
   <div class='ac-filters' id='filters'>
@@ -484,14 +503,18 @@ body.unlocked #lock{display:none}
     <div class='ac-k' id='k-ent' style='--kc:#B58CFF'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-ent)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-ent' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M16 3 27 7v8c0 7-4.7 11.6-11 14C9.7 26.6 5 22 5 15V7l11-4Z'/><circle cx='16' cy='12' r='2.2'/><circle cx='11' cy='19' r='1.8'/><circle cx='21' cy='19' r='1.8'/><path d='M14.6 13.7 12 17.4M17.4 13.7 20 17.4M12.8 19h6.4'/></svg></span><div class='ac-kl'>الجهات</div><b class='ac-kv dash-skeleton' data-draw='k_ent' data-source='kpis' data-field='entities' data-row='0'>—</b><div class='ac-ks'>الجهات التي أرسلت بيانات مواقعها</div></div>
   </section>
 
-  <h2 class='ac-sec' id='sec-ents'><span>02</span>الجهات</h2>
+  <h2 class='ac-sec' id='sec-map'><span>02</span>خريطة المواقع</h2>
+  <p class='ac-sub' style='margin-top:-6px'>كل المواقع على خريطة Esri الليلية لإمارة دبي، ولون كل نقطة حسب مؤشر الخطورة. اضغط على أي نقطة لعرض بياناتها والمواقع المحيطة بها.</p>
+  <section class='ac-sa ac-map ac-rv' id='mapPanel' data-draw='mainMap' data-source='security'></section>
+
+  <h2 class='ac-sec' id='sec-ents'><span>03</span>الجهات</h2>
   <p class='ac-sub' style='margin-top:-6px'>اضغط على أي جهة لفتح ملفها: مواقعها حسب الفئة، وأكثر مناطقها، وقائمة كل مواقعها.</p>
   <div class='ac-stage ac-rv' id='entStage'>
     <div class='ac-ents-grid' data-draw='entCards' data-source='by_entity'></div>
     <div class='ac-file' id='entFile' hidden></div>
   </div>
 
-  <h2 class='ac-sec' id='sec-sites'><span>03</span>دليل المواقع</h2>
+  <h2 class='ac-sec' id='sec-sites'><span>04</span>دليل المواقع</h2>
   <section class='ac-p ac-rv' id='sites-panel'>
     <p class='ac-sub' style='margin-top:0'>كل موقع يظهر مرة واحدة، وتحته أسماء الجهات التي سجّلته. اضغط على الإحداثيات لفتح الموقع في خرائط Google.</p>
     <div class='ac-tbl'>
@@ -504,14 +527,14 @@ body.unlocked #lock{display:none}
     <p class='ac-ks' style='margin-top:6px'><span class='ac-pill w'>موقع تقريبي</span> تعني أن الإحداثية تدل على المنطقة القريبة وليس على المبنى بالضبط.</p>
   </section>
 
-  <h2 class='ac-sec' id='sec-sa'><span>04</span>التحليل الأمني</h2>
+  <h2 class='ac-sec' id='sec-sa'><span>05</span>التحليل الأمني</h2>
   <p class='ac-sub' style='margin-top:-6px'>قراءة تحليلية للمواقع: مستوى الحساسية، والانتشار، ومناطق التركز، وتوزيع المسؤولية بين الجهات، والمهام المقترحة.</p>
   <div class='ac-sa-stage ac-rv' id='saStage'>
     <button class='ac-sa-launch' id='saLaunch' type='button' data-source='security'>
       <div>
         <div class='k'>إدارة أمن الهيئات والمنشآت الحيوية</div>
         <h3>التحليل الأمني للمواقع</h3>
-        <p>مؤشر الخطورة لكل موقع، والبؤر الحرجة، ومحاكاة أثر أي حادث على خريطة Esri الليلية، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
+        <p>مؤشر الخطورة لكل موقع، والبؤر الحرجة، وتصنيف المواقع حسب حساسيتها، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
         <span class='cta'>افتح التحليل الأمني ←</span>
       </div>
       <div class='ac-sa-orb' aria-hidden='true'><i></i><i></i><i></i><i></i></div>
@@ -695,15 +718,8 @@ window.AC = (function () {
   const n = (v) => fmt(v), pct = (v) => v + '%';
   dash.draw('k_total', kp('total', n, 1)); dash.draw('k_uniq', kp('unique_sites', n, 1)); dash.draw('k_dip', kp('diplomatic', n, 1)); dash.draw('k_ent', kp('entities', n, 1));
   dash.draw('l_total', kp('total', n)); dash.draw('l_ent', kp('entities', n)); dash.draw('l_uniq', kp('unique_sites', n));
-  dash.draw('l_topcat', kp('top_category', (v) => v || '—')); dash.draw('l_topn', kp('top_category_sites', n)); dash.draw('l_cov', kp('coord_pct', pct));
+  dash.draw('l_topcat', kp('top_category', (v) => v || '—')); dash.draw('l_topn', kp('top_category_sites', n)); 
 
-  dash.draw('covRing', (el) => {
-    const d = dash.data('kpis'); const b = el.querySelector('.val b'), p = el.querySelector('p'), arc = el.querySelector('.arc');
-    if (d.status !== 'ok' || !d.data || !d.data.length) { b.textContent = '—'; return; }
-    const r = d.data[0]; countTo(b, r.coord_pct, pct);
-    p.textContent = `${fmt(r.coord_ok)} من ${fmt(r.total)} موقع لها إحداثيات`;
-    const C = 490.1; requestAnimationFrame(() => { arc.style.strokeDashoffset = String(C * (1 - Math.max(0, Math.min(100, r.coord_pct)) / 100)); });
-  });
 
   dash.draw('entitySel', (sel) => {
     const g = dash.data('by_entity'); const cur = (dash.params() || {}).entity || '';
@@ -740,7 +756,7 @@ window.AC = (function () {
       td(tr, r.category === DIP ? pill(r.category, 't') : r.category); td(tr, r.area);
       td(tr, r.makani ? String(r.makani).replace(/^(\d+)(\d{5})$/, '$1 $2') : '—', 'ac-nw');
       if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr';
-        const c = td(tr, a); if (r.conf === 'متوسطة') { const g = pill('موقع تقريبي', 'w'); g.title = r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
+        const c = td(tr, a); const mb = mk('button', 'ac-onmap', 'على الخريطة'); mb.type = 'button'; mb.onclick = () => { if (window.__acMap) window.__acMap.go(+r.lat, +r.lon, r.site, 6); }; c.appendChild(mb); if (r.conf === 'متوسطة') { const g = pill('موقع تقريبي', 'w'); g.title = r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
       else td(tr, '—');
       tb.appendChild(tr); });
   });
@@ -758,7 +774,7 @@ window.AC = (function () {
       const ln = mk('div', 'ln'); const add = (t) => { const x = mk('div'); x.textContent = t; ln.appendChild(x); };
       if (r.top1) add(`${r.top1}: ${fmt(r.top1_n)}`); if (r.top2) add(`${r.top2}: ${fmt(r.top2_n)}`);
       c.appendChild(ln);
-      const bar = mk('div', 'bar'); const sp = mk('span'); sp.style.width = (r.coverage || 0) + '%'; bar.appendChild(sp); c.appendChild(bar); c.appendChild(mk('span', 'ok', 'اضغط لفتح ملف الجهة'));
+      c.appendChild(mk('span', 'ok', 'اضغط لفتح ملف الجهة'));
       c.onclick = () => openFile(r.entity, c);
       el.appendChild(c); });
   });
@@ -825,83 +841,24 @@ window.AC = (function () {
     sh.appendChild(stt); P.appendChild(sh);
     const sb = mk('div', 'sb'); let dl = 0.3; const card = (title, sub, wide) => { const c = mk('div', 'card fi' + (wide ? ' w' : '')); c.style.animationDelay = (dl += 0.06) + 's'; c.appendChild(mk('h4', null, title)); if (sub) c.appendChild(mk('p', 'sub', sub)); sb.appendChild(c); return c; };
 
-    /* ── map + impact simulator ── */
-    const cm = card('خريطة المخاطر ومحاكاة الأثر', 'اضغط على أي نقطة في الخريطة أو اختر موقعاً، ثم حدّد نصف القطر لمعرفة المواقع التي قد تتأثر بأي حادث. استخدم العجلة أو الإصبعين للتكبير.', true);
-    const tools = mk('div', 'simtools');
-    const inp = mk('input'); inp.type = 'search'; inp.placeholder = 'ابحث عن موقع لبدء المحاكاة'; inp.setAttribute('list', 'saSiteList');
-    const dlst = mk('datalist'); dlst.id = 'saSiteList'; r.sites.slice().sort((a, b) => b.r - a.r).forEach((x) => { const o = document.createElement('option'); o.value = x.s; dlst.appendChild(o); });
-    tools.appendChild(inp); tools.appendChild(dlst);
-    const rads = mk('div', 'rads'); let rad = 1; [[0.5, '500 م'], [1, '1 كم'], [2, '2 كم'], [5, '5 كم']].forEach(([v, l]) => { const b = mk('button', 'rb' + (v === rad ? ' on' : ''), l); b.type = 'button'; b.onclick = () => { rad = v; rads.querySelectorAll('.rb').forEach((x) => x.classList.toggle('on', x === b)); if (cur) simulate(cur); }; rads.appendChild(b); });
-    tools.appendChild(rads); cm.appendChild(tools);
-    const wrap = mk('div', 'simwrap'); const mapBox = mk('div', 'mapbox'); const res = mk('div', 'simres'); wrap.appendChild(mapBox); wrap.appendChild(res); cm.appendChild(wrap);
-    res.appendChild(mk('div', 'hint', 'اختر نقطة على الخريطة لعرض النتائج هنا.'));
-    /* Esri World Street Map (Night) — georeferenced basemap */
-    const MAPURL = 'assets/esri-night.jpg', W = 4600, H = 2960, OX = 1100, OY = 0;
-    const G = { s: 0.05354767347353063, th: 0.8771981116824578, tx: 3623.67286339296, ty: 1037.92043456609, cx: 6146909.891080591, cy: 2892739.415099748 }, RE = 6378137, DG = Math.PI / 180, GC = Math.cos(G.th), GS = Math.sin(G.th);
-    const PJ = (la, lo) => { const x = RE * lo * DG - G.cx, y = -(RE * Math.log(Math.tan(Math.PI / 4 + la * DG / 2)) - G.cy); return [G.s * (GC * x - GS * y) + G.tx - OX, G.s * (GS * x + GC * y) + G.ty - OY]; };
-    const UP = (px, py) => { const u = (px + OX - G.tx) / G.s, v = (py + OY - G.ty) / G.s, x = GC * u + GS * v, y = -GS * u + GC * v; return { la: (2 * Math.atan(Math.exp((G.cy - y) / RE)) - Math.PI / 2) / DG, lo: (x + G.cx) / RE / DG }; };
-    const pxPerKm = (G.s * 1000) / Math.cos(25.15 * DG), U = W / 700; let K = 1;
-    const onMap = (x) => { const [a, b] = PJ(x.la, x.lo); return a > 8 && a < W - 8 && b > 8 && b < H - 8; };
-    const svg = d3.select(mapBox).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'خريطة المخاطر على خريطة Esri الليلية');
-    svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#03101A');
-    const gz = svg.append('g');
-    gz.append('image').attr('href', MAPURL).attr('width', W).attr('height', H).attr('preserveAspectRatio', 'none').attr('class', 'esri');
-    const inside = r.sites.filter(onMap), outside = r.sites.length - inside.length;
-    const dots = gz.append('g').selectAll('circle').data(inside.slice().sort((a, b) => a.r - b.r)).join('circle')
-      .attr('cx', (x) => PJ(x.la, x.lo)[0]).attr('cy', (x) => PJ(x.la, x.lo)[1]).attr('fill', (x) => riskCol(x.r)).attr('fill-opacity', .92)
-      .attr('stroke', '#03101A').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke').attr('class', (x) => (x.r >= 70 ? 'hot' : null));
-    dots.append('title').text((x) => `${x.s} — ${x.c} · مؤشر الخطورة ${x.r}`);
-    const cg = gz.append('g'), badges = [];
-    r.clusters.forEach((c, i) => { const [cx, cy] = PJ(c.lat, c.lon); const g = cg.append('g').attr('transform', `translate(${cx},${cy})`);
-      g.append('circle').attr('r', c.r * pxPerKm + 4 * U).attr('fill', 'rgba(233,207,143,.06)').attr('stroke', '#E9CF8F').attr('stroke-width', 1.4).attr('vector-effect', 'non-scaling-stroke').attr('stroke-dasharray', '4 3').attr('class', 'pulse');
-      if (i < 8) { const b = g.append('g'); b.append('circle').attr('r', 8).attr('cx', 14).attr('cy', -14).attr('fill', '#E9CF8F'); b.append('text').attr('x', 14).attr('y', -14).attr('dy', '.35em').attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', '#1A1405').text(i + 1); badges.push(b); } });
-    const simg = gz.append('g'); let cur = null;
-    const sizes = () => { const s = U / Math.pow(K, 0.8); dots.attr('r', (x) => (x.t === 1 ? 2.8 : 2.1) * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 2.6 * s); simg.selectAll('circle.ctr').attr('r', 3.2 * s); };
-    const zoom = d3.zoom().scaleExtent([1, 9]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
-    svg.call(zoom); sizes();
-    { const [ix, iy] = PJ(25.165, 55.29); svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); }
-    const focus = (la, lo, k) => { const [x, y] = PJ(la, lo); svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-x, -y)); };
-    svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
-    inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s }); focus(x.la, x.lo, 4); } });
-    const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'بؤرة حرجة (رقمها في القائمة)']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
-    if (outside) { const s = mk('span', null, `${fmt(outside)} مواقع خارج حدود الخريطة (حتا وأطراف الإمارة) تدخل في الحسابات ولا تظهر عليها`); lgd.appendChild(s); }
-    const cr0 = mk('span', null, 'الخريطة الأساسية: Esri World Street Map (Night)'); cr0.style.opacity = '.7'; lgd.appendChild(cr0);
-    cm.appendChild(lgd);
-    function simulate(p) {
-      cur = p; simg.selectAll('*').remove();
-      const hit = r.sites.map((x) => ({ ...x, d: kmd(p, x) })).filter((x) => x.d <= rad).sort((a, b) => a.t - b.t || b.r - a.r);
-      const [px0, py0] = PJ(p.la, p.lo);
-      simg.append('circle').attr('cx', px0).attr('cy', py0).attr('r', rad * pxPerKm).attr('fill', 'rgba(224,113,113,.14)').attr('stroke', '#FF8A8A').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke');
-      hit.filter(onMap).forEach((x) => { const [hx, hy] = PJ(x.la, x.lo); simg.append('circle').attr('class', 'hd').attr('cx', hx).attr('cy', hy).attr('fill', TC[x.t]).attr('stroke', '#fff').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke'); });
-      simg.append('circle').attr('class', 'ctr').attr('cx', px0).attr('cy', py0).attr('fill', '#fff').attr('stroke', '#E07171').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke'); sizes();
-      res.replaceChildren(); res.appendChild(mk('div', 'pt', p.label)); res.appendChild(mk('div', 'pr', `نصف القطر: ${rad < 1 ? rad * 1000 + ' م' : rad + ' كم'}`));
-      const k3 = mk('div', 'k3'); [[hit.length, 'موقع ضمن الدائرة'], [hit.filter((x) => x.t === 1).length, 'منها حرجة'], [new Set(hit.flatMap((x) => x.e.split('، '))).size, 'جهة معنية']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); });
-      res.appendChild(k3);
-      const ents = [...new Set(hit.flatMap((x) => x.e.split('، ')))]; if (ents.length) { const ec = mk('div', 'ec'); ec.appendChild(mk('small', null, 'الجهات التي يجب إبلاغها:')); ents.forEach((e) => ec.appendChild(pill(e))); res.appendChild(ec); }
-      const pol = r.sites.filter((x) => /شرطة/.test(x.s)).map((x) => ({ ...x, d: kmd(p, x) })).sort((a, b) => a.d - b.d).slice(0, 3);
-      if (pol.length) { const pc = mk('div', 'ec'); pc.appendChild(mk('small', null, 'أقرب مراكز الشرطة:')); pol.forEach((x) => pc.appendChild(pill(`${x.s} · ${x.d.toFixed(1)} كم`, 't'))); res.appendChild(pc); }
-      const ls = mk('div', 'hl'); hit.slice(0, 60).forEach((x) => { const row = mk('div', 'hr'); const dot = mk('i'); dot.style.background = TC[x.t]; row.appendChild(dot); row.appendChild(mk('span', null, x.s)); row.appendChild(mk('em', null, `${x.d < 1 ? Math.round(x.d * 1000) + ' م' : x.d.toFixed(1) + ' كم'}`)); ls.appendChild(row); });
-      if (!hit.length) ls.appendChild(mk('div', 'hint', 'لا توجد مواقع ضمن هذا النطاق.')); res.appendChild(ls);
-    }
-
     /* ── risk ranking ── */
-    const cr = card('مؤشر الخطورة — أعلى 20 موقعاً', 'درجة تقديرية من 100 لكل موقع: الفئة (حتى 45) + المواقع الحرجة القريبة ضمن 500 م (حتى 30) + عدد الجهات المتابعة (حتى 15) + دقة الإحداثيات (حتى 10). اضغط على الموقع لعرض المحاكاة حوله.', true);
+    const cr = card('مؤشر الخطورة — أعلى 20 موقعاً', 'درجة تقديرية من 100 لكل موقع: الفئة (حتى 45) + المواقع الحرجة القريبة ضمن 500 م (حتى 30) + عدد الجهات المتابعة (حتى 15) + دقة الإحداثيات (حتى 10). اضغط على الموقع لعرضه على الخريطة.', true);
     const rl = mk('div', 'rlist'); r.sites.slice().sort((a, b) => b.r - a.r).slice(0, 20).forEach((x, i) => {
       const row = mk('button', 'rrow'); row.type = 'button'; row.appendChild(mk('span', 'rn', String(i + 1)));
       const nm = mk('div', 'rt'); nm.appendChild(mk('b', null, x.s)); nm.appendChild(mk('small', null, `${x.c} · ${x.a || '—'} · ${x.ne === 1 ? 'تتابعه جهة واحدة' : 'تتابعه ' + x.ne + ' جهات'}${x.nr ? ' · ' + x.nr + ' مواقع حرجة قريبة' : ''}`)); row.appendChild(nm);
       const bar = mk('i'); [[x.f.cat, '#E07171'], [x.f.near, '#D4B26A'], [x.f.cov, '#5BB8D6'], [x.f.unc, '#9BB0A7']].forEach(([v, c]) => { const s = mk('span'); s.style.background = c; bar.appendChild(s); grow.push([s, v]); }); row.appendChild(bar);
       row.appendChild(mk('strong', null, String(x.r))); row.style.setProperty('--rc', riskCol(x.r));
-      row.onclick = () => { simulate({ la: x.la, lo: x.lo, label: x.s }); focus(x.la, x.lo, 4); cm.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      row.onclick = () => { if (window.__acMap) window.__acMap.go(x.la, x.lo, x.s, 5); };
       rl.appendChild(row); });
     cr.appendChild(rl);
     const rk = mk('div', 'lg'); [['#E07171', 'الفئة'], ['#D4B26A', 'مواقع حرجة قريبة'], ['#5BB8D6', 'قلة الجهات المتابعة'], ['#9BB0A7', 'إحداثيات تقريبية']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); rk.appendChild(s); }); cr.appendChild(rk);
 
     /* ── clusters ── */
-    const cc = card('البؤر الحرجة', `${fmt(r.clusters.length)} بؤرة: كل بؤرة 3 مواقع حرجة أو أكثر تبعد عن بعضها 400 م أو أقل، فأي حادث فيها قد يمس أكثر من موقع حساس. اضغط على البؤرة لعرضها على الخريطة.`, true);
+    const cc = card('البؤر الحرجة', `${fmt(r.clusters.length)} بؤرة: كل بؤرة 3 مواقع حرجة أو أكثر تبعد عن بعضها 400 م أو أقل، فأي حادث فيها قد يمس أكثر من موقع حساس. اضغط على البؤرة لعرضها على خريطة المواقع.`, true);
     const cg2 = mk('div', 'clist'); r.clusters.slice(0, 12).forEach((c, i) => { const b = mk('button', 'cl'); b.type = 'button'; b.appendChild(mk('span', 'cn', String(i + 1)));
       const t = mk('div'); t.appendChild(mk('b', null, c.area || 'بؤرة ' + (i + 1))); t.appendChild(mk('small', null, c.cats)); b.appendChild(t);
       const m = mk('div', 'cm'); m.appendChild(mk('b', null, fmt(c.n))); m.appendChild(mk('small', null, 'موقع حرج')); b.appendChild(m);
-      b.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'بؤرة ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5); cm.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      b.onclick = () => { if (window.__acMap) window.__acMap.go(c.lat, c.lon, 'بؤرة ' + (i + 1) + ' — ' + c.area, 5); };
       cg2.appendChild(b); }); cc.appendChild(cg2);
 
     /* ── existing cards ── */
@@ -933,6 +890,96 @@ window.AC = (function () {
       setTimeout(() => grow.forEach(([s, w]) => { s.style.width = Math.max(0, w) + '%'; }), 350);
       st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
   }
+  /* ── main map: Esri World Street Map (Night) ── */
+  let MV = null, RAD = 1;
+  function mainMap(el) {
+    const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) return errBox(el, d);
+    const r = d.data[0]; el.replaceChildren();
+    const tools = mk('div', 'simtools');
+    const inp = mk('input'); inp.type = 'search'; inp.placeholder = 'ابحث عن موقع لعرضه على الخريطة'; inp.setAttribute('list', 'acMapList');
+    const dlst = mk('datalist'); dlst.id = 'acMapList'; r.sites.slice().sort((a, b) => a.s.localeCompare(b.s, 'ar')).forEach((x) => { const o = document.createElement('option'); o.value = x.s; dlst.appendChild(o); });
+    tools.appendChild(inp); tools.appendChild(dlst);
+    const rl = mk('span', 'rl', 'نطاق الأثر:'); tools.appendChild(rl);
+    const rads = mk('div', 'rads'); [[0.5, '500 م'], [1, '1 كم'], [2, '2 كم'], [5, '5 كم']].forEach(([v, l]) => { const b = mk('button', 'rb' + (v === RAD ? ' on' : ''), l); b.type = 'button'; b.onclick = () => { RAD = v; rads.querySelectorAll('.rb').forEach((x) => x.classList.toggle('on', x === b)); if (cur) simulate(cur); }; rads.appendChild(b); });
+    tools.appendChild(rads);
+    const clr = mk('button', 'rb', 'مسح'); clr.type = 'button'; clr.onclick = () => { cur = null; simg.selectAll('*').remove(); overview(); }; tools.appendChild(clr);
+    el.appendChild(tools);
+    const wrap = mk('div', 'simwrap'); const mapBox = mk('div', 'mapbox'); const res = mk('div', 'simres'); wrap.appendChild(mapBox); wrap.appendChild(res); el.appendChild(wrap);
+    const MAPURL = 'assets/esri-night.jpg', W = 4600, H = 2960, OX = 1100, OY = 0;
+    const G = { s: 0.05354767347353063, th: 0.8771981116824578, tx: 3623.67286339296, ty: 1037.92043456609, cx: 6146909.891080591, cy: 2892739.415099748 }, RE = 6378137, DG = Math.PI / 180, GC = Math.cos(G.th), GS = Math.sin(G.th);
+    const PJ = (la, lo) => { const x = RE * lo * DG - G.cx, y = -(RE * Math.log(Math.tan(Math.PI / 4 + la * DG / 2)) - G.cy); return [G.s * (GC * x - GS * y) + G.tx - OX, G.s * (GS * x + GC * y) + G.ty - OY]; };
+    const UP = (px, py) => { const u = (px + OX - G.tx) / G.s, v = (py + OY - G.ty) / G.s, x = GC * u + GS * v, y = -GS * u + GC * v; return { la: (2 * Math.atan(Math.exp((G.cy - y) / RE)) - Math.PI / 2) / DG, lo: (x + G.cx) / RE / DG }; };
+    const pxPerKm = (G.s * 1000) / Math.cos(25.15 * DG), U = W / 760; let K = 1;
+    const onMap = (x) => { const [a, b] = PJ(x.la, x.lo); return a > 8 && a < W - 8 && b > 8 && b < H - 8; };
+    const svg = d3.select(mapBox).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'خريطة المواقع الحيوية على خريطة Esri الليلية');
+    svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#03101A');
+    const gz = svg.append('g');
+    gz.append('image').attr('href', MAPURL).attr('width', W).attr('height', H).attr('preserveAspectRatio', 'none').attr('class', 'esri');
+    const inside = r.sites.filter(onMap), outside = r.sites.length - inside.length;
+    const cg = gz.append('g'), badges = [];
+    r.clusters.forEach((c, i) => { const [cx, cy] = PJ(c.lat, c.lon); const g = cg.append('g').attr('transform', `translate(${cx},${cy})`);
+      g.append('circle').attr('r', c.r * pxPerKm + 4 * U).attr('fill', 'rgba(233,207,143,.06)').attr('stroke', '#E9CF8F').attr('stroke-width', 1.4).attr('vector-effect', 'non-scaling-stroke').attr('stroke-dasharray', '4 3').attr('class', 'pulse');
+      if (i < 8) { const b = g.append('g').style('pointer-events', 'none'); b.append('circle').attr('r', 8).attr('cx', 14).attr('cy', -14).attr('fill', '#E9CF8F'); b.append('text').attr('x', 14).attr('y', -14).attr('dy', '.35em').attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', '#1A1405').text(i + 1); badges.push(b); } });
+    const simg = gz.append('g').style('pointer-events', 'none');
+    const data = inside.slice().sort((a, b) => a.r - b.r);
+    const dots = gz.append('g').style('pointer-events', 'none').selectAll('circle').data(data).join('circle')
+      .attr('cx', (x) => PJ(x.la, x.lo)[0]).attr('cy', (x) => PJ(x.la, x.lo)[1]).attr('fill', (x) => riskCol(x.r)).attr('fill-opacity', .95)
+      .attr('stroke', '#03101A').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke').attr('class', (x) => (x.r >= 70 ? 'hot' : null));
+    const hits = gz.append('g').selectAll('circle').data(data).join('circle').attr('class', 'hit')
+      .attr('cx', (x) => PJ(x.la, x.lo)[0]).attr('cy', (x) => PJ(x.la, x.lo)[1]).attr('fill', 'transparent');
+    hits.append('title').text((x) => `${x.s}\n${x.c} · ${x.a || '—'}\nمؤشر الخطورة: ${x.r}`);
+    hits.on('click', (ev, x) => { ev.stopPropagation(); simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 3); });
+    let cur = null;
+    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); };
+    const zoom = d3.zoom().scaleExtent([1, 10]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); MV = ev.transform; if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
+    svg.call(zoom); sizes();
+    if (MV) svg.call(zoom.transform, MV); else { const [ix, iy] = PJ(25.165, 55.29); svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); }
+    const focus = (la, lo, k) => { const [x, y] = PJ(la, lo); svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(Math.max(k, K)).translate(-x, -y)); };
+    svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
+    inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 5); } });
+    const zb = mk('div', 'zb'); [['+', 1.6], ['−', 1 / 1.6], ['⌂', 0]].forEach(([t, f]) => { const b = mk('button', null, t); b.type = 'button'; b.onclick = (ev) => { ev.stopPropagation(); if (f) svg.transition().duration(350).call(zoom.scaleBy, f); else { const [ix, iy] = PJ(25.165, 55.29); svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); } }; zb.appendChild(b); }); mapBox.appendChild(zb);
+    const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'بؤرة حرجة']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
+    if (outside) lgd.appendChild(mk('span', null, `${fmt(outside)} مواقع في حتا وأطراف الإمارة خارج حدود الخريطة`));
+    const cr0 = mk('span', null, 'الخريطة: Esri World Street Map (Night)'); cr0.style.opacity = '.65'; lgd.appendChild(cr0);
+    el.appendChild(lgd);
+    function overview() {
+      res.replaceChildren(); res.appendChild(mk('div', 'pt', 'المواقع على الخريطة'));
+      const k3 = mk('div', 'k3'); [[r.sites.length, 'موقع'], [r.high, 'عالية الخطورة'], [r.clusters.length, 'بؤرة حرجة']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); }); res.appendChild(k3);
+      const ul = mk('div', 'how'); ['اضغط على أي نقطة لعرض بيانات الموقع والمواقع المحيطة به.', 'اضغط على أي مكان فارغ لمعرفة المواقع التي قد يتأثر بها حادث في هذا المكان.', 'اختر نطاق الأثر من الأعلى، وكبّر بالعجلة أو بالإصبعين أو بالأزرار.', 'عوامل التصفية أعلى اللوحة (الجهة، الفئة، البحث) تنطبق على الخريطة.'].forEach((t, i) => { const p = mk('p'); p.appendChild(mk('b', null, String(i + 1))); p.appendChild(document.createTextNode(t)); ul.appendChild(p); }); res.appendChild(ul);
+      const tc = mk('div', 'hl'); tc.appendChild(mk('small', null, 'البؤر الحرجة:'));
+      r.clusters.slice(0, 8).forEach((c, i) => { const row = mk('button', 'hr cb'); row.type = 'button'; const n = mk('i', null, String(i + 1)); row.appendChild(n); row.appendChild(mk('span', null, c.area || 'بؤرة ' + (i + 1))); row.appendChild(mk('em', null, fmt(c.n) + ' مواقع حرجة')); row.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'بؤرة ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5); }; tc.appendChild(row); });
+      res.appendChild(tc);
+    }
+    function simulate(p) {
+      cur = p; simg.selectAll('*').remove();
+      const hit = r.sites.map((x) => ({ ...x, d: kmd(p, x) })).filter((x) => x.d <= RAD && (!p.site || x.s !== p.site.s || x.d > 0.001)).sort((a, b) => a.t - b.t || b.r - a.r);
+      const [px0, py0] = PJ(p.la, p.lo);
+      simg.append('circle').attr('cx', px0).attr('cy', py0).attr('r', RAD * pxPerKm).attr('fill', 'rgba(224,113,113,.13)').attr('stroke', '#FF8A8A').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke');
+      hit.filter(onMap).forEach((x) => { const [hx, hy] = PJ(x.la, x.lo); simg.append('circle').attr('class', 'hd').attr('cx', hx).attr('cy', hy).attr('fill', TC[x.t]).attr('stroke', '#fff').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke'); });
+      if (p.site) simg.append('circle').attr('class', 'sel').attr('cx', px0).attr('cy', py0).attr('fill', 'none').attr('stroke', '#fff').attr('stroke-width', 2.5).attr('vector-effect', 'non-scaling-stroke');
+      simg.append('circle').attr('class', 'ctr').attr('cx', px0).attr('cy', py0).attr('fill', p.site ? riskCol(p.site.r) : '#fff').attr('stroke', '#fff').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke'); sizes();
+      res.replaceChildren();
+      if (p.site) { const x = p.site; const sc = mk('div', 'sc'); sc.style.setProperty('--rc', riskCol(x.r));
+        const top = mk('div', 'st1'); const nm = mk('div'); nm.appendChild(mk('b', null, x.s)); nm.appendChild(mk('small', null, `${x.c} · ${x.a || '—'}`)); top.appendChild(nm);
+        const rv = mk('div', 'rv'); rv.appendChild(mk('b', null, String(x.r))); rv.appendChild(mk('small', null, 'مؤشر الخطورة')); top.appendChild(rv); sc.appendChild(top);
+        const ec = mk('div', 'ec'); ec.appendChild(mk('small', null, x.ne === 1 ? 'تتابعه جهة واحدة:' : `تتابعه ${x.ne} جهات:`)); x.e.split('، ').forEach((e) => ec.appendChild(pill(e))); sc.appendChild(ec);
+        const ln = mk('div', 'ln'); const a = mk('a', null, `N${x.la.toFixed(5)} E${x.lo.toFixed(5)}`); a.href = `https://www.google.com/maps?q=${x.la},${x.lo}`; a.target = '_blank'; a.rel = 'noopener'; a.dir = 'ltr'; ln.appendChild(a);
+        if (x.ap) { const g = pill('موقع تقريبي', 'w'); ln.appendChild(g); } if (x.nr) ln.appendChild(pill(`${x.nr} مواقع حرجة ضمن 500 م`, 'b')); sc.appendChild(ln);
+        res.appendChild(sc); }
+      else res.appendChild(mk('div', 'pt', p.label));
+      res.appendChild(mk('div', 'pr', `${p.site ? 'المواقع المحيطة' : 'المواقع المتأثرة'} ضمن ${RAD < 1 ? RAD * 1000 + ' م' : RAD + ' كم'}`));
+      const k3 = mk('div', 'k3'); [[hit.length, 'موقع'], [hit.filter((x) => x.t === 1).length, 'منها حرجة'], [new Set(hit.flatMap((x) => x.e.split('، '))).size, 'جهة معنية']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); });
+      res.appendChild(k3);
+      const ents = [...new Set(hit.flatMap((x) => x.e.split('، ')))]; if (ents.length) { const ec = mk('div', 'ec'); ec.appendChild(mk('small', null, 'الجهات التي يجب إبلاغها:')); ents.forEach((e) => ec.appendChild(pill(e))); res.appendChild(ec); }
+      const pol = r.sites.filter((x) => /شرطة/.test(x.s) && (!p.site || x.s !== p.site.s)).map((x) => ({ ...x, d: kmd(p, x) })).sort((a, b) => a.d - b.d).slice(0, 3);
+      if (pol.length) { const pc = mk('div', 'ec'); pc.appendChild(mk('small', null, 'أقرب مراكز الشرطة:')); pol.forEach((x) => pc.appendChild(pill(`${x.s} · ${x.d.toFixed(1)} كم`, 't'))); res.appendChild(pc); }
+      const ls = mk('div', 'hl'); hit.slice(0, 60).forEach((x) => { const row = mk('button', 'hr'); row.type = 'button'; const dot = mk('i'); dot.style.background = TC[x.t]; row.appendChild(dot); row.appendChild(mk('span', null, x.s)); row.appendChild(mk('em', null, `${x.d < 1 ? Math.round(x.d * 1000) + ' م' : x.d.toFixed(1) + ' كم'}`)); row.onclick = () => { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, Math.max(5, K)); }; ls.appendChild(row); });
+      if (!hit.length) ls.appendChild(mk('div', 'hint', 'لا توجد مواقع أخرى ضمن هذا النطاق.')); res.appendChild(ls);
+    }
+    overview();
+    window.__acMap = { go: (la, lo, name, k) => { const x = r.sites.find((z) => z.s === name && Math.abs(z.la - la) < 1e-3) || null; simulate({ la, lo, label: name, site: x }); focus(la, lo, k || 5); const s = document.getElementById('sec-map'); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+  }
+  dash.draw('mainMap', mainMap);
   function saClose() {
     const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel'); if (!L || !P) return;
     P.classList.remove('in'); P.classList.add('out');
