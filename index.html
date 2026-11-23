@@ -374,6 +374,22 @@ body.unlocked #lock{display:none}
 .ac-sa .simres .ln a{color:var(--ac2);text-decoration:none}
 .ac-onmap{font-family:inherit;font-size:11px;margin-inline-start:8px;padding:2px 10px;border-radius:99px;border:1px solid rgba(91,140,214,.5);background:rgba(91,140,214,.1);color:#9CC3F0;cursor:pointer}
 .ac-onmap:hover{background:rgba(91,140,214,.25)}
+.ac-sa .catchips{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 12px}
+.ac-sa .cc{font-family:inherit;font-size:11.5px;color:#CFE0D8;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:99px;padding:4px 11px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.ac-sa .cc small{font-size:10px;color:var(--mu)}
+.ac-sa .cc:hover{border-color:rgba(91,140,214,.6)}
+.ac-sa .cc.on{background:rgba(91,140,214,.22);border-color:#5B8CD6;color:#fff}
+.ac-sa .cc.on small{color:#CFE2FA}
+.ac-sa .mapbox .labs text{fill:#fff;stroke:#03101A;paint-order:stroke;stroke-linejoin:round;font-family:'ACBukra',sans-serif;font-weight:700}
+.ac-risk{display:inline-block;min-width:34px;text-align:center;font-weight:700;font-size:12.5px;color:var(--rc,#9BB0A7);border:1px solid var(--rc,#2A4A3D);border-radius:8px;padding:1px 6px;background:rgba(255,255,255,.03)}
+.ac th.th-risk{cursor:pointer;user-select:none}
+.ac th.th-risk span{font-size:11px;color:var(--gold)}
+.ac th.th-risk.on{color:var(--gold)}
+.ac-file .fmap{padding:0 24px 18px}
+.ac-file .fmap svg{display:block;width:100%;height:auto;border-radius:14px;border:1px solid rgba(91,140,214,.35);direction:ltr}
+.ac-file .fmap image.esri{filter:saturate(1.15) brightness(1.1) contrast(1.05)}
+.ac-file .fl2{display:flex;flex-wrap:wrap;gap:14px;font-size:11.5px;color:var(--mu);margin-top:8px}
+.ac-file .fl2 i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:6px;vertical-align:-1px}
 @media (max-width:900px){.ac-map .simwrap{grid-template-columns:1fr}.ac-map .simres{contain:none;max-height:520px}}
 .ac-sa .mapbox{background:#03101A;border-color:rgba(91,140,214,.4);box-shadow:0 0 0 1px rgba(91,140,214,.08),0 18px 50px rgba(0,0,0,.45)}
 .ac-sa .mapbox image.esri{filter:saturate(1.15) brightness(1.1) contrast(1.05)}
@@ -538,7 +554,7 @@ body.unlocked #lock{display:none}
     <p class='ac-sub' style='margin-top:0'>كل موقع يظهر مرة واحدة، وتحته أسماء الجهات التي سجّلته. اضغط على الإحداثيات لفتح الموقع في خرائط Google.</p>
     <div class='ac-tbl'>
       <table data-source='sites_view' data-row-key='id' aria-label='دليل المواقع'>
-        <thead><tr><th data-field='site'>الموقع والجهات</th><th data-field='category'>الفئة</th><th data-field='area'>المنطقة</th><th data-field='makani'>الرقم المكاني</th><th data-field='coords'>الإحداثيات</th></tr></thead>
+        <thead><tr><th data-field='site'>الموقع والجهات</th><th class='th-risk' id='thRisk' title='اضغط للترتيب حسب الخطورة'>الخطورة <span>⇅</span></th><th data-field='category'>الفئة</th><th data-field='area'>المنطقة</th><th data-field='makani'>الرقم المكاني</th><th data-field='coords'>الإحداثيات</th></tr></thead>
         <tbody data-draw='siteRows'></tbody>
       </table>
     </div>
@@ -698,7 +714,7 @@ window.AC = (function () {
         t1_single: u.filter((x) => x.t === 1 && x.ents.length === 1).length, approx: u.filter((x) => x.approx).length, exact_pct: Math.round(((n - u.filter((x) => x.approx).length) / n) * 1000) / 10,
         consulates: dip.filter((x) => !/^منزل/.test(x.site)).length, residences: dip.filter((x) => /^منزل/.test(x.site)).length,
         clusters, high: u.filter((x) => x.risk >= 70).length,
-        sites: u.map((x) => ({ s: x.site, c: x.category, a: x.area, la: Math.round(x.lat * 1e5) / 1e5, lo: Math.round(x.lon * 1e5) / 1e5, t: x.t, e: x.ents.join('، '), ne: x.ents.length, r: x.risk, f: x.f, nr: x.near, ap: x.approx })) }];
+        sites: u.map((x) => ({ s: x.site, c: x.category, a: x.area, la: Math.round(x.lat * 1e5) / 1e5, lo: Math.round(x.lon * 1e5) / 1e5, t: x.t, e: x.ents.join('، '), ne: x.ents.length, r: x.risk, f: x.f, nr: x.near, ap: x.approx, id: x.id })) }];
     }
   });
   dash.calc('ent_sites', {
@@ -765,20 +781,26 @@ window.AC = (function () {
   const errRow = (tb, cols, d) => { tb.replaceChildren(); const tr = document.createElement('tr'); const c = td(tr, d.status === 'error' ? 'تعذّر تحميل البيانات.' : 'جارٍ التحميل…'); c.colSpan = cols; tb.appendChild(tr); };
   const errBox = (el, d) => { el.replaceChildren(mk('div', 'ac-err', d.status === 'error' ? 'تعذّر تحميل البيانات.' : 'جارٍ التحميل…')); };
 
-  dash.draw('siteRows', (tb) => {
-    const d = dash.data('sites_view'); if (d.status !== 'ok') return errRow(tb, 5, d);
+  let SORT_RISK = false;
+  dash.draw('siteRows', (tb) => { window.__acRows = () => drawRows(tb); drawRows(tb); });
+  function drawRows(tb) {
+    const d = dash.data('sites_view'); if (d.status !== 'ok') return errRow(tb, 6, d);
+    const sd = dash.data('security'); const RK = new Map(sd.status === 'ok' && sd.data && sd.data.length ? sd.data[0].sites.map((x) => [x.id, x.r]) : []);
+    const th = document.getElementById('thRisk'); if (th && !th.dataset.bound) { th.dataset.bound = '1'; th.onclick = () => { SORT_RISK = !SORT_RISK; th.classList.toggle('on', SORT_RISK); drawRows(tb); }; }
     tb.replaceChildren(); const LIM = 300;
-    if (!d.data.length) { const tr = document.createElement('tr'); const c = td(tr, 'لا توجد نتائج مطابقة لعوامل التصفية الحالية.'); c.colSpan = 5; tb.appendChild(tr); return; }
-    d.data.slice(0, LIM).forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = String(r.id);
+    if (!d.data.length) { const tr = document.createElement('tr'); const c = td(tr, 'لا توجد نتائج مطابقة لعوامل التصفية الحالية.'); c.colSpan = 6; tb.appendChild(tr); return; }
+    const rows = SORT_RISK ? d.data.slice().sort((a, b) => (RK.get(b.id) || 0) - (RK.get(a.id) || 0)) : d.data;
+    rows.slice(0, LIM).forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = String(r.id);
       const s = mk('div'); const nm = mk('b', null, r.site); nm.style.color = '#fff'; s.appendChild(nm);
       const e = mk('div', 'ac-ents', r.n_entities > 1 ? `${r.entities} · مسجّل لدى ${r.n_entities === 2 ? 'جهتين' : fmt(r.n_entities) + ' جهات'}` : r.entities); s.appendChild(e); td(tr, s);
+      const rv = RK.get(r.id); const rc = mk('span', 'ac-risk', rv == null ? '—' : String(rv)); if (rv != null) rc.style.setProperty('--rc', rv >= 70 ? '#E07171' : rv >= 50 ? '#D4B26A' : '#2DBE7E'); td(tr, rc, 'ac-nw');
       td(tr, r.category === DIP ? pill(r.category, 't') : r.category); td(tr, r.area);
       td(tr, r.makani ? String(r.makani).replace(/^(\d+)(\d{5})$/, '$1 $2') : '—', 'ac-nw');
       if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr';
         const c = td(tr, a); const mb = mk('button', 'ac-onmap', 'على الخريطة'); mb.type = 'button'; mb.onclick = () => { if (window.__acMap) window.__acMap.go(+r.lat, +r.lon, r.site, 6); }; c.appendChild(mb); if (r.conf === 'متوسطة') { const g = pill('موقع تقريبي', 'w'); g.title = r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
       else td(tr, '—');
       tb.appendChild(tr); });
-  });
+  }
   dash.draw('siteCount', (el) => { const d = dash.data('sites_view'); if (d.status !== 'ok') return placeholder(el, d);
         const base = d.data.length > 300 ? `تُعرض أول 300 موقع من أصل ${fmt(d.data.length)}. استخدم عوامل التصفية أو البحث لتضييق النتائج.` : `عدد المواقع: ${fmt(d.data.length)}.`;
     el.textContent = base; });
@@ -822,6 +844,24 @@ window.AC = (function () {
     const right = mk('div', 'fi'); right.style.animationDelay = '.38s'; right.appendChild(mk('h4', null, 'أكثر المناطق'));
     const ar = mk('div', 'areas'); areas.forEach(([a, n]) => { const s = mk('span', null, a); s.appendChild(mk('b', null, fmt(n))); ar.appendChild(s); }); right.appendChild(ar); fb.appendChild(right);
     file.appendChild(fb);
+    { const MW = 4600, MH = 2960, G = { s: 0.05354767347353063, th: 0.8771981116824578, tx: 3623.67286339296 - 1100, ty: 1037.92043456609, cx: 6146909.891080591, cy: 2892739.415099748 }, RE = 6378137, DG = Math.PI / 180, GC = Math.cos(G.th), GS = Math.sin(G.th);
+      const PJ = (la, lo) => { const x = RE * lo * DG - G.cx, y = -(RE * Math.log(Math.tan(Math.PI / 4 + la * DG / 2)) - G.cy); return [G.s * (GC * x - GS * y) + G.tx, G.s * (GS * x + GC * y) + G.ty]; };
+      const T1 = ['المنشآت الدبلوماسية', 'المراكز العسكرية', 'الجهات الحكومية', 'المنافذ', 'خزانات المياه الرئيسية'], T2 = ['محطات المترو', 'البنوك والمصارف', 'المراكز الإعلامية', 'المراكز الطبية', 'الفنادق', 'دور العبادة'];
+      const col = { 1: '#E07171', 2: '#D4B26A', 3: '#2DBE7E' }, tier = (c) => (T1.includes(c) ? 1 : T2.includes(c) ? 2 : 3);
+      const pts = rows.filter((x) => x.lat != null).map((x) => ({ ...x, p: PJ(+x.lat, +x.lon) })).filter((x) => x.p[0] > 5 && x.p[0] < MW - 5 && x.p[1] > 5 && x.p[1] < MH - 5);
+      if (pts.length) { const fm = mk('div', 'fmap fi'); fm.style.animationDelay = '.42s'; const off = rows.length - pts.length;
+        fm.appendChild(mk('h4', null, `مواقع ${ent} على الخريطة`));
+        const q = (a, f) => d3.quantile(a.slice().sort((m, n) => m - n), f), lo = pts.length > 15 ? 0.04 : 0, hi = 1 - lo; const xs = pts.map((x) => x.p[0]), ys = pts.map((x) => x.p[1]), X0 = q(xs, lo), X1 = q(xs, hi), Y0 = q(ys, lo), Y1 = q(ys, hi), pad = 110; let w = Math.max(640, X1 - X0 + pad * 2), h = Math.max(320, Y1 - Y0 + pad * 2);
+        if (w / h > 2.4) h = w / 2.4; else if (w / h < 1.8) w = h * 1.8; const cx = (X1 + X0) / 2, cy = (Y1 + Y0) / 2, dr = w / 260;
+        const ms = d3.select(fm).append('svg').attr('viewBox', `${cx - w / 2} ${cy - h / 2} ${w} ${h}`).attr('role', 'img').attr('aria-label', `مواقع ${ent} على الخريطة`);
+        ms.append('rect').attr('x', cx - w / 2).attr('y', cy - h / 2).attr('width', w).attr('height', h).attr('fill', '#03101A');
+        ms.append('image').attr('href', 'assets/esri-night.jpg').attr('width', MW).attr('height', MH).attr('preserveAspectRatio', 'none').attr('class', 'esri');
+        ms.append('g').selectAll('circle').data(pts.sort((a, b) => tier(b.category) - tier(a.category))).join('circle').attr('cx', (x) => x.p[0]).attr('cy', (x) => x.p[1]).attr('r', dr).attr('fill', (x) => col[tier(x.category)]).attr('stroke', '#fff').attr('stroke-width', dr / 3.5).style('cursor', 'pointer')
+          .on('click', (ev, x) => { closeFile(); setTimeout(() => { if (window.__acMap) window.__acMap.go(+x.lat, +x.lon, x.site, 6); }, 450); })
+          .append('title').text((x) => `${x.site}\n${x.category} · ${x.area || '—'}`);
+        const lg = mk('div', 'fl2'); [[1, 'حرجة'], [2, 'عالية'], [3, 'تجمعات بشرية']].forEach(([t, l]) => { const s = mk('span'); const i = mk('i'); i.style.background = col[t]; s.appendChild(i); s.appendChild(document.createTextNode(l)); lg.appendChild(s); });
+        lg.appendChild(mk('span', null, 'اضغط على أي نقطة لفتحها في خريطة المواقع' + (off ? ` · ${fmt(off)} مواقع خارج حدود الخريطة` : ''))); fm.appendChild(lg);
+        file.appendChild(fm); } }
     const fl = mk('div', 'fl fi'); fl.style.animationDelay = '.46s'; const tools = mk('div', 'tools'); const ttl = mk('h4', null, ''); ttl.style.margin = '0';
     const inp = mk('input'); inp.type = 'search'; inp.placeholder = 'ابحث داخل مواقع ' + ent; inp.oninput = () => { fq = norm(inp.value.trim()); renderList(); };
     tools.appendChild(ttl); tools.appendChild(inp); fl.appendChild(tools);
@@ -928,7 +968,8 @@ window.AC = (function () {
       st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
   }
   /* ── main map: Esri World Street Map (Night) ── */
-  let MV = null, RAD = 1;
+  let MV = null, RAD = 1; const CATS_ON = new Set();
+  const SHORT = { 'المنشآت الدبلوماسية': 'دبلوماسية', 'الجهات الحكومية': 'حكومية', 'المراكز العسكرية': 'عسكرية', 'المنافذ': 'منافذ', 'الفنادق': 'فنادق', 'المراكز التجارية': 'تجارية', 'محطات المترو': 'مترو', 'المراكز الرياضية والاجتماعية': 'رياضية واجتماعية', 'مواقع التجمع الخارجية': 'تجمعات خارجية', 'البنوك والمصارف': 'بنوك', 'المراكز الطبية': 'طبية', 'دور العبادة': 'دور عبادة', 'مراكز التعليم': 'تعليم', 'المراكز الإعلامية': 'إعلام', 'المسطحات المائية': 'مسطحات مائية', 'خزانات المياه الرئيسية': 'خزانات مياه', 'الواجهة البحرية': 'واجهة بحرية' };
   function mainMap(el) {
     const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) return errBox(el, d);
     const r = d.data[0]; el.replaceChildren();
@@ -941,6 +982,12 @@ window.AC = (function () {
     tools.appendChild(rads);
     const clr = mk('button', 'rb', 'مسح'); clr.type = 'button'; clr.onclick = () => { cur = null; simg.selectAll('*').remove(); overview(); }; tools.appendChild(clr);
     el.appendChild(tools);
+    const chips = mk('div', 'catchips'); const cnt = d3.rollup(r.sites, (v) => v.length, (x) => x.c);
+    const allc = mk('button', 'cc' + (CATS_ON.size ? '' : ' on'), 'كل الفئات'); allc.type = 'button'; allc.onclick = () => { CATS_ON.clear(); syncChips(); applyVis(); }; chips.appendChild(allc);
+    CATS.filter((c) => cnt.get(c)).forEach((c) => { const b = mk('button', 'cc' + (CATS_ON.has(c) ? ' on' : '')); b.type = 'button'; b.dataset.c = c; b.appendChild(document.createTextNode(SHORT[c] || c)); b.appendChild(mk('small', null, fmt(cnt.get(c))));
+      b.onclick = () => { if (CATS_ON.has(c)) CATS_ON.delete(c); else CATS_ON.add(c); syncChips(); applyVis(); }; chips.appendChild(b); });
+    const syncChips = () => { allc.classList.toggle('on', !CATS_ON.size); chips.querySelectorAll('.cc[data-c]').forEach((b) => b.classList.toggle('on', CATS_ON.has(b.dataset.c))); };
+    el.appendChild(chips);
     const wrap = mk('div', 'simwrap'); const mapBox = mk('div', 'mapbox'); const res = mk('div', 'simres'); wrap.appendChild(mapBox); wrap.appendChild(res); el.appendChild(wrap);
     const MAPURL = 'assets/esri-night.jpg', W = 4600, H = 2960, OX = 1100, OY = 0;
     const G = { s: 0.05354767347353063, th: 0.8771981116824578, tx: 3623.67286339296, ty: 1037.92043456609, cx: 6146909.891080591, cy: 2892739.415099748 }, RE = 6378137, DG = Math.PI / 180, GC = Math.cos(G.th), GS = Math.sin(G.th);
@@ -965,11 +1012,20 @@ window.AC = (function () {
     const hits = gz.append('g').selectAll('circle').data(data).join('circle').attr('class', 'hit')
       .attr('cx', (x) => PJ(x.la, x.lo)[0]).attr('cy', (x) => PJ(x.la, x.lo)[1]).attr('fill', 'transparent');
     hits.append('title').text((x) => `${x.s}\n${x.c} · ${x.a || '—'}\nمؤشر الخطورة: ${x.r}`);
+    const labs = gz.append('g').attr('class', 'labs').style('pointer-events', 'none').selectAll('text').data(data.slice().sort((a, b) => a.t - b.t || b.r - a.r)).join('text')
+      .attr('x', (x) => PJ(x.la, x.lo)[0]).attr('y', (x) => PJ(x.la, x.lo)[1]).attr('text-anchor', 'middle').text((x) => x.s);
+    const vis = (x) => !CATS_ON.size || CATS_ON.has(x.c);
+    function placeLabels() { const s = U / K, fs = 9.5 * s, minK = (x) => (x.t === 1 ? 4 : 7), boxes = [];
+      labs.attr('font-size', fs).attr('dy', -6 * s).attr('stroke-width', 3 * s).each(function (x) { let show = vis(x) && K >= minK(x);
+        if (show) { const [px, py] = PJ(x.la, x.lo), w = x.s.length * fs * 0.52, h = fs * 1.2, bx = [px - w / 2, py - 6 * s - h, px + w / 2, py - 6 * s];
+          if (boxes.some((q) => !(bx[2] < q[0] || bx[0] > q[2] || bx[3] < q[1] || bx[1] > q[3]))) show = false; else boxes.push(bx); }
+        this.style.display = show ? null : 'none'; }); }
+    function applyVis() { dots.style('display', (x) => (vis(x) ? null : 'none')); hits.style('display', (x) => (vis(x) ? null : 'none')); placeLabels(); }
     hits.on('click', (ev, x) => { ev.stopPropagation(); simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 3); });
     let cur = null;
-    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); };
+    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); placeLabels(); };
     const zoom = d3.zoom().scaleExtent([1, 10]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); MV = ev.transform; if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
-    svg.call(zoom); sizes();
+    svg.call(zoom); applyVis(); sizes();
     if (MV) svg.call(zoom.transform, MV); else { const [ix, iy] = PJ(25.165, 55.29); svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); }
     const focus = (la, lo, k) => { const [x, y] = PJ(la, lo); svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(Math.max(k, K)).translate(-x, -y)); };
     svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
@@ -982,7 +1038,7 @@ window.AC = (function () {
     function overview() {
       res.replaceChildren(); res.appendChild(mk('div', 'pt', 'المواقع على الخريطة'));
       const k3 = mk('div', 'k3'); [[r.sites.length, 'موقع'], [r.high, 'عالية الخطورة'], [r.clusters.length, 'منطقة تركّز حرج']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); }); res.appendChild(k3);
-      const ul = mk('div', 'how'); ['اضغط على أي نقطة لعرض بيانات الموقع والمواقع المحيطة به.', 'اضغط على أي مكان فارغ لمعرفة المواقع التي قد يتأثر بها حادث في هذا المكان.', 'اختر نطاق الأثر من الأعلى، وكبّر بالعجلة أو بالإصبعين أو بالأزرار.', 'عوامل التصفية أعلى اللوحة (الجهة، الفئة، البحث) تنطبق على الخريطة.'].forEach((t, i) => { const p = mk('p'); p.appendChild(mk('b', null, String(i + 1))); p.appendChild(document.createTextNode(t)); ul.appendChild(p); }); res.appendChild(ul);
+      const ul = mk('div', 'how'); ['اضغط على أي نقطة لعرض بيانات الموقع والمواقع المحيطة به.', 'اضغط على أي مكان فارغ لمعرفة المواقع التي قد يتأثر بها حادث في هذا المكان.', 'اختر نطاق الأثر من الأعلى، واختر الفئات التي تريد عرضها من الأزرار فوق الخريطة.', 'كبّر الخريطة لتظهر أسماء المواقع بجانب نقاطها.', 'عوامل التصفية أعلى اللوحة (الجهة، الفئة، البحث) تنطبق على الخريطة.'].forEach((t, i) => { const p = mk('p'); p.appendChild(mk('b', null, String(i + 1))); p.appendChild(document.createTextNode(t)); ul.appendChild(p); }); res.appendChild(ul);
       const tc = mk('div', 'hl'); tc.appendChild(mk('small', null, 'مناطق التركّز الحرج:'));
       r.clusters.slice(0, 8).forEach((c, i) => { const row = mk('button', 'hr cb'); row.type = 'button'; const n = mk('i', null, String(i + 1)); row.appendChild(n); row.appendChild(mk('span', null, c.area || 'منطقة التركّز ' + (i + 1))); row.appendChild(mk('em', null, fmt(c.n) + ' مواقع حرجة')); row.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'منطقة التركّز ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5); }; tc.appendChild(row); });
       res.appendChild(tc);
@@ -1013,7 +1069,7 @@ window.AC = (function () {
       const ls = mk('div', 'hl'); hit.slice(0, 60).forEach((x) => { const row = mk('button', 'hr'); row.type = 'button'; const dot = mk('i'); dot.style.background = TC[x.t]; row.appendChild(dot); row.appendChild(mk('span', null, x.s)); row.appendChild(mk('em', null, `${x.d < 1 ? Math.round(x.d * 1000) + ' م' : x.d.toFixed(1) + ' كم'}`)); row.onclick = () => { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, Math.max(5, K)); }; ls.appendChild(row); });
       if (!hit.length) ls.appendChild(mk('div', 'hint', 'لا توجد مواقع أخرى ضمن هذا النطاق.')); res.appendChild(ls);
     }
-    overview();
+    overview(); if (window.__acRows) window.__acRows();
     window.__acMap = { go: (la, lo, name, k) => { const x = r.sites.find((z) => z.s === name && Math.abs(z.la - la) < 1e-3) || null; simulate({ la, lo, label: name, site: x }); focus(la, lo, k || 5); const s = document.getElementById('sec-map'); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
   }
   dash.draw('mainMap', mainMap);
