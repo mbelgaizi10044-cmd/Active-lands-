@@ -114,13 +114,14 @@ body.unlocked #lock{display:none}
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23B8954A' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,
   linear-gradient(180deg,#FFFFFF 0%,#FBF8F1 100%)}
 .ac-letter::after{content:'';position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,#8E6E2E,#E9CF8F 30%,#B8954A 50%,#E9CF8F 70%,#8E6E2E)}
-.ac-brand{display:flex;align-items:center;justify-content:space-between;gap:18px}
-.ac-brand .r{display:flex;align-items:center;gap:20px;min-width:0}
-.ac-brand img{display:block;width:auto;max-width:100%}
-.ac-brand .pol{height:62px}
-.ac-brand .gov{height:76px;margin-block:-7px}
-.ac-brand .sep{width:1px;height:44px;background:linear-gradient(180deg,transparent,#C9AE72,transparent);flex:none}
-.ac-brand .acis{height:34px}
+.ac-brand{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(12px,2.4vw,28px)}
+.ac-brand .r{display:flex;align-items:center;gap:clamp(10px,2vw,22px);min-width:0}
+.ac-brand img{display:block;width:auto;max-width:100%;object-fit:contain}
+.ac-brand .pol{height:clamp(40px,5.2vw,62px)}
+.ac-brand .gov{height:clamp(48px,6.2vw,74px);justify-self:end;margin-block:-6px}
+.ac-brand .sep{width:1px;height:clamp(30px,3.6vw,44px);background:linear-gradient(180deg,transparent,#C9AE72,transparent);flex:none}
+.ac-brand .acis{height:clamp(20px,2.7vw,32px);min-width:0}
+.ac-brand .mid{height:1px;background:linear-gradient(90deg,transparent,rgba(184,149,74,.35),transparent)}
 
 /* ── hero ── */
 .ac-hero{position:relative;margin:0 calc(-1 * var(--px));padding:30px var(--px) 30px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;overflow:hidden;
@@ -169,8 +170,13 @@ body.unlocked #lock{display:none}
 .ac-k{position:relative;background:linear-gradient(160deg,#122A21 0%,var(--s1) 60%);border:1px solid var(--bd);border-radius:16px;padding:18px 20px;overflow:hidden;transition:transform .25s,border-color .25s}
 .ac-k:hover{transform:translateY(-2px);border-color:rgba(212,178,106,.45)}
 .ac-k::before{content:'';position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,transparent,var(--kc,var(--ac)),transparent);opacity:.8}
-.ac-k svg.ic{position:absolute;left:16px;top:16px;width:30px;height:30px;stroke:var(--kc,var(--ac));opacity:.85}
-.ac-kl{font-size:13px;color:var(--mu)}
+.ac-k .ib{position:absolute;left:16px;top:16px;width:54px;height:54px;display:grid;place-items:center}
+.ac-k .ib::before{content:'';position:absolute;inset:0;clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%);background:linear-gradient(145deg,var(--kc),transparent 70%);opacity:.28}
+.ac-k .ib::after{content:'';position:absolute;inset:6px;clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%);background:#0B1B15}
+.ac-k .ib svg{position:relative;z-index:1;width:30px;height:30px;filter:drop-shadow(0 0 6px var(--kc))}
+.ac-k:hover .ib svg{animation:acPulse 1.6s ease-in-out infinite}
+@keyframes acPulse{50%{filter:drop-shadow(0 0 12px var(--kc));transform:scale(1.06)}}
+.ac-kl{font-size:13.5px;color:#DCE8E2}
 .ac-kv{display:block;font-size:clamp(30px,3.4vw,42px);font-weight:700;color:#fff;margin:8px 0 4px;line-height:1.15}
 .ac-k.warn .ac-kv{color:var(--gd)}
 .ac-ks{font-size:12px;color:var(--mu);line-height:1.7}
@@ -204,6 +210,19 @@ body.unlocked #lock{display:none}
 .ac-count{font-size:12px;color:var(--mu);margin:10px 2px 0}
 .ac-err{color:var(--rd);font-size:12.5px;padding:20px 0}
 
+/* ── entities ── */
+.ac-ents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:12px}
+.ac-ec{font-family:inherit;text-align:right;color:var(--tx);cursor:pointer;position:relative;border:1px solid var(--bd);border-radius:16px;padding:16px 18px;background:linear-gradient(160deg,#122A21,var(--s1) 65%);overflow:hidden;transition:transform .25s,border-color .25s}
+.ac-ec:hover{transform:translateY(-2px);border-color:rgba(212,178,106,.5)}
+.ac-ec.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.ac-ec .nm{font-size:15px;font-weight:700;color:#fff}
+.ac-ec .big{display:block;font-size:30px;font-weight:700;color:#fff;line-height:1.2;margin:8px 0 2px}
+.ac-ec .big small{font-size:12px;color:var(--mu);font-weight:400;margin-inline-start:6px}
+.ac-ec .ln{font-size:12px;color:var(--mu);line-height:1.9}
+.ac-ec .ln b{color:#DCE8E2;font-weight:400}
+.ac-ec .ok{display:block;margin-top:6px;font-size:11px;color:var(--ac)}
+.ac-ec .bar{height:4px;border-radius:4px;background:rgba(255,255,255,.07);margin-top:10px;overflow:hidden}
+.ac-ec .bar span{display:block;height:100%;background:linear-gradient(90deg,#2DBE7E,#5BB8D6);border-radius:4px}
 /* ── data quality ── */
 .ac-q3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
 .ac-qa{position:relative;border-radius:16px;padding:18px 20px;border:1px solid var(--bd);background:var(--s1);overflow:hidden}
@@ -249,7 +268,8 @@ body.unlocked #lock{display:none}
 .ac.anim .ac-rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.ac.anim .ac-rv{opacity:1;transform:none;transition:none}.ac-ring .arc,.ac-meter span{transition:none}}
 @media (max-width:900px){.ac-kpis{grid-template-columns:repeat(2,1fr)}.ac-rtypes{grid-template-columns:repeat(2,1fr)}.ac-filters{grid-template-columns:1fr 1fr}.ac-q3{grid-template-columns:1fr}.ac-hero{grid-template-columns:1fr}.ac-ring{margin:0 auto}}
-@media (max-width:560px){.ac{--px:14px}.ac-brand{flex-wrap:wrap;row-gap:10px}.ac-brand .r{display:contents}.ac-brand .sep{display:none}.ac-brand .pol{height:40px;order:1}.ac-brand .gov{height:48px;margin-block:-4px;order:2}.ac-brand .acis{order:3;flex:0 0 100%;width:100%;height:20px;object-fit:contain;padding-top:8px;border-top:1px solid rgba(184,149,74,.25)}.ac-kpis,.ac-filters{grid-template-columns:1fr}.ac-qrow{grid-template-columns:1fr}}
+@media (max-width:760px){.ac-brand{grid-template-columns:auto auto;justify-content:space-between;row-gap:12px}.ac-brand .r{display:contents}.ac-brand .sep,.ac-brand .mid{display:none}.ac-brand .pol{grid-column:1;grid-row:1}.ac-brand .gov{grid-column:2;grid-row:1}.ac-brand .acis{grid-column:1/-1;grid-row:2;justify-self:center;height:36px;padding-top:10px;border-top:1px solid rgba(184,149,74,.25);width:100%}}
+@media (max-width:560px){.ac{--px:14px}.ac-brand .pol{height:38px}.ac-brand .gov{height:46px}.ac-brand .acis{height:32px}.ac-kpis,.ac-filters{grid-template-columns:1fr}.ac-qrow{grid-template-columns:1fr}}
 @media print{.ac-nav,.ac-filters,.ac-chips,#sec-sites,#sites-panel{display:none}.ac-tbl,.ac-cards{max-height:none;overflow:visible}.ac-p,.ac-k,.ac-rt,.ac-card,.ac-qa,.ac-qrow{break-inside:avoid}.ac-sec{break-after:avoid}.ac.anim .ac-rv{opacity:1;transform:none}}
 </style>
 
@@ -261,6 +281,7 @@ body.unlocked #lock{display:none}
         <i class='sep' aria-hidden='true'></i>
         <img class='acis' src='assets/acis_dark.png' alt='إدارة أمن الهيئات والمنشآت الحيوية'>
       </div>
+      <i class='mid' aria-hidden='true'></i>
       <img class='gov' src='assets/gov_full.png' alt='حكومة دبي'>
     </header>
   </div>
@@ -269,7 +290,7 @@ body.unlocked #lock{display:none}
     <div>
       <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
       <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
-      <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لست عشرة جهة</div>
+      <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لأربع عشرة جهة</div>
       <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
     </div>
     <div class='ac-ring' data-draw='covRing' data-source='kpis'>
@@ -288,7 +309,7 @@ body.unlocked #lock{display:none}
     <a href='#sec-numbers' data-t='sec-numbers'><span>01</span>المؤشرات الرئيسية</a>
     <a href='#sec-dist' data-t='sec-dist'><span>02</span>توزيع القيود</a>
     <a href='#sec-sites' data-t='sec-sites'><span>03</span>سجل المواقع</a>
-    <a href='#sec-quality' data-t='sec-quality'><span>04</span>جودة البيانات</a>
+    <a href='#sec-ents' data-t='sec-ents'><span>04</span>الجهات</a>
   </nav>
 
   <div class='ac-filters' id='filters'>
@@ -301,23 +322,22 @@ body.unlocked #lock{display:none}
 
   <h2 class='ac-sec' id='sec-numbers'><span>01</span>المؤشرات الرئيسية</h2>
   <section class='ac-kpis ac-rv' id='kpis'>
-    <div class='ac-k' id='k-total' style='--kc:#2DBE7E'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 3 3 7.5 12 12l9-4.5L12 3Z'/><path d='m3 12 9 4.5 9-4.5'/><path d='m3 16.5 9 4.5 9-4.5'/></svg><div class='ac-kl'>إجمالي القيود</div><b class='ac-kv dash-skeleton' data-draw='k_total' data-source='kpis' data-field='total' data-row='0'>—</b><div class='ac-ks'>عدد الصفوف المسجلة لدى جميع الجهات</div></div>
-    <div class='ac-k' id='k-unique' style='--kc:#5BB8D6'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z'/><circle cx='12' cy='9.5' r='2.5'/></svg><div class='ac-kl'>المواقع المستقلة</div><b class='ac-kv dash-skeleton' data-draw='k_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b><div class='ac-ks'>بعد دمج الموقع المسجّل لدى أكثر من جهة</div></div>
-    <div class='ac-k' id='k-dip' style='--kc:#D4B26A'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 21V4'/><path d='M5 4h11l-2 4 2 4H5'/></svg><div class='ac-kl'>المنشآت الدبلوماسية</div><b class='ac-kv dash-skeleton' data-draw='k_dip' data-source='kpis' data-field='diplomatic' data-row='0'>—</b><div class='ac-ks'>القنصليات ومقار رؤساء البعثات</div></div>
-    <div class='ac-k warn' id='k-rev' style='--kc:#D8B25C'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 3 2 20h20L12 3Z'/><path d='M12 10v4'/><path d='M12 17h.01'/></svg><div class='ac-kl'>ملاحظات تستوجب المراجعة</div><b class='ac-kv dash-skeleton' data-draw='k_rev' data-source='review_open' data-field='open_items' data-row='0'>—</b><div class='ac-ks'>إحداثيات غير صحيحة، وتكرار، وتصنيف غير دقيق</div></div>
+    <div class='ac-k' id='k-total' style='--kc:#2DBE7E'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-total)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-total' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><ellipse cx='16' cy='7' rx='10' ry='3.5'/><path d='M6 7v6c0 1.9 4.5 3.5 10 3.5S26 14.9 26 13V7'/><path d='M6 13v6c0 1.9 4.5 3.5 10 3.5s10-1.6 10-3.5v-6'/><path d='M6 19v6c0 1.9 4.5 3.5 10 3.5s10-1.6 10-3.5v-6'/><circle cx='22' cy='13.5' r='.9' style='fill:var(--kc)'/><circle cx='22' cy='19.5' r='.9' style='fill:var(--kc)'/><circle cx='22' cy='25.5' r='.9' style='fill:var(--kc)'/></svg></span><div class='ac-kl'>إجمالي القيود</div><b class='ac-kv dash-skeleton' data-draw='k_total' data-source='kpis' data-field='total' data-row='0'>—</b><div class='ac-ks'>كل المواقع كما وردت في أوراق الجهات</div></div>
+    <div class='ac-k' id='k-unique' style='--kc:#5BB8D6'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-unique)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-unique' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M16 28s-8-7.2-8-13.2a8 8 0 0 1 16 0C24 20.8 16 28 16 28Z'/><circle cx='16' cy='14.6' r='3'/><path d='M4 24c2.5 2.6 7 4 12 4s9.5-1.4 12-4' opacity='.55'/><path d='M7.5 21.5c2 1.6 5 2.5 8.5 2.5s6.5-.9 8.5-2.5' opacity='.35'/></svg></span><div class='ac-kl'>المواقع المستقلة</div><b class='ac-kv dash-skeleton' data-draw='k_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b><div class='ac-ks'>كل موقع محسوب مرة واحدة فقط</div></div>
+    <div class='ac-k' id='k-dip' style='--kc:#D4B26A'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-dip)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-dip' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M4 27h24'/><path d='M6 27V14h20v13'/><path d='M4 14 16 6l12 8'/><path d='M10 18v6M14 18v6M18 18v6M22 18v6'/><path d='M16 6V2.5'/><path d='M16 2.5h5l-1.5 1.5L21 5.5h-5'/></svg></span><div class='ac-kl'>المنشآت الدبلوماسية</div><b class='ac-kv dash-skeleton' data-draw='k_dip' data-source='kpis' data-field='diplomatic' data-row='0'>—</b><div class='ac-ks'>القنصليات ومساكن رؤساء البعثات</div></div>
+    <div class='ac-k' id='k-ent' style='--kc:#B58CFF'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-ent)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-ent' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M16 3 27 7v8c0 7-4.7 11.6-11 14C9.7 26.6 5 22 5 15V7l11-4Z'/><circle cx='16' cy='12' r='2.2'/><circle cx='11' cy='19' r='1.8'/><circle cx='21' cy='19' r='1.8'/><path d='M14.6 13.7 12 17.4M17.4 13.7 20 17.4M12.8 19h6.4'/></svg></span><div class='ac-kl'>الجهات</div><b class='ac-kv dash-skeleton' data-draw='k_ent' data-source='kpis' data-field='entities' data-row='0'>—</b><div class='ac-ks'>الجهات التي أرسلت بيانات مواقعها</div></div>
   </section>
 
   <h2 class='ac-sec' id='sec-dist'><span>02</span>توزيع القيود</h2>
   <div class='ac-grid ac-rv'>
     <section class='ac-p' id='by-entity-panel'>
       <h3>حسب الجهة</h3>
-      <p class='ac-sub'>انقر على أي جهة لعرض بياناتها فقط.</p>
+      <p class='ac-sub'>عدد المواقع لدى كل جهة. انقر على الجهة لعرض مواقعها فقط.</p>
       <div class='ac-chart' data-draw='entityBars' data-source='by_entity'>—</div>
-      <div class='ac-legend'><span><i style='background:#2DBE7E'></i>مطابق للإجمالي المدوَّن</span><span><i style='background:#D8B25C'></i>غير مطابق للإجمالي المدوَّن في الملف</span></div>
     </section>
     <section class='ac-p' id='by-category-panel'>
       <h3>حسب الفئة</h3>
-      <p class='ac-sub'>انقر على أي فئة لعرض قيودها فقط.</p>
+      <p class='ac-sub'>عدد المواقع في كل فئة. انقر على الفئة لعرض مواقعها فقط.</p>
       <div class='ac-chart' data-draw='catBars' data-source='by_category'>—</div>
       <div class='ac-legend'><span><i style='background:#5BB8D6'></i>المنشآت الدبلوماسية</span><span><i style='background:#2DBE7E'></i>الفئات الأخرى</span></div>
     </section>
@@ -325,7 +345,7 @@ body.unlocked #lock{display:none}
 
   <h2 class='ac-sec' id='sec-sites'><span>03</span>سجل المواقع</h2>
   <section class='ac-p ac-rv' id='sites-panel'>
-    <p class='ac-sub' style='margin-top:0'>يظهر كل موقع مرة واحدة حتى لو سجّلته أكثر من جهة، وتظهر أسماء الجهات تحت اسمه. انقر على الإحداثيات لعرض الموقع على خرائط Google.</p>
+    <p class='ac-sub' style='margin-top:0'>كل موقع يظهر مرة واحدة، وتحته أسماء الجهات التي سجّلته. اضغط على الإحداثيات لفتح الموقع في خرائط Google.</p>
     <div class='ac-tbl'>
       <table data-source='sites_view' data-row-key='id' aria-label='سجل المواقع'>
         <thead><tr><th data-field='site'>الموقع والجهات</th><th data-field='category'>الفئة</th><th data-field='area'>المنطقة</th><th data-field='makani'>الرقم المكاني</th><th data-field='coords'>الإحداثيات</th></tr></thead>
@@ -333,36 +353,16 @@ body.unlocked #lock{display:none}
       </table>
     </div>
     <p class='ac-count' data-draw='siteCount'>—</p>
-    <p class='ac-ks' style='margin-top:6px'>الإحداثيات الموسومة «مُضافة» استُكملت في 23/11/2026 من الرقم المكاني أو من مطابقة داخلية أو من خرائط Google والمصادر العامة، و«تقريبية» تعني أنها تدل على الموقع العام لا على المدخل. مرّر المؤشر على الوسم لمعرفة المصدر. تبقى هذه الإحداثيات بحاجة إلى تأكيد ميداني.</p>
+    <p class='ac-ks' style='margin-top:6px'><span class='ac-pill w'>موقع تقريبي</span> تعني أن الإحداثية تدل على المنطقة القريبة وليس على المبنى بالضبط.</p>
   </section>
 
-  <h2 class='ac-sec' id='sec-quality'><span>04</span>جودة البيانات</h2>
-  <p class='ac-sub' style='margin-top:-6px'>ثلاثة أسئلة تلخّص حالة الملف، ولكل سؤال تفاصيله أدناه.</p>
-  <div class='ac-q3 ac-rv' data-draw='qAnswers' data-source='by_entity'></div>
-
-  <div class='ac-grid ac-rv'>
-    <section class='ac-p' id='q-counts'>
-      <h3>① هل الإجمالي المكتوب في كل ورقة صحيح؟</h3>
-      <p class='ac-sub'>في أسفل كل ورقة من الملف الأصلي رقم إجمالي مكتوب يدوياً. قارنّاه بعدد المواقع الموجودة فعلاً في الورقة.</p>
-      <div class='ac-qlist' data-draw='qCounts' data-source='by_entity'></div>
-    </section>
-    <section class='ac-p' id='q-coords'>
-      <h3>② هل لكل موقع إحداثيات؟</h3>
-      <p class='ac-sub'>الجهات التي ينقصها إحداثيات، وعدد المواقع الناقصة لدى كل منها.</p>
-      <div class='ac-qlist' data-draw='qCoords' data-source='by_entity'></div>
-    </section>
-  </div>
-
-  <section class='ac-p ac-rv' id='review-panel' style='margin-top:14px'>
-    <h3>③ ما الذي يحتاج قراراً منكم؟</h3>
-    <p class='ac-sub'>كل بطاقة ملاحظة واحدة: ما الوارد في الملف، والتصحيح المقترح، والمطلوب. انقر على أي نوع لعرض بطاقاته فقط.</p>
-    <div class='ac-rtypes' data-draw='reviewTypes' data-source='review_summary'></div>
-    <div class='ac-cards' data-draw='reviewCards' data-source='review'></div>
-  </section>
+  <h2 class='ac-sec' id='sec-ents'><span>04</span>الجهات</h2>
+  <p class='ac-sub' style='margin-top:-6px'>بطاقة لكل جهة: عدد مواقعها وأبرز فئاتها. اضغط على البطاقة لعرض مواقع الجهة في اللوحة كلها.</p>
+  <div class='ac-ents-grid ac-rv' data-draw='entCards' data-source='by_entity'></div>
 
   <details id='notes'>
-    <summary>منهجية الاحتساب</summary>
-    <p>اعتُمد ملف سجل المواقع الحيوية الوارد من ست عشرة جهة، ويُحتسب كل صف يتضمن اسم موقع قيداً واحداً. ولأن عدداً من المواقع مسجّل لدى أكثر من جهة (مثل سجلّي التحريات والمنشآت والطوارئ ومراكز الشرطة)، يزيد إجمالي القيود على عدد المواقع المستقلة. ويُعد القيدان موقعاً واحداً إذا تطابق الاسم بعد توحيد الهمزات والتاء المربوطة والمسافات، وتطابقت الإحداثيات أو تقاربت ضمن 300 متر، أو كانا بلا إحداثيات في المنطقة نفسها؛ أما الفروع التي تحمل الاسم نفسه في أماكن مختلفة فتبقى مواقع منفصلة. ويُقصد بالإحداثيات الصحيحة الإحداثيات المقروءة الواقعة داخل حدود إمارة دبي.</p>
+    <summary>كيف حُسبت الأرقام؟</summary>
+    <p>• إجمالي القيود: كل صف في أوراق الجهات الأربع عشرة.<br>• المواقع المستقلة: الموقع الذي سجّلته أكثر من جهة يُحسب مرة واحدة.<br>• حُذف التكرار داخل الورقة الواحدة، وصُحّحت الإحداثيات المكتوبة خطأً، ونُقلت المواقع إلى فئاتها الصحيحة.<br>• كل المواقع لها إحداثيات؛ ما لم يُعثر على موقعه الدقيق وُضع في مركز منطقته وعُلّم «موقع تقريبي».</p>
   </details>
 
   <footer class='ac-foot'><span>إدارة أمن الهيئات والمنشآت الحيوية — شرطة دبي</span><span>تاريخ البيانات: 23 نوفمبر 2026</span></footer>
@@ -372,7 +372,7 @@ window.AC = (function () {
   const CATS = ['المنشآت الدبلوماسية','الجهات الحكومية','المراكز العسكرية','المنافذ','الفنادق','المراكز التجارية','محطات المترو','المراكز الرياضية والاجتماعية','مواقع التجمع الخارجية','البنوك والمصارف','المراكز الطبية','دور العبادة','مراكز التعليم','المراكز الإعلامية','المسطحات المائية','خزانات المياه الرئيسية','الواجهة البحرية'];
   const DIP = 'المنشآت الدبلوماسية';
   const fmt = d3.format(',');
-  const inDubai = (r) => r.lat != null && r.lon != null && r.lat > 24.6 && r.lat < 25.45 && r.lon > 54.85 && r.lon < 55.75;
+  const inDubai = (r) => r.lat != null && r.lon != null && r.lat > 24.6 && r.lat < 25.45 && r.lon > 54.85 && r.lon < 56.3;
   const norm = (s) => String(s || '').toLowerCase().replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
   function textW(svg, str, size) {
     const t = svg.append('text').attr('font-size', size).text(str);
@@ -443,15 +443,16 @@ window.AC = (function () {
     }
   });
   dash.calc('by_entity', {
-    inputs: ['sites', 'entities'], title: 'القيود حسب الجهة',
-    description: 'عدد القيود لكل جهة (مع تصفية الفئة والبحث)، والإجمالي المدوَّن يدوياً في الملف الأصلي، والفرق بينهما، وعدد المواقع التي تنقصها إحداثيات.',
+    inputs: ['sites', 'entities'], title: 'المواقع حسب الجهة',
+    description: 'عدد المواقع لكل جهة (مع تصفية الفئة والبحث)، وعدد المنشآت الدبلوماسية، وأكبر فئتين لديها، ونسبة توفر الإحداثيات.',
     fn: (sites, entities) => {
       const r = pick(sites, true, false);
-      return entities.slice().sort((a, b) => a.order - b.order).map((e) => {
-        const v = r.filter((d) => d.entity === e.entity); const all = sites.filter((d) => d.entity === e.entity);
-        const ok = v.filter(inDubai).length;
-        return { entity: e.entity, sites: v.length, all_sites: all.length, stated_total: e.stated_total == null ? null : +e.stated_total,
-          diff: e.stated_total == null ? null : all.length - +e.stated_total, coord_ok: ok, missing: v.length - ok, coverage: v.length ? Math.round((ok / v.length) * 1000) / 10 : null };
+      return entities.slice().sort((a, b) => a.order - b.order).filter((e) => sites.some((d) => d.entity === e.entity)).map((e) => {
+        const v = r.filter((d) => d.entity === e.entity); const ok = v.filter(inDubai).length;
+        const cats = d3.rollups(v, (x) => x.length, (d) => d.category).sort((a, b) => b[1] - a[1]);
+        return { entity: e.entity, sites: v.length, diplomatic: v.filter((d) => d.category === DIP).length, approx: v.filter((d) => d.coord_conf === 'متوسطة').length,
+          top1: cats[0] ? cats[0][0] : '', top1_n: cats[0] ? cats[0][1] : 0, top2: cats[1] ? cats[1][0] : '', top2_n: cats[1] ? cats[1][1] : 0,
+          coverage: v.length ? Math.round((ok / v.length) * 1000) / 10 : null };
       });
     }
   });
@@ -470,24 +471,6 @@ window.AC = (function () {
         makani: (v.find((d) => d.makani) || {}).makani || '', lat: g.lat, lon: g.lon, valid: inDubai(g) ? 1 : 0,
         src: g.coord_src || '', conf: g.coord_conf || '', note: g.coord_note || '', coords: g.lat != null ? `N${(+g.lat).toFixed(5)} E${(+g.lon).toFixed(5)}` : '' };
     })
-  });
-  const pickReview = (items, skipType) => {
-    const p = dash.params() || {}; const q = norm(String(p.q || '').trim());
-    return items.filter((r) => (!p.entity || String(r.entities).split('، ').includes(p.entity)) && (!p.category || r.category === p.category) &&
-      (skipType || !p.rtype || r.type === p.rtype) && (!q || norm(r.site).includes(q) || norm(r.entities).includes(q)));
-  };
-  dash.calc('review', {
-    inputs: ['review_items'], title: 'ملاحظات تستوجب المراجعة', description: 'الملاحظات المؤكدة مرتبة حسب الأولوية ثم النوع، مع التصفية حسب الجهة والفئة والبحث ونوع الملاحظة.',
-    fn: (review_items) => pickReview(review_items).slice().sort((a, b) => a.priority - b.priority || a.type_order - b.type_order || a.id - b.id)
-  });
-  dash.calc('review_summary', {
-    inputs: ['review_items'], title: 'عدد الملاحظات حسب النوع', description: 'عدد الملاحظات في كل نوع، وعدد القيود المرتبطة بها في الملف.',
-    fn: (review_items) => { const r = pickReview(review_items, true); const types = [...new Set(review_items.slice().sort((a, b) => a.type_order - b.type_order).map((d) => d.type))];
-      return types.map((t) => { const v = r.filter((d) => d.type === t); return { type: t, items: v.length, rows: d3.sum(v, (d) => d.rows) }; }); }
-  });
-  dash.calc('review_open', {
-    inputs: ['review_items'], title: 'الملاحظات المفتوحة', description: 'الملاحظات التي تتطلب إجراءً، دون التصويبات التلقائية.',
-    fn: (review_items) => { const v = pickReview(review_items, true).filter((d) => d.type !== 'تم تصحيحه تلقائياً'); return [{ open_items: v.length, affected_rows: d3.sum(v, (d) => d.rows) }]; }
   });
 })();
 </script>
@@ -508,8 +491,7 @@ window.AC = (function () {
   const kp = (field, f, anim) => (el) => { const d = dash.data('kpis'); if (d.status !== 'ok' || !d.data || !d.data.length) return placeholder(el, d);
     if (anim) countTo(el, d.data[0][field], f); else { el.classList.remove('dash-skeleton'); el.textContent = f(d.data[0][field]); } };
   const n = (v) => fmt(v), pct = (v) => v + '%';
-  dash.draw('k_total', kp('total', n, 1)); dash.draw('k_uniq', kp('unique_sites', n, 1)); dash.draw('k_dip', kp('diplomatic', n, 1));
-  dash.draw('k_rev', (el) => { const d = dash.data('review_open'); if (d.status !== 'ok' || !d.data || !d.data.length) return placeholder(el, d); countTo(el, d.data[0].open_items, n); });
+  dash.draw('k_total', kp('total', n, 1)); dash.draw('k_uniq', kp('unique_sites', n, 1)); dash.draw('k_dip', kp('diplomatic', n, 1)); dash.draw('k_ent', kp('entities', n, 1));
   dash.draw('l_total', kp('total', n)); dash.draw('l_ent', kp('entities', n)); dash.draw('l_uniq', kp('unique_sites', n));
   dash.draw('l_topcat', kp('top_category', (v) => v || '—')); dash.draw('l_topn', kp('top_category_sites', n)); dash.draw('l_cov', kp('coord_pct', pct));
 
@@ -520,11 +502,6 @@ window.AC = (function () {
     p.textContent = `${fmt(r.coord_ok)} من ${fmt(r.total)} قيد بإحداثيات صحيحة`;
     const C = 490.1; requestAnimationFrame(() => { arc.style.strokeDashoffset = String(C * (1 - Math.max(0, Math.min(100, r.coord_pct)) / 100)); });
   });
-
-  const TYPE_LABEL = { 'إحداثية خاطئة': 'إحداثيات مكتوبة بشكل خاطئ', 'تكرار مؤكد': 'موقع مكرر', 'تكرار محتمل': 'قد يكون مكرراً', 'تصنيف يحتاج مراجعة': 'في الفئة الخطأ', 'تم تصحيحه تلقائياً': 'صُحّح تلقائياً' };
-  const TYPE_HELP = { 'إحداثية خاطئة': 'رقم أو فاصلة ناقصة، فلا يظهر الموقع في مكانه. صحّحناها ونحتاج تأكيدكم.', 'تكرار مؤكد': 'الموقع نفسه مسجّل مرتين بالرقم المكاني نفسه.', 'تكرار محتمل': 'قيدان متشابهان قد يكونان الموقع نفسه.', 'تصنيف يحتاج مراجعة': 'الموقع مدرج تحت فئة لا تناسبه.', 'تم تصحيحه تلقائياً': 'أخطاء بسيطة صُحّحت، للعلم فقط.' };
-  const TYPE_COLOR = { 'إحداثية خاطئة': '#E07171', 'تكرار مؤكد': '#D8B25C', 'تكرار محتمل': '#B9A77A', 'تصنيف يحتاج مراجعة': '#5BB8D6', 'تم تصحيحه تلقائياً': '#2DBE7E' };
-  const PRI = { 1: ['أولوية عالية', 'b'], 2: ['أولوية متوسطة', 'w'], 3: ['أولوية منخفضة', 'g'] };
 
   dash.draw('entitySel', (sel) => {
     const g = dash.data('by_entity'); const cur = (dash.params() || {}).entity || '';
@@ -538,9 +515,9 @@ window.AC = (function () {
   });
   dash.draw('chips', (el) => {
     const p = dash.params() || {}; el.replaceChildren();
-    [['entity', 'الجهة'], ['category', 'الفئة'], ['q', 'البحث'], ['rtype', 'نوع الملاحظة']].forEach(([k, lab]) => {
+    [['entity', 'الجهة'], ['category', 'الفئة'], ['q', 'البحث']].forEach(([k, lab]) => {
       if (!p[k]) return; const b = document.createElement('button'); b.type = 'button'; b.className = 'ac-chip';
-      b.textContent = `${lab}: ${k === 'rtype' ? (TYPE_LABEL[p[k]] || p[k]) : p[k]}  ✕`; b.onclick = () => { const o = {}; o[k] = null; dash.setParams(o); }; el.appendChild(b);
+      b.textContent = `${lab}: ${p[k]}  ✕`; b.onclick = () => { const o = {}; o[k] = null; dash.setParams(o); }; el.appendChild(b);
     });
   });
 
@@ -548,13 +525,13 @@ window.AC = (function () {
     const d = dash.data('by_entity'); if (d.status !== 'ok') return placeholder(el, d);
     const rows = d.data.slice().sort((a, b) => b.sites - a.sites);
     bars(el, rows, { label: 'entity', value: 'sites', param: 'entity', selected: (dash.params() || {}).entity, aria: 'عدد القيود لكل جهة',
-      color: (r) => (r.diff ? '#D8B25C' : '#2DBE7E'),
-      tip: (r) => [r.entity, `عدد القيود: ${fmt(r.sites)}`, r.stated_total == null ? 'لا يوجد إجمالي مدوَّن' : `الإجمالي المدوَّن في الملف: ${fmt(r.stated_total)}`, r.coverage == null ? '' : `نسبة توفر الإحداثيات: ${r.coverage}%`] });
+      color: () => '#2DBE7E',
+      tip: (r) => [r.entity, `عدد المواقع: ${fmt(r.sites)}`, r.diplomatic ? `منها منشآت دبلوماسية: ${fmt(r.diplomatic)}` : ''] });
   });
   dash.draw('catBars', (el) => {
     const d = dash.data('by_category'); if (d.status !== 'ok') return placeholder(el, d);
     bars(el, d.data.slice().sort((a, b) => b.sites - a.sites), { label: 'category', value: 'sites', param: 'category', selected: (dash.params() || {}).category,
-      aria: 'عدد القيود لكل فئة', color: (r) => (r.category === DIP ? '#5BB8D6' : '#2DBE7E'), tip: (r) => [r.category, `عدد القيود: ${fmt(r.sites)}`, `النسبة من المعروض: ${r.share}%`] });
+      aria: 'عدد القيود لكل فئة', color: (r) => (r.category === DIP ? '#5BB8D6' : '#2DBE7E'), tip: (r) => [r.category, `عدد المواقع: ${fmt(r.sites)}`, `النسبة: ${r.share}%`] });
   });
 
   const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
@@ -573,83 +550,27 @@ window.AC = (function () {
       td(tr, r.category === DIP ? pill(r.category, 't') : r.category); td(tr, r.area);
       td(tr, r.makani ? String(r.makani).replace(/^(\d+)(\d{5})$/, '$1 $2') : '—', 'ac-nw');
       if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr';
-        const c = td(tr, a); if (r.src) { const g = pill(r.conf === 'متوسطة' ? 'مُضافة · تقريبية' : 'مُضافة', r.conf === 'متوسطة' ? 'w' : 't'); g.title = r.src + ' — ' + r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
-      else td(tr, r.coords ? pill('تستوجب التحقق', 'w') : pill('غير متوفرة', 'g'));
+        const c = td(tr, a); if (r.conf === 'متوسطة') { const g = pill('موقع تقريبي', 'w'); g.title = r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
+      else td(tr, '—');
       tb.appendChild(tr); });
   });
   dash.draw('siteCount', (el) => { const d = dash.data('sites_view'); if (d.status !== 'ok') return placeholder(el, d);
-    const k = dash.data('kpis'); const tot = k.status === 'ok' && k.data && k.data.length ? k.data[0].total : null; const merged = tot == null ? 0 : tot - d.data.length;
-    const base = d.data.length > 300 ? `تُعرض أول 300 موقع من أصل ${fmt(d.data.length)}. استخدم عوامل التصفية أو البحث لتضييق النتائج.` : `عدد المواقع: ${fmt(d.data.length)}.`;
-    el.textContent = merged > 0 ? `${base} دُمج ${fmt(merged)} قيداً مكرراً لأنها تخص مواقع مسجّلة لدى أكثر من جهة.` : base; });
+        const base = d.data.length > 300 ? `تُعرض أول 300 موقع من أصل ${fmt(d.data.length)}. استخدم عوامل التصفية أو البحث لتضييق النتائج.` : `عدد المواقع: ${fmt(d.data.length)}.`;
+    el.textContent = base; });
 
-  /* ── data quality ── */
-  const state = (r) => (r.stated_total == null ? (r.all_sites ? 'nostated' : 'empty') : r.diff === 0 ? 'ok' : 'diff');
-  dash.draw('qAnswers', (el) => {
-    const d = dash.data('by_entity'), k = dash.data('kpis'), o = dash.data('review_open');
-    if (d.status !== 'ok' || k.status !== 'ok' || !k.data.length) return errBox(el, d.status !== 'ok' ? d : k);
-    const st = d.data.map(state); const ok = st.filter((s) => s === 'ok').length, bad = st.filter((s) => s === 'diff').length, emp = st.filter((s) => s === 'empty').length;
-    const kv = k.data[0]; const open = o.status === 'ok' && o.data.length ? o.data[0].open_items : null;
-    const tile = (num, q, a, dsc, col, src, field) => { const t = mk('div', 'ac-qa'); t.style.setProperty('--qc', col);
-      const qq = mk('div', 'q'); qq.appendChild(mk('i', null, num)); qq.appendChild(document.createTextNode(q)); t.appendChild(qq);
-      const aa = mk('div', 'a'); aa.dataset.source = src; if (field) aa.dataset.field = field; aa.innerHTML = a; t.appendChild(aa); t.appendChild(mk('div', 'd', dsc)); el.appendChild(t); };
-    el.replaceChildren();
-    tile('١', 'هل الإجمالي المكتوب صحيح؟', `<em style="color:#2DBE7E">${fmt(ok)}</em> نعم · <em style="color:#D8B25C">${fmt(bad)}</em> لا`,
-      `${fmt(bad)} جهات إجماليها المكتوب لا يساوي عدد مواقعها الفعلي${emp === 2 ? '، وورقتان فارغتان بلا مواقع' : emp ? `، و${fmt(emp)} أوراق فارغة` : ''}.`, bad ? '#D8B25C' : '#2DBE7E', 'by_entity', 'diff');
-    tile('٢', 'هل لكل موقع إحداثيات؟', `<em>${kv.coord_pct}%</em> نعم`,
-      `ينقص ${fmt(kv.coord_missing)} قيداً من أصل ${fmt(kv.total)}، معظمها مساكن خاصة ومواقع حساسة لا تُستكمل من الإنترنت.`, '#5BB8D6', 'kpis', 'coord_pct');
-    tile('٣', 'هل توجد ملاحظات تحتاج قراراً؟', open == null ? '—' : `<em style="color:#E07171">${fmt(open)}</em> ملاحظة`,
-      'مرتبة في البطاقات أدناه حسب الأولوية، مع التصحيح المقترح لكل منها.', '#E07171', 'review_open', 'open_items');
-  });
-  dash.draw('qCounts', (el) => {
+  dash.draw('entCards', (el) => {
     const d = dash.data('by_entity'); if (d.status !== 'ok') return errBox(el, d);
-    el.replaceChildren();
-    d.data.filter((r) => state(r) === 'diff').sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff)).forEach((r) => {
-      const row = mk('div', 'ac-qrow'); row.appendChild(mk('div', 'n', r.entity));
-      const t = mk('div', 't'); t.innerHTML = `المكتوب في الملف <b>${fmt(r.stated_total)}</b> · الموجود فعلاً <b>${fmt(r.all_sites)}</b>`;
-      t.appendChild(mk('small', null, r.diff > 0 ? `يُرجى تحديث الإجمالي المكتوب إلى ${fmt(r.all_sites)}.` : `قد تكون ${fmt(-r.diff)} مواقع ناقصة من الورقة؛ يُرجى التحقق.`));
-      row.appendChild(t); row.appendChild(pill(r.diff > 0 ? `زيادة ${fmt(r.diff)}` : `نقص ${fmt(-r.diff)}`, 'w')); el.appendChild(row); });
-    const okE = d.data.filter((r) => state(r) === 'ok'), emp = d.data.filter((r) => state(r) === 'empty'), ns = d.data.filter((r) => state(r) === 'nostated');
-    const add = (lab, arr, k) => { if (!arr.length) return; const w = mk('div', 'ac-okrow'); w.appendChild(mk('span', null, lab)); arr.forEach((r) => w.appendChild(pill(r.entity, k))); el.appendChild(w); };
-    add('مطابقة:', okE, ''); add('بلا إجمالي مكتوب:', ns, 'w'); add('ورقة فارغة بلا مواقع:', emp, 'g');
-  });
-  dash.draw('qCoords', (el) => {
-    const d = dash.data('by_entity'); if (d.status !== 'ok') return errBox(el, d);
-    el.replaceChildren();
-    const miss = d.data.filter((r) => r.sites && r.missing > 0).sort((a, b) => b.missing - a.missing);
-    if (!miss.length) el.appendChild(mk('div', 'ac-sub', 'جميع المواقع المعروضة لها إحداثيات.'));
-    miss.forEach((r) => { const row = mk('div', 'ac-qrow'); row.appendChild(mk('div', 'n', r.entity));
-      const t = mk('div', 't'); t.innerHTML = `ينقص <b>${fmt(r.missing)}</b> من <b>${fmt(r.sites)}</b> موقعاً`;
-      const bar = mk('div', 'ac-meter'); bar.style.marginTop = '6px'; const sp = mk('span'); sp.style.width = '0%';
-      sp.style.background = r.coverage < 50 ? '#E07171' : r.coverage < 90 ? '#D8B25C' : '#2DBE7E'; bar.appendChild(sp); t.appendChild(bar);
-      requestAnimationFrame(() => { sp.style.width = (r.coverage || 0) + '%'; });
-      row.appendChild(t); row.appendChild(pill(r.coverage + '%', r.coverage < 50 ? 'b' : r.coverage < 90 ? 'w' : '')); el.appendChild(row); });
-    const full = d.data.filter((r) => r.sites && r.missing === 0);
-    if (full.length) { const w = mk('div', 'ac-okrow'); w.appendChild(mk('span', null, 'مكتملة 100%:')); full.forEach((r) => w.appendChild(pill(r.entity))); el.appendChild(w); }
-  });
-
-  dash.draw('reviewTypes', (el) => {
-    const d = dash.data('review_summary'); el.replaceChildren();
-    if (d.status !== 'ok') { if (d.status === 'error') el.appendChild(mk('div', 'ac-err', 'تعذّر تحميل ملخص الملاحظات.')); return; }
-    const cur = (dash.params() || {}).rtype || null;
-    d.data.forEach((r) => {
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'ac-rt' + (cur === r.type ? ' on' : cur ? ' dim' : '');
-      b.style.setProperty('--c', TYPE_COLOR[r.type] || '#2DBE7E');
-      const num = mk('b', null, fmt(r.items)); num.dataset.source = 'review_summary'; num.dataset.field = 'items'; num.dataset.where = 'type=' + encodeURIComponent(r.type);
-      b.appendChild(num); b.appendChild(mk('strong', null, TYPE_LABEL[r.type] || r.type)); b.appendChild(mk('small', null, TYPE_HELP[r.type] || ''));
-      b.onclick = () => dash.setParams({ rtype: cur === r.type ? null : r.type }); el.appendChild(b);
-    });
-  });
-  dash.draw('reviewCards', (el) => {
-    const d = dash.data('review'); if (d.status !== 'ok') return errBox(el, d);
-    el.replaceChildren();
-    if (!d.data.length) { el.appendChild(mk('div', 'ac-sub', 'لا توجد ملاحظات مطابقة لعوامل التصفية الحالية.')); return; }
-    d.data.forEach((r) => { const c = mk('article', 'ac-card'); c.dataset.key = String(r.id); c.style.setProperty('--c', TYPE_COLOR[r.type] || '#2DBE7E');
-      const top = mk('div', 'top'); top.appendChild(mk('span', null, TYPE_LABEL[r.type] || r.type)); const pr = PRI[r.priority] || PRI[3]; top.appendChild(pill(pr[0], pr[1])); c.appendChild(top);
-      c.appendChild(mk('h4', null, r.site)); c.appendChild(mk('div', 'e', 'الجهات: ' + r.entities));
-      const cmp = mk('div', 'cmp'); const a = mk('div'); a.appendChild(mk('small', null, 'الوارد في الملف')); const av = mk('span', null, r.current); av.dir = 'auto'; a.appendChild(av);
-      const s = mk('div', 's'); s.appendChild(mk('small', null, 'التصحيح المقترح')); const sv = mk('span', null, r.suggested); sv.dir = 'auto'; s.appendChild(sv);
-      cmp.appendChild(a); cmp.appendChild(mk('span', 'ar', '←')); cmp.appendChild(s); c.appendChild(cmp);
-      const act = mk('div', 'act'); act.appendChild(mk('b', null, 'المطلوب: ')); act.appendChild(document.createTextNode(r.action)); c.appendChild(act);
+    el.replaceChildren(); const cur = (dash.params() || {}).entity || null;
+    d.data.filter((r) => r.sites).sort((a, b) => b.sites - a.sites).forEach((r) => {
+      const c = mk('button', 'ac-ec' + (cur === r.entity ? ' on' : '')); c.type = 'button'; c.dataset.key = r.entity;
+      c.appendChild(mk('div', 'nm', r.entity));
+      const big = mk('b', 'big', fmt(r.sites)); big.dataset.source = 'by_entity'; big.dataset.field = 'sites'; big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
+      const ln = mk('div', 'ln'); ln.innerHTML = '';
+      const add = (t) => { const x = mk('div'); x.textContent = t; ln.appendChild(x); };
+      if (r.top1) add(`${r.top1}: ${fmt(r.top1_n)}`); if (r.top2) add(`${r.top2}: ${fmt(r.top2_n)}`);
+      c.appendChild(ln);
+      const bar = mk('div', 'bar'); const sp = mk('span'); sp.style.width = (r.coverage || 0) + '%'; bar.appendChild(sp); c.appendChild(bar); c.appendChild(mk('span', 'ok', '✓ كل المواقع لها إحداثيات'));
+      c.onclick = () => { dash.setParams({ entity: cur === r.entity ? null : r.entity }); const t = document.getElementById('sec-numbers'); if (t && cur !== r.entity) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
       el.appendChild(c); });
   });
 })();
@@ -663,7 +584,7 @@ window.AC = (function () {
     inp.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => dash.setParams({ q: inp.value.trim() || null }), 250); });
   });
   document.querySelectorAll('#acReset').forEach((b) => b.addEventListener('click', () => {
-    dash.setParams({ entity: null, category: null, q: null, rtype: null });
+    dash.setParams({ entity: null, category: null, q: null });
     document.querySelectorAll('#acSearch').forEach((i) => { i.value = ''; });
   }));
   const root = document.getElementById('top');
