@@ -340,6 +340,10 @@ body.unlocked #lock{display:none}
 .ac-sa .mapbox svg{display:block;width:100%;height:auto;direction:ltr;cursor:crosshair;touch-action:none}
 .ac-sa .mapbox .pulse{animation:acPulseR 2.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes acPulseR{50%{opacity:.35}}
+.ac-sa .simwrap{align-items:start}
+.ac-sa .mapbox{background:#03101A;border-color:rgba(91,140,214,.4);box-shadow:0 0 0 1px rgba(91,140,214,.08),0 18px 50px rgba(0,0,0,.45)}
+.ac-sa .mapbox image.esri{filter:saturate(1.15) brightness(1.1) contrast(1.05)}
+.ac-sa .mapbox circle.hot{filter:drop-shadow(0 0 6px rgba(224,113,113,.9))}
 .ac-sa .simres{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;max-height:470px;overflow:auto}
 .ac-sa .simres .hint{font-size:12.5px;color:var(--mu);margin:auto;text-align:center}
 .ac-sa .simres .pt{font-size:14px;font-weight:700;color:#fff}
@@ -507,7 +511,7 @@ body.unlocked #lock{display:none}
       <div>
         <div class='k'>إدارة أمن الهيئات والمنشآت الحيوية</div>
         <h3>التحليل الأمني للمواقع</h3>
-        <p>تصنيف المواقع حسب حساسيتها، وخريطة انتشار ثلاثية الأبعاد، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
+        <p>مؤشر الخطورة لكل موقع، والبؤر الحرجة، ومحاكاة أثر أي حادث على خريطة Esri الليلية، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
         <span class='cta'>افتح التحليل الأمني ←</span>
       </div>
       <div class='ac-sa-orb' aria-hidden='true'><i></i><i></i><i></i><i></i></div>
@@ -831,43 +835,45 @@ window.AC = (function () {
     tools.appendChild(rads); cm.appendChild(tools);
     const wrap = mk('div', 'simwrap'); const mapBox = mk('div', 'mapbox'); const res = mk('div', 'simres'); wrap.appendChild(mapBox); wrap.appendChild(res); cm.appendChild(wrap);
     res.appendChild(mk('div', 'hint', 'اختر نقطة على الخريطة لعرض النتائج هنا.'));
-    const W = 680, H = 470, lon0 = 54.98, lon1 = 55.66, lat0 = 24.86, lat1 = 25.36, kx = Math.cos(25.1 * Math.PI / 180);
-    const sx = W / ((lon1 - lon0) * kx), sy = H / (lat1 - lat0), sc = Math.min(sx, sy);
-    const X = (lo) => (lo - lon0) * kx * sc, Y = (la) => H - (la - lat0) * sc, LO = (x) => x / (kx * sc) + lon0, LA = (y) => (H - y) / sc + lat0;
-    const pxPerKm = sc / 110.57;
-    const svg = d3.select(mapBox).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'خريطة المخاطر');
-    svg.append('rect').attr('width', W).attr('height', H).attr('rx', 16).attr('fill', '#07130F');
+    /* Esri World Street Map (Night) — georeferenced basemap */
+    const MAPURL = 'assets/esri-night.jpg', W = 4600, H = 2960, OX = 1100, OY = 0;
+    const G = { s: 0.05354767347353063, th: 0.8771981116824578, tx: 3623.67286339296, ty: 1037.92043456609, cx: 6146909.891080591, cy: 2892739.415099748 }, RE = 6378137, DG = Math.PI / 180, GC = Math.cos(G.th), GS = Math.sin(G.th);
+    const PJ = (la, lo) => { const x = RE * lo * DG - G.cx, y = -(RE * Math.log(Math.tan(Math.PI / 4 + la * DG / 2)) - G.cy); return [G.s * (GC * x - GS * y) + G.tx - OX, G.s * (GS * x + GC * y) + G.ty - OY]; };
+    const UP = (px, py) => { const u = (px + OX - G.tx) / G.s, v = (py + OY - G.ty) / G.s, x = GC * u + GS * v, y = -GS * u + GC * v; return { la: (2 * Math.atan(Math.exp((G.cy - y) / RE)) - Math.PI / 2) / DG, lo: (x + G.cx) / RE / DG }; };
+    const pxPerKm = (G.s * 1000) / Math.cos(25.15 * DG), U = W / 700; let K = 1;
+    const onMap = (x) => { const [a, b] = PJ(x.la, x.lo); return a > 8 && a < W - 8 && b > 8 && b < H - 8; };
+    const svg = d3.select(mapBox).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'خريطة المخاطر على خريطة Esri الليلية');
+    svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#03101A');
     const gz = svg.append('g');
-    const grid = gz.append('g'); for (let i = 1; i < 12; i++) { grid.append('line').attr('x1', (W / 12) * i).attr('x2', (W / 12) * i).attr('y1', 0).attr('y2', H).attr('stroke', 'rgba(255,255,255,.035)'); grid.append('line').attr('y1', (H / 9) * i).attr('y2', (H / 9) * i).attr('x1', 0).attr('x2', W).attr('stroke', 'rgba(255,255,255,.035)'); }
-    // hex density
-    const HR = 9, hw = Math.sqrt(3) * HR, bins = new Map();
-    r.sites.forEach((x) => { if (x.lo > lon1 || x.lo < lon0 || x.la < lat0 || x.la > lat1) return; const px = X(x.lo), py = Y(x.la); let row = Math.round(py / (1.5 * HR)); let col = Math.round((px - (row % 2 ? hw / 2 : 0)) / hw);
-      const key = row + ',' + col; const b = bins.get(key) || { row, col, n: 0, mx: 0, t1: 0 }; b.n++; b.mx = Math.max(b.mx, x.r); if (x.t === 1) b.t1++; bins.set(key, b); });
-    const hexPath = (cx, cy) => d3.range(6).map((i) => { const a = (Math.PI / 3) * i + Math.PI / 6; return [cx + (HR - .6) * Math.cos(a), cy + (HR - .6) * Math.sin(a)]; });
-    const nmax = d3.max([...bins.values()], (b) => b.n) || 1;
-    gz.append('g').selectAll('path').data([...bins.values()]).join('path')
-      .attr('d', (b) => 'M' + hexPath(b.col * hw + (b.row % 2 ? hw / 2 : 0), b.row * 1.5 * HR).join('L') + 'Z')
-      .attr('fill', (b) => riskCol(b.mx)).attr('fill-opacity', (b) => 0.18 + 0.62 * Math.sqrt(b.n / nmax)).attr('stroke', (b) => riskCol(b.mx)).attr('stroke-opacity', .5).attr('stroke-width', .6)
-      .append('title').text((b) => `${b.n} موقع، منها ${b.t1} حرجة`);
-    // clusters
-    const cg = gz.append('g');
-    r.clusters.forEach((c, i) => { const g = cg.append('g').attr('transform', `translate(${X(c.lon)},${Y(c.lat)})`);
-      g.append('circle').attr('r', Math.max(10, c.r * pxPerKm + 6)).attr('fill', 'none').attr('stroke', '#E9CF8F').attr('stroke-width', 1.4).attr('stroke-dasharray', '3 3').attr('class', 'pulse');
-      if (i < 8) { g.append('circle').attr('r', 8).attr('cx', 14).attr('cy', -14).attr('fill', '#E9CF8F'); g.append('text').attr('x', 14).attr('y', -14).attr('dy', '.35em').attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', '#1A1405').text(i + 1); } });
-    // sim layer
+    gz.append('image').attr('href', MAPURL).attr('width', W).attr('height', H).attr('preserveAspectRatio', 'none').attr('class', 'esri');
+    const inside = r.sites.filter(onMap), outside = r.sites.length - inside.length;
+    const dots = gz.append('g').selectAll('circle').data(inside.slice().sort((a, b) => a.r - b.r)).join('circle')
+      .attr('cx', (x) => PJ(x.la, x.lo)[0]).attr('cy', (x) => PJ(x.la, x.lo)[1]).attr('fill', (x) => riskCol(x.r)).attr('fill-opacity', .92)
+      .attr('stroke', '#03101A').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke').attr('class', (x) => (x.r >= 70 ? 'hot' : null));
+    dots.append('title').text((x) => `${x.s} — ${x.c} · مؤشر الخطورة ${x.r}`);
+    const cg = gz.append('g'), badges = [];
+    r.clusters.forEach((c, i) => { const [cx, cy] = PJ(c.lat, c.lon); const g = cg.append('g').attr('transform', `translate(${cx},${cy})`);
+      g.append('circle').attr('r', c.r * pxPerKm + 4 * U).attr('fill', 'rgba(233,207,143,.06)').attr('stroke', '#E9CF8F').attr('stroke-width', 1.4).attr('vector-effect', 'non-scaling-stroke').attr('stroke-dasharray', '4 3').attr('class', 'pulse');
+      if (i < 8) { const b = g.append('g'); b.append('circle').attr('r', 8).attr('cx', 14).attr('cy', -14).attr('fill', '#E9CF8F'); b.append('text').attr('x', 14).attr('y', -14).attr('dy', '.35em').attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', '#1A1405').text(i + 1); badges.push(b); } });
     const simg = gz.append('g'); let cur = null;
-    const zoom = d3.zoom().scaleExtent([1, 8]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); });
-    svg.call(zoom);
-    svg.on('click', (ev) => { const [mx, my] = d3.pointer(ev, gz.node()); simulate({ la: LA(my), lo: LO(mx), label: 'نقطة مختارة على الخريطة' }); });
-    inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s }); svg.transition().duration(700).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(3).translate(-X(x.lo), -Y(x.la))); } });
+    const sizes = () => { const s = U / Math.pow(K, 0.8); dots.attr('r', (x) => (x.t === 1 ? 2.8 : 2.1) * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 2.6 * s); simg.selectAll('circle.ctr').attr('r', 3.2 * s); };
+    const zoom = d3.zoom().scaleExtent([1, 9]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
+    svg.call(zoom); sizes();
+    { const [ix, iy] = PJ(25.165, 55.29); svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); }
+    const focus = (la, lo, k) => { const [x, y] = PJ(la, lo); svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-x, -y)); };
+    svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
+    inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s }); focus(x.la, x.lo, 4); } });
     const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'بؤرة حرجة (رقمها في القائمة)']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
+    if (outside) { const s = mk('span', null, `${fmt(outside)} مواقع خارج حدود الخريطة (حتا وأطراف الإمارة) تدخل في الحسابات ولا تظهر عليها`); lgd.appendChild(s); }
+    const cr0 = mk('span', null, 'الخريطة الأساسية: Esri World Street Map (Night)'); cr0.style.opacity = '.7'; lgd.appendChild(cr0);
     cm.appendChild(lgd);
     function simulate(p) {
       cur = p; simg.selectAll('*').remove();
       const hit = r.sites.map((x) => ({ ...x, d: kmd(p, x) })).filter((x) => x.d <= rad).sort((a, b) => a.t - b.t || b.r - a.r);
-      simg.append('circle').attr('cx', X(p.lo)).attr('cy', Y(p.la)).attr('r', rad * pxPerKm).attr('fill', 'rgba(224,113,113,.12)').attr('stroke', '#E07171').attr('stroke-width', 1.5);
-      simg.append('circle').attr('cx', X(p.lo)).attr('cy', Y(p.la)).attr('r', 3).attr('fill', '#fff');
-      hit.forEach((x) => simg.append('circle').attr('cx', X(x.lo)).attr('cy', Y(x.la)).attr('r', 2.2).attr('fill', TC[x.t]).attr('stroke', '#07130F').attr('stroke-width', .6));
+      const [px0, py0] = PJ(p.la, p.lo);
+      simg.append('circle').attr('cx', px0).attr('cy', py0).attr('r', rad * pxPerKm).attr('fill', 'rgba(224,113,113,.14)').attr('stroke', '#FF8A8A').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke');
+      hit.filter(onMap).forEach((x) => { const [hx, hy] = PJ(x.la, x.lo); simg.append('circle').attr('class', 'hd').attr('cx', hx).attr('cy', hy).attr('fill', TC[x.t]).attr('stroke', '#fff').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke'); });
+      simg.append('circle').attr('class', 'ctr').attr('cx', px0).attr('cy', py0).attr('fill', '#fff').attr('stroke', '#E07171').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke'); sizes();
       res.replaceChildren(); res.appendChild(mk('div', 'pt', p.label)); res.appendChild(mk('div', 'pr', `نصف القطر: ${rad < 1 ? rad * 1000 + ' م' : rad + ' كم'}`));
       const k3 = mk('div', 'k3'); [[hit.length, 'موقع ضمن الدائرة'], [hit.filter((x) => x.t === 1).length, 'منها حرجة'], [new Set(hit.flatMap((x) => x.e.split('، '))).size, 'جهة معنية']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); });
       res.appendChild(k3);
@@ -885,7 +891,7 @@ window.AC = (function () {
       const nm = mk('div', 'rt'); nm.appendChild(mk('b', null, x.s)); nm.appendChild(mk('small', null, `${x.c} · ${x.a || '—'} · ${x.ne === 1 ? 'تتابعه جهة واحدة' : 'تتابعه ' + x.ne + ' جهات'}${x.nr ? ' · ' + x.nr + ' مواقع حرجة قريبة' : ''}`)); row.appendChild(nm);
       const bar = mk('i'); [[x.f.cat, '#E07171'], [x.f.near, '#D4B26A'], [x.f.cov, '#5BB8D6'], [x.f.unc, '#9BB0A7']].forEach(([v, c]) => { const s = mk('span'); s.style.background = c; bar.appendChild(s); grow.push([s, v]); }); row.appendChild(bar);
       row.appendChild(mk('strong', null, String(x.r))); row.style.setProperty('--rc', riskCol(x.r));
-      row.onclick = () => { simulate({ la: x.la, lo: x.lo, label: x.s }); svg.transition().duration(700).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(3).translate(-X(x.lo), -Y(x.la))); cm.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      row.onclick = () => { simulate({ la: x.la, lo: x.lo, label: x.s }); focus(x.la, x.lo, 4); cm.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
       rl.appendChild(row); });
     cr.appendChild(rl);
     const rk = mk('div', 'lg'); [['#E07171', 'الفئة'], ['#D4B26A', 'مواقع حرجة قريبة'], ['#5BB8D6', 'قلة الجهات المتابعة'], ['#9BB0A7', 'إحداثيات تقريبية']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); rk.appendChild(s); }); cr.appendChild(rk);
@@ -895,7 +901,7 @@ window.AC = (function () {
     const cg2 = mk('div', 'clist'); r.clusters.slice(0, 12).forEach((c, i) => { const b = mk('button', 'cl'); b.type = 'button'; b.appendChild(mk('span', 'cn', String(i + 1)));
       const t = mk('div'); t.appendChild(mk('b', null, c.area || 'بؤرة ' + (i + 1))); t.appendChild(mk('small', null, c.cats)); b.appendChild(t);
       const m = mk('div', 'cm'); m.appendChild(mk('b', null, fmt(c.n))); m.appendChild(mk('small', null, 'موقع حرج')); b.appendChild(m);
-      b.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'بؤرة ' + (i + 1) + ' — ' + c.area }); svg.transition().duration(700).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(4).translate(-X(c.lon), -Y(c.lat))); cm.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      b.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'بؤرة ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5); cm.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
       cg2.appendChild(b); }); cc.appendChild(cg2);
 
     /* ── existing cards ── */
