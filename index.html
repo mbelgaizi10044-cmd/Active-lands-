@@ -443,6 +443,63 @@ body.unlocked #lock{display:none}
 @media (max-width:560px){.ac-sa .rrow{grid-template-columns:22px minmax(0,1fr) 30px auto}.ac-sa .rrow i{display:none}}
 @media (prefers-reduced-motion:reduce){.ac-sa.in,.ac-sa.out,.ac-sa-launch.out,.ac-sa-launch.back,.ac-sa .fi,.ac-sa-orb,.ac-sa-launch::after,.ac-sa .map3d circle.t1{animation:none;opacity:1}}
 
+.ac-hero{grid-template-columns:minmax(0,1fr) auto}
+.ac-globe{position:relative;width:330px;height:280px;perspective:900px;display:grid;place-items:center;cursor:default}
+.ac-globe .g3s{transform-style:preserve-3d;transform:rotateX(58deg);transition:transform .5s ease-out;margin-top:-30px}
+.ac-globe .g3p{position:relative;width:290px;height:290px;transform-style:preserve-3d;animation:acG3 60s linear infinite}
+.ac-globe .g3m{position:absolute;inset:0;border-radius:50%;background-image:url('assets/esri-night.jpg');background-repeat:no-repeat;-webkit-mask-image:radial-gradient(circle,#000 58%,transparent 71%);mask-image:radial-gradient(circle,#000 58%,transparent 71%);filter:saturate(1.3) brightness(1.15)}
+.ac-globe .g3r{position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(233,207,143,.45);box-shadow:0 0 40px rgba(91,140,214,.35),inset 0 0 40px rgba(91,140,214,.25)}
+.ac-globe .g3p i{position:absolute;width:3px;margin-left:-1.5px;transform-origin:50% 100%;transform:rotateX(-90deg);background:linear-gradient(to top,var(--c),rgba(255,255,255,0));box-shadow:0 0 7px var(--c);border-radius:2px;animation:acPil 2.6s ease-in-out infinite}
+@keyframes acG3{to{transform:rotateZ(360deg)}}
+@keyframes acPil{50%{opacity:.5}}
+.ac-globe .g3l{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:11px;color:rgba(238,245,241,.72)}
+.ac-globe .g3l b{color:#E07171;font-size:13px}
+@media (max-width:900px){.ac-hero{grid-template-columns:1fr}.ac-globe{margin:0 auto}}
+.ac-ec{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .4s}
+.ac-ec:hover{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(8px)}
+.ac-ec.tilt{transition:transform .08s linear,border-color .25s,box-shadow .3s;box-shadow:0 20px 44px rgba(0,0,0,.5)}
+.ac-ec::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(240px circle at var(--gx,50%) var(--gy,50%),rgba(233,207,143,.24),transparent 60%)}
+.ac-ec.tilt::after{opacity:1}
+.ac-sa .mapbox circle.pr{fill:none;stroke:#FF6B6B;stroke-width:1.4;transform-box:fill-box;transform-origin:center;animation:acPr 2.4s ease-out infinite}
+@keyframes acPr{0%{transform:scale(1);opacity:.9}100%{transform:scale(4.4);opacity:0}}
+.ac-sa .mapbox circle.ping{fill:rgba(125,255,200,.25);stroke:#7DFFC8;stroke-width:1;transform-box:fill-box;transform-origin:center;animation:acPing 1s ease-out forwards}
+@keyframes acPing{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.ac-sa .mapbox .radar .rr{fill:none;stroke:rgba(125,255,200,.13)}
+.ac-sa .tourbox{position:absolute;right:12px;bottom:12px;width:min(340px,72%);background:rgba(3,16,26,.93);border:1px solid rgba(212,178,106,.55);border-radius:14px;padding:12px 14px;box-shadow:0 12px 30px rgba(0,0,0,.55);animation:acFadeUp .4s ease both}
+.ac-sa .tourbox small{color:var(--gold);font-size:11px}
+.ac-sa .tourbox b{display:block;color:#fff;font-size:15px;margin-top:2px}
+.ac-sa .tourbox p{margin:4px 0 8px;font-size:11.5px;color:#CFE0D8;line-height:1.7}
+.ac-sa .tourbox i{display:block;height:3px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.ac-sa .tourbox i span{display:block;height:100%;width:0;background:linear-gradient(90deg,#E9CF8F,#D4B26A);animation:acTour 6.4s linear forwards}
+@keyframes acTour{to{width:100%}}
+.ac-map .opsbar{display:none}
+.ac-map.ops{position:fixed;inset:0;z-index:400;border-radius:0;border:0;padding:14px 18px;background:#02080C;display:flex;flex-direction:column;overflow:auto;transform:none!important;opacity:1!important}
+.ac-map.ops .opsbar{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding:2px 2px 12px;border-bottom:1px solid rgba(212,178,106,.35);margin-bottom:12px}
+.ac-map .opsbar .ot{font-size:17px;font-weight:700;color:#fff}
+.ac-map .opsbar .ot small{display:block;font-size:11px;color:var(--gold);font-weight:400}
+.ac-map .opsbar .clk{font-size:30px;font-weight:700;color:#E9CF8F;direction:ltr;font-variant-numeric:tabular-nums;text-shadow:0 0 16px rgba(233,207,143,.45)}
+.ac-map .opsbar .dt{font-size:12px;color:#CFE0D8;line-height:1.7}
+.ac-map .opsbar .oc{display:flex;gap:8px;margin-inline-start:auto}
+.ac-map .opsbar .oc div{border:1px solid var(--bd);border-radius:10px;padding:4px 14px;text-align:center;background:rgba(255,255,255,.03)}
+.ac-map .opsbar .oc b{display:block;font-size:21px;color:#fff;line-height:1.3}
+.ac-map .opsbar .oc small{font-size:10.5px;color:var(--mu)}
+.ac-map .opsbar .ox{font-family:inherit;font-size:12.5px;color:#fff;background:rgba(224,113,113,.15);border:1px solid rgba(224,113,113,.55);border-radius:99px;padding:6px 14px;cursor:pointer}
+.ac-map.ops .simwrap{flex:1;min-height:0;grid-template-columns:minmax(0,1fr) 340px}
+.ac-map.ops .mapbox,.ac-map.ops .mapbox svg{height:100%}
+.ac-map.ops .simres{contain:none;max-height:none}
+@media (max-width:900px){.ac-map.ops .simwrap{grid-template-columns:1fr}.ac-map.ops .mapbox{height:62vh}}
+.ac-splash{position:fixed;inset:0;z-index:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:20px;background:radial-gradient(640px 320px at 50% 45%,rgba(212,178,106,.18),transparent 70%),#030404;transition:opacity .6s ease;cursor:pointer}
+.ac-splash.out{opacity:0;pointer-events:none}
+.ac-splash .sl{display:flex;align-items:center;gap:30px;animation:acSpl 1s cubic-bezier(.2,.8,.2,1) both}
+.ac-splash .sl img{height:66px;width:auto;filter:drop-shadow(0 0 18px rgba(233,207,143,.45))}
+.ac-splash .sl img.i-acis{height:44px}
+.ac-splash .st{min-height:1.5em;font-size:clamp(20px,3.2vw,34px);font-weight:700;color:#fff;text-align:center}
+.ac-splash .ss{font-size:13px;color:#E9CF8F;opacity:0;animation:acFadeUp .6s ease 1.3s forwards}
+.ac-splash::after{content:'';position:absolute;bottom:24%;width:min(420px,70%);height:2px;background:linear-gradient(90deg,transparent,#E9CF8F,transparent);animation:acSplLine 2s ease both}
+@keyframes acSpl{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes acSplLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:560px){.ac-splash .sl{gap:14px}.ac-splash .sl img{height:40px}.ac-splash .sl img.i-acis{height:28px}.ac-globe{width:290px;height:260px}}
+@media (prefers-reduced-motion:reduce){.ac-globe .g3p,.ac-globe .g3p i,.ac-sa .mapbox circle.pr{animation:none}}
 @media (prefers-reduced-motion:reduce){.ac-file.in,.ac-file.out,.ac-ents-grid.out,.ac-ents-grid.back,.ac-file .fi{animation:none;opacity:1}}
 /* ── data quality ── */
 .ac-q3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
@@ -513,6 +570,7 @@ body.unlocked #lock{display:none}
       <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: بيانات المواقع الحيوية لأربع عشرة جهة</div>
       <div class='ac-lede' id='lede'><span class='l'>تضم اللوحة <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> موقعاً مسجلاً لدى <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، وهي فعلياً <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> مكاناً مختلفاً.</span><span class='n'>الفرق بين الرقمين لأن بعض المواقع مسجّلة لدى أكثر من جهة.</span><span class='l'>أكبر فئة هي <b class='c' data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> بعدد <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> موقعاً.</span><span class='u'>آخر تحديث مستلم من إدارة المرونة: 23/11/2026</span></div>
     </div>
+    <div class='ac-globe' data-draw='hero3d' data-source='security' aria-hidden='true'></div>
   </section>
 
   <nav class='ac-nav' id='acNav' aria-label='أقسام اللوحة'>
@@ -814,6 +872,8 @@ window.AC = (function () {
       c.appendChild(mk('span', 'ok', 'اضغط لفتح ملف الجهة'));
       c.querySelectorAll('*').forEach((x) => { x.style.pointerEvents = 'none'; });
       c.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); openFile(r.entity, c); }, true);
+      c.addEventListener('pointermove', (ev) => { if (ev.pointerType === 'touch') return; const b = c.getBoundingClientRect(), x = (ev.clientX - b.left) / b.width, y = (ev.clientY - b.top) / b.height; c.style.setProperty('--rx', ((0.5 - y) * 14).toFixed(2) + 'deg'); c.style.setProperty('--ry', ((x - 0.5) * 16).toFixed(2) + 'deg'); c.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); c.style.setProperty('--gy', (y * 100).toFixed(1) + '%'); c.classList.add('tilt'); });
+      c.addEventListener('pointerleave', () => { c.classList.remove('tilt'); c.style.removeProperty('--rx'); c.style.removeProperty('--ry'); });
       el.appendChild(c); });
   });
   function openFile(ent, card) {
@@ -970,7 +1030,7 @@ window.AC = (function () {
       st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
   }
   /* ── main map: Esri World Street Map (Night) ── */
-  let MV = null, RAD = 1; const CATS_ON = new Set();
+  let MV = null, RAD = 1, RADAR = true, LOOP = 0; const CATS_ON = new Set();
   const SHORT = { 'المنشآت الدبلوماسية': 'دبلوماسية', 'الجهات الحكومية': 'حكومية', 'المراكز العسكرية': 'عسكرية', 'المنافذ': 'منافذ', 'الفنادق': 'فنادق', 'المراكز التجارية': 'تجارية', 'محطات المترو': 'مترو', 'المراكز الرياضية والاجتماعية': 'رياضية واجتماعية', 'مواقع التجمع الخارجية': 'تجمعات خارجية', 'البنوك والمصارف': 'بنوك', 'المراكز الطبية': 'طبية', 'دور العبادة': 'دور عبادة', 'مراكز التعليم': 'تعليم', 'المراكز الإعلامية': 'إعلام', 'المسطحات المائية': 'مسطحات مائية', 'خزانات المياه الرئيسية': 'خزانات مياه', 'الواجهة البحرية': 'واجهة بحرية' };
   function mainMap(el) {
     const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) return errBox(el, d);
@@ -982,7 +1042,8 @@ window.AC = (function () {
     const rl = mk('span', 'rl', 'نطاق الأثر:'); tools.appendChild(rl);
     const rads = mk('div', 'rads'); [[0.5, '500 م'], [1, '1 كم'], [2, '2 كم'], [5, '5 كم']].forEach(([v, l]) => { const b = mk('button', 'rb' + (v === RAD ? ' on' : ''), l); b.type = 'button'; b.onclick = () => { RAD = v; rads.querySelectorAll('.rb').forEach((x) => x.classList.toggle('on', x === b)); if (cur) simulate(cur); }; rads.appendChild(b); });
     tools.appendChild(rads);
-    const clr = mk('button', 'rb', 'مسح'); clr.type = 'button'; clr.onclick = () => { cur = null; simg.selectAll('*').remove(); overview(); }; tools.appendChild(clr);
+    const tb = mk('button', 'rb', 'ابدأ الجولة'); tb.type = 'button'; const ob = mk('button', 'rb', 'غرفة العمليات'); ob.type = 'button'; const rbn = mk('button', 'rb' + (RADAR ? ' on' : ''), 'الرادار'); rbn.type = 'button';
+    const clr = mk('button', 'rb', 'مسح'); clr.type = 'button'; clr.onclick = () => { cur = null; simg.selectAll('*').remove(); overview(); }; tools.appendChild(clr); tools.append(tb, ob, rbn);
     el.appendChild(tools);
     const chips = mk('div', 'catchips'); const cnt = d3.rollup(r.sites, (v) => v.length, (x) => x.c);
     const allc = mk('button', 'cc' + (CATS_ON.size ? '' : ' on'), 'كل الفئات'); allc.type = 'button'; allc.onclick = () => { CATS_ON.clear(); syncChips(); applyVis(); }; chips.appendChild(allc);
@@ -1001,6 +1062,11 @@ window.AC = (function () {
     svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#03101A');
     const gz = svg.append('g');
     gz.append('image').attr('href', MAPURL).attr('width', W).attr('height', H).attr('preserveAspectRatio', 'none').attr('class', 'esri');
+    const RC = PJ(25.17, 55.28), RR = 2400; const rg = gz.append('g').attr('class', 'radar').style('pointer-events', 'none').style('display', RADAR ? null : 'none');
+    [1, 2, 3].forEach((q) => rg.append('circle').attr('class', 'rr').attr('cx', RC[0]).attr('cy', RC[1]).attr('r', (RR / 3) * q).attr('vector-effect', 'non-scaling-stroke'));
+    const sweep = rg.append('g').attr('transform', `translate(${RC[0]},${RC[1]})`);
+    for (let i = 0; i < 24; i++) { const a0 = -((i + 1) * 2 * Math.PI) / 180, a1 = -(i * 2 * Math.PI) / 180; sweep.append('path').attr('d', `M0,0L${RR * Math.cos(a0)},${RR * Math.sin(a0)}A${RR},${RR} 0 0 1 ${RR * Math.cos(a1)},${RR * Math.sin(a1)}Z`).attr('fill', `rgba(90,220,170,${(0.15 * (1 - i / 24)).toFixed(3)})`); }
+    sweep.append('line').attr('x2', RR).attr('y2', 0).attr('stroke', 'rgba(125,255,200,.8)').attr('stroke-width', 1.6).attr('vector-effect', 'non-scaling-stroke');
     const inside = r.sites.filter(onMap), outside = r.sites.length - inside.length;
     const cg = gz.append('g'), badges = [];
     r.clusters.forEach((c, i) => { const [cx, cy] = PJ(c.lat, c.lon); const g = cg.append('g').attr('transform', `translate(${cx},${cy})`);
@@ -1023,16 +1089,55 @@ window.AC = (function () {
           if (boxes.some((q) => !(bx[2] < q[0] || bx[0] > q[2] || bx[3] < q[1] || bx[1] > q[3]))) show = false; else boxes.push(bx); }
         this.style.display = show ? null : 'none'; }); }
     function applyVis() { dots.style('display', (x) => (vis(x) ? null : 'none')); hits.style('display', (x) => (vis(x) ? null : 'none')); placeLabels(); }
+    /* ── live layers: pulses (high risk), radar pings, tour, operations room ── */
+    const pulses = gz.append('g').style('pointer-events', 'none').selectAll('circle').data(data.filter((x) => x.r >= 70)).join('circle').attr('class', 'pr')
+      .attr('cx', (x) => PJ(x.la, x.lo)[0]).attr('cy', (x) => PJ(x.la, x.lo)[1]).attr('vector-effect', 'non-scaling-stroke').style('animation-delay', () => (Math.random() * 2.4).toFixed(2) + 's');
+    const pingL = gz.append('g').style('pointer-events', 'none');
+    const angs = data.map((x) => { const [px, py] = PJ(x.la, x.lo); return (Math.atan2(py - RC[1], px - RC[0]) + 2 * Math.PI) % (2 * Math.PI); });
+    if (LOOP) cancelAnimationFrame(LOOP);
+    let lastA = null; const TR = 7000;
+    const tick = (now) => { if (!el.isConnected) return; LOOP = requestAnimationFrame(tick); if (!RADAR || document.hidden) { lastA = null; return; }
+      const a = ((now % TR) / TR) * 2 * Math.PI; sweep.attr('transform', `translate(${RC[0]},${RC[1]}) rotate(${(a * 180) / Math.PI})`);
+      if (lastA != null) { const span = (a - lastA + 2 * Math.PI) % (2 * Math.PI); if (span > 0 && span < 1) { const s = U / Math.pow(K, 0.75);
+        data.forEach((x, i) => { if (x.r < 70 || !vis(x)) return; const dd = (angs[i] - lastA + 2 * Math.PI) % (2 * Math.PI); if (dd <= span) { const [px, py] = PJ(x.la, x.lo); const c = pingL.append('circle').attr('class', 'ping').attr('cx', px).attr('cy', py).attr('r', 3 * s).attr('vector-effect', 'non-scaling-stroke'); setTimeout(() => c.remove(), 1000); } }); } }
+      lastA = a; };
+    LOOP = requestAnimationFrame(tick);
+    rbn.onclick = () => { RADAR = !RADAR; rbn.classList.toggle('on', RADAR); rg.style('display', RADAR ? null : 'none'); };
+    const home = () => { const [ix, iy] = PJ(25.165, 55.29); svg.transition().duration(700).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); };
+    const tourBox = mk('div', 'tourbox'); tourBox.hidden = true; mapBox.appendChild(tourBox); let TOUR = null;
+    function stopTour(back) { if (TOUR) clearTimeout(TOUR); TOUR = null; tourBox.hidden = true; tb.textContent = 'ابدأ الجولة'; tb.classList.remove('on'); if (back) { cur = null; simg.selectAll('*').remove(); overview(); home(); } }
+    function stepTour(i) { if (!el.isConnected || TOUR === null) return; const list = r.clusters.slice(0, 8); if (i >= list.length) { stopTour(true); return; }
+      const c = list[i]; simulate({ la: c.lat, lo: c.lon, label: 'منطقة التركّز ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5);
+      tourBox.replaceChildren(); tourBox.appendChild(mk('small', null, `الجولة · ${i + 1} من ${list.length}`)); tourBox.appendChild(mk('b', null, c.area || 'منطقة التركّز ' + (i + 1)));
+      tourBox.appendChild(mk('p', null, `${fmt(c.n)} مواقع حرجة ضمن 400 م · ${c.cats}`)); const pb = mk('i'); pb.appendChild(mk('span')); tourBox.appendChild(pb);
+      TOUR = setTimeout(() => stepTour(i + 1), 6500); }
+    tb.onclick = () => { if (TOUR !== null) { stopTour(true); return; } TOUR = 0; tb.textContent = 'إيقاف الجولة'; tb.classList.add('on'); tourBox.hidden = false; stepTour(0); };
+    const opsBar = mk('div', 'opsbar'); const ot = mk('div', 'ot', 'غرفة العمليات'); ot.appendChild(mk('small', null, 'المواقع الهامة والحيوية في إمارة دبي')); opsBar.appendChild(ot);
+    const clk = mk('div', 'clk', '--:--:--'); const dt = mk('div', 'dt'); opsBar.appendChild(clk); opsBar.appendChild(dt);
+    const oc = mk('div', 'oc'); [[r.sites.length, 'موقع'], [r.tiers[0].n, 'حرجة'], [r.high, 'عالية الخطورة'], [r.clusters.length, 'منطقة تركّز حرج']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); oc.appendChild(q); }); opsBar.appendChild(oc);
+    const ox = mk('button', 'ox', 'خروج ✕'); ox.type = 'button'; ox.onclick = () => setOps(false); opsBar.appendChild(ox); el.prepend(opsBar);
+    const fT = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    let fH = null; try { fH = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', { timeZone: 'Asia/Dubai', day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) {}
+    const fG = new Intl.DateTimeFormat('ar-AE', { timeZone: 'Asia/Dubai', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const tickClock = () => { const n = new Date(); clk.textContent = fT.format(n); dt.replaceChildren(document.createTextNode(fG.format(n)), document.createElement('br'), document.createTextNode(fH ? fH.format(n) : '')); };
+    let CLK = null;
+    function setOps(on) { el.classList.toggle('ops', on); ob.classList.toggle('on', on); ob.textContent = on ? 'خروج من غرفة العمليات' : 'غرفة العمليات';
+      if (on) { tickClock(); clearInterval(CLK); CLK = setInterval(() => { if (!el.isConnected) return clearInterval(CLK); tickClock(); }, 1000); try { if (el.requestFullscreen && !document.fullscreenElement) el.requestFullscreen().catch(() => {}); } catch (e) {} }
+      else { clearInterval(CLK); try { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); } catch (e) {} el.scrollIntoView({ block: 'start' }); } }
+    ob.onclick = () => setOps(!el.classList.contains('ops'));
+    if (window.__acKey) document.removeEventListener('keydown', window.__acKey);
+    window.__acKey = (ev) => { if (ev.key === 'Escape' && el.isConnected && el.classList.contains('ops')) setOps(false); }; document.addEventListener('keydown', window.__acKey);
+    document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && el.isConnected && el.classList.contains('ops')) setOps(false); });
     hits.on('click', (ev, x) => { ev.stopPropagation(); simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 3); });
     let cur = null;
-    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); placeLabels(); };
+    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); pulses.attr('r', 3.2 * s); placeLabels(); };
     const zoom = d3.zoom().scaleExtent([1, 10]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); MV = ev.transform; if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
     svg.call(zoom); applyVis(); sizes();
     if (MV) svg.call(zoom.transform, MV); else { const [ix, iy] = PJ(25.165, 55.29); svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); }
     const focus = (la, lo, k) => { const [x, y] = PJ(la, lo); svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(Math.max(k, K)).translate(-x, -y)); };
     svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
     inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 5); } });
-    const zb = mk('div', 'zb'); [['+', 1.6], ['−', 1 / 1.6], ['⌂', 0]].forEach(([t, f]) => { const b = mk('button', null, t); b.type = 'button'; b.onclick = (ev) => { ev.stopPropagation(); if (f) svg.transition().duration(350).call(zoom.scaleBy, f); else { const [ix, iy] = PJ(25.165, 55.29); svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); } }; zb.appendChild(b); }); mapBox.appendChild(zb);
+    const zb = mk('div', 'zb'); [['+', 1.6], ['−', 1 / 1.6], ['⌂', 0]].forEach(([t, f]) => { const b = mk('button', null, t); b.type = 'button'; b.onclick = (ev) => { ev.stopPropagation(); if (f) svg.transition().duration(350).call(zoom.scaleBy, f); else home(); }; zb.appendChild(b); }); mapBox.appendChild(zb);
     const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'منطقة تركّز حرج']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
     if (outside) lgd.appendChild(mk('span', null, `${fmt(outside)} مواقع في حتا وأطراف الإمارة خارج حدود الخريطة`));
     const cr0 = mk('span', null, 'الخريطة: Esri World Street Map (Night)'); cr0.style.opacity = '.65'; lgd.appendChild(cr0);
@@ -1075,6 +1180,21 @@ window.AC = (function () {
     window.__acMap = { go: (la, lo, name, k) => { const x = r.sites.find((z) => z.s === name && Math.abs(z.la - la) < 1e-3) || null; simulate({ la, lo, label: name, site: x }); focus(la, lo, k || 5); const s = document.getElementById('sec-map'); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
   }
   dash.draw('mainMap', mainMap);
+  dash.draw('hero3d', (el) => {
+    const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) return; const r = d.data[0];
+    const G = { s: 0.05354767347353063, th: 0.8771981116824578, tx: 3623.67286339296 - 1100, ty: 1037.92043456609, cx: 6146909.891080591, cy: 2892739.415099748 }, RE = 6378137, DG = Math.PI / 180, GC = Math.cos(G.th), GS = Math.sin(G.th);
+    const PJ = (la, lo) => { const x = RE * lo * DG - G.cx, y = -(RE * Math.log(Math.tan(Math.PI / 4 + la * DG / 2)) - G.cy); return [G.s * (GC * x - GS * y) + G.tx, G.s * (GS * x + GC * y) + G.ty]; };
+    const C = PJ(25.19, 55.27), BW = 1900, PW = 290, k = PW / BW, x0 = C[0] - BW / 2, y0 = C[1] - BW / 2;
+    el.replaceChildren(); const sc = mk('div', 'g3s'); const pl = mk('div', 'g3p'); const mp = mk('div', 'g3m'); pl.appendChild(mp);
+    mp.style.backgroundSize = `${4600 * k}px ${2960 * k}px`; mp.style.backgroundPosition = `${-x0 * k}px ${-y0 * k}px`;
+    const ring = mk('div', 'g3r'); pl.appendChild(ring);
+    r.sites.filter((x) => x.r >= 55).forEach((x) => { const [px, py] = PJ(x.la, x.lo), lx = (px - x0) * k, ly = (py - y0) * k; const rr = Math.hypot(lx - PW / 2, ly - PW / 2); if (rr > PW / 2 - 6) return;
+      const b = mk('i'); const h = Math.round(8 + (x.r - 50) * 1.5); b.style.left = lx.toFixed(1) + 'px'; b.style.top = ly.toFixed(1) + 'px'; b.style.height = h + 'px'; b.style.marginTop = -h + 'px'; b.style.setProperty('--c', riskCol(x.r)); b.style.animationDelay = (Math.random() * 2.6).toFixed(2) + 's'; pl.appendChild(b); });
+    sc.appendChild(pl); el.appendChild(sc);
+    const lb = mk('div', 'g3l'); lb.appendChild(mk('b', null, fmt(r.high))); lb.appendChild(document.createTextNode(' موقعاً عالي الخطورة · طول كل عمود حسب مؤشر الخطورة')); el.appendChild(lb);
+    el.onpointermove = (ev) => { if (ev.pointerType === 'touch') return; const b = el.getBoundingClientRect(); sc.style.transform = `rotateX(${(58 - ((ev.clientY - b.top) / b.height - 0.5) * 16).toFixed(1)}deg) rotateZ(${(((ev.clientX - b.left) / b.width - 0.5) * 22).toFixed(1)}deg)`; };
+    el.onpointerleave = () => { sc.style.transform = ''; };
+  });
   function saClose() {
     const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel'); if (!L || !P) return;
     P.classList.remove('in', 'done'); P.classList.add('out');
@@ -1110,6 +1230,18 @@ window.AC = (function () {
     root.querySelectorAll('.ac-rv').forEach((s) => io.observe(s));
     setTimeout(() => root.querySelectorAll('.ac-rv').forEach((s) => s.classList.add('in')), 2500);
   }
+  (function splash() {
+    const root = document.getElementById('top'); if (!root || document.getElementById('acSplash')) return; let seen = false;
+    try { seen = sessionStorage.getItem('acSplash') === '1'; sessionStorage.setItem('acSplash', '1'); } catch (e) {}
+    if (seen || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    const ov = document.createElement('div'); ov.className = 'ac-splash'; ov.id = 'acSplash'; const lg = document.createElement('div'); lg.className = 'sl';
+    root.querySelectorAll('#brand img').forEach((im) => { const c = im.cloneNode(); c.className = 'i-' + im.className; lg.appendChild(c); });
+    const h = document.createElement('div'); h.className = 'st'; const sub = document.createElement('div'); sub.className = 'ss'; sub.textContent = 'إدارة أمن الهيئات والمنشآت الحيوية — شرطة دبي';
+    ov.append(lg, h, sub); root.appendChild(ov);
+    const T = 'المواقع الهامة والحيوية في إمارة دبي'; let i = 0; const iv = setInterval(() => { i++; h.textContent = T.slice(0, i); if (i >= T.length) clearInterval(iv); }, 40);
+    const end = () => { clearInterval(iv); h.textContent = T; ov.classList.add('out'); setTimeout(() => ov.remove(), 650); };
+    setTimeout(end, 2500); ov.addEventListener('click', end);
+  })();
   const nav = document.getElementById('acNav');
   if (nav) {
     const links = [...nav.querySelectorAll('a')];
