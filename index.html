@@ -291,7 +291,7 @@ body.unlocked #lock{display:none}
       <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
       <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
       <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لأربع عشرة جهة</div>
-      <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
+      <p class='ac-lede' id='lede'>يضم السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> موقعاً مسجلاً لدى <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، وهي فعلياً <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> مكاناً مختلفاً، لأن بعض المواقع مسجّلة لدى أكثر من جهة. أكبر فئة هي <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> بعدد <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> موقعاً، وتتوفر الإحداثيات لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من المواقع. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
     </div>
     <div class='ac-ring' data-draw='covRing' data-source='kpis'>
       <svg viewBox='0 0 184 184' aria-hidden='true'>
@@ -307,7 +307,7 @@ body.unlocked #lock{display:none}
 
   <nav class='ac-nav' id='acNav' aria-label='أقسام اللوحة'>
     <a href='#sec-numbers' data-t='sec-numbers'><span>01</span>المؤشرات الرئيسية</a>
-    <a href='#sec-dist' data-t='sec-dist'><span>02</span>توزيع القيود</a>
+    <a href='#sec-dist' data-t='sec-dist'><span>02</span>توزيع المواقع</a>
     <a href='#sec-sites' data-t='sec-sites'><span>03</span>سجل المواقع</a>
     <a href='#sec-ents' data-t='sec-ents'><span>04</span>الجهات</a>
   </nav>
@@ -322,13 +322,13 @@ body.unlocked #lock{display:none}
 
   <h2 class='ac-sec' id='sec-numbers'><span>01</span>المؤشرات الرئيسية</h2>
   <section class='ac-kpis ac-rv' id='kpis'>
-    <div class='ac-k' id='k-total' style='--kc:#2DBE7E'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-total)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-total' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><ellipse cx='16' cy='7' rx='10' ry='3.5'/><path d='M6 7v6c0 1.9 4.5 3.5 10 3.5S26 14.9 26 13V7'/><path d='M6 13v6c0 1.9 4.5 3.5 10 3.5s10-1.6 10-3.5v-6'/><path d='M6 19v6c0 1.9 4.5 3.5 10 3.5s10-1.6 10-3.5v-6'/><circle cx='22' cy='13.5' r='.9' style='fill:var(--kc)'/><circle cx='22' cy='19.5' r='.9' style='fill:var(--kc)'/><circle cx='22' cy='25.5' r='.9' style='fill:var(--kc)'/></svg></span><div class='ac-kl'>إجمالي القيود</div><b class='ac-kv dash-skeleton' data-draw='k_total' data-source='kpis' data-field='total' data-row='0'>—</b><div class='ac-ks'>كل المواقع كما وردت في أوراق الجهات</div></div>
-    <div class='ac-k' id='k-unique' style='--kc:#5BB8D6'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-unique)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-unique' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M16 28s-8-7.2-8-13.2a8 8 0 0 1 16 0C24 20.8 16 28 16 28Z'/><circle cx='16' cy='14.6' r='3'/><path d='M4 24c2.5 2.6 7 4 12 4s9.5-1.4 12-4' opacity='.55'/><path d='M7.5 21.5c2 1.6 5 2.5 8.5 2.5s6.5-.9 8.5-2.5' opacity='.35'/></svg></span><div class='ac-kl'>المواقع المستقلة</div><b class='ac-kv dash-skeleton' data-draw='k_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b><div class='ac-ks'>كل موقع محسوب مرة واحدة فقط</div></div>
+    <div class='ac-k' id='k-total' style='--kc:#2DBE7E'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-total)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-total' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><ellipse cx='16' cy='7' rx='10' ry='3.5'/><path d='M6 7v6c0 1.9 4.5 3.5 10 3.5S26 14.9 26 13V7'/><path d='M6 13v6c0 1.9 4.5 3.5 10 3.5s10-1.6 10-3.5v-6'/><path d='M6 19v6c0 1.9 4.5 3.5 10 3.5s10-1.6 10-3.5v-6'/><circle cx='22' cy='13.5' r='.9' style='fill:var(--kc)'/><circle cx='22' cy='19.5' r='.9' style='fill:var(--kc)'/><circle cx='22' cy='25.5' r='.9' style='fill:var(--kc)'/></svg></span><div class='ac-kl'>إجمالي المواقع المسجلة</div><b class='ac-kv dash-skeleton' data-draw='k_total' data-source='kpis' data-field='total' data-row='0'>—</b><div class='ac-ks'>العدد في كل أوراق الجهات، ويشمل المكرر بين الجهات</div></div>
+    <div class='ac-k' id='k-unique' style='--kc:#5BB8D6'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-unique)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-unique' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M16 28s-8-7.2-8-13.2a8 8 0 0 1 16 0C24 20.8 16 28 16 28Z'/><circle cx='16' cy='14.6' r='3'/><path d='M4 24c2.5 2.6 7 4 12 4s9.5-1.4 12-4' opacity='.55'/><path d='M7.5 21.5c2 1.6 5 2.5 8.5 2.5s6.5-.9 8.5-2.5' opacity='.35'/></svg></span><div class='ac-kl'>المواقع الفعلية</div><b class='ac-kv dash-skeleton' data-draw='k_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b><div class='ac-ks'>كل مكان محسوب مرة واحدة فقط</div></div>
     <div class='ac-k' id='k-dip' style='--kc:#D4B26A'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-dip)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-dip' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M4 27h24'/><path d='M6 27V14h20v13'/><path d='M4 14 16 6l12 8'/><path d='M10 18v6M14 18v6M18 18v6M22 18v6'/><path d='M16 6V2.5'/><path d='M16 2.5h5l-1.5 1.5L21 5.5h-5'/></svg></span><div class='ac-kl'>المنشآت الدبلوماسية</div><b class='ac-kv dash-skeleton' data-draw='k_dip' data-source='kpis' data-field='diplomatic' data-row='0'>—</b><div class='ac-ks'>القنصليات ومساكن رؤساء البعثات</div></div>
     <div class='ac-k' id='k-ent' style='--kc:#B58CFF'><span class='ib' aria-hidden='true'><svg viewBox='0 0 32 32' fill='none' stroke='url(#gk-ent)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><defs><linearGradient id='gk-ent' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFFFFF'/><stop offset='1' style='stop-color:var(--kc)'/></linearGradient></defs><path d='M16 3 27 7v8c0 7-4.7 11.6-11 14C9.7 26.6 5 22 5 15V7l11-4Z'/><circle cx='16' cy='12' r='2.2'/><circle cx='11' cy='19' r='1.8'/><circle cx='21' cy='19' r='1.8'/><path d='M14.6 13.7 12 17.4M17.4 13.7 20 17.4M12.8 19h6.4'/></svg></span><div class='ac-kl'>الجهات</div><b class='ac-kv dash-skeleton' data-draw='k_ent' data-source='kpis' data-field='entities' data-row='0'>—</b><div class='ac-ks'>الجهات التي أرسلت بيانات مواقعها</div></div>
   </section>
 
-  <h2 class='ac-sec' id='sec-dist'><span>02</span>توزيع القيود</h2>
+  <h2 class='ac-sec' id='sec-dist'><span>02</span>توزيع المواقع</h2>
   <div class='ac-grid ac-rv'>
     <section class='ac-p' id='by-entity-panel'>
       <h3>حسب الجهة</h3>
@@ -362,7 +362,7 @@ body.unlocked #lock{display:none}
 
   <details id='notes'>
     <summary>كيف حُسبت الأرقام؟</summary>
-    <p>• إجمالي القيود: كل صف في أوراق الجهات الأربع عشرة.<br>• المواقع المستقلة: الموقع الذي سجّلته أكثر من جهة يُحسب مرة واحدة.<br>• حُذف التكرار داخل الورقة الواحدة، وصُحّحت الإحداثيات المكتوبة خطأً، ونُقلت المواقع إلى فئاتها الصحيحة.<br>• كل المواقع لها إحداثيات؛ ما لم يُعثر على موقعه الدقيق وُضع في مركز منطقته وعُلّم «موقع تقريبي».</p>
+    <p>• إجمالي المواقع المسجلة: كل سطر في أوراق الجهات الأربع عشرة.<br>• المواقع الفعلية: المكان الذي سجّلته أكثر من جهة يُحسب مرة واحدة.<br>• حُذف التكرار داخل الورقة الواحدة، وصُحّحت الإحداثيات المكتوبة خطأً، ونُقلت المواقع إلى فئاتها الصحيحة.<br>• كل المواقع لها إحداثيات؛ ما لم يُعثر على موقعه الدقيق وُضع في مركز منطقته وعُلّم «موقع تقريبي».</p>
   </details>
 
   <footer class='ac-foot'><span>إدارة أمن الهيئات والمنشآت الحيوية — شرطة دبي</span><span>تاريخ البيانات: 23 نوفمبر 2026</span></footer>
@@ -432,7 +432,7 @@ window.AC = (function () {
   };
   dash.calc('kpis', {
     inputs: ['sites'], title: 'المؤشرات الرئيسية',
-    description: 'تُحتسب من سجل المواقع بعد تطبيق التصفية: إجمالي القيود، والمواقع المستقلة (بعد دمج الموقع المسجّل لدى أكثر من جهة)، والمنشآت الدبلوماسية، والجهات، ونسبة توفر الإحداثيات.',
+    description: 'تُحتسب من سجل المواقع بعد تطبيق التصفية: إجمالي المواقع المسجلة، والمواقع الفعلية (بعد دمج الموقع المسجّل لدى أكثر من جهة)، والمنشآت الدبلوماسية، والجهات، ونسبة توفر الإحداثيات.',
     fn: (sites) => {
       const r = pick(sites);
       const byCat = d3.rollups(r, (v) => v.length, (d) => d.category).sort((a, b) => b[1] - a[1]);
@@ -457,7 +457,7 @@ window.AC = (function () {
     }
   });
   dash.calc('by_category', {
-    inputs: ['sites'], title: 'القيود حسب الفئة', description: 'عدد القيود في كل فئة من الفئات السبع عشرة (مع تصفية الجهة والبحث).',
+    inputs: ['sites'], title: 'المواقع حسب الفئة', description: 'عدد المواقع في كل فئة من الفئات السبع عشرة (مع تصفية الجهة والبحث).',
     fn: (sites) => { const r = pick(sites, false, true); const tot = r.length || 1;
       return CATS.map((c) => { const n = r.filter((d) => d.category === c).length; return { category: c, sites: n, share: Math.round((n / tot) * 1000) / 10 }; }); }
   });
@@ -499,7 +499,7 @@ window.AC = (function () {
     const d = dash.data('kpis'); const b = el.querySelector('.val b'), p = el.querySelector('p'), arc = el.querySelector('.arc');
     if (d.status !== 'ok' || !d.data || !d.data.length) { b.textContent = '—'; return; }
     const r = d.data[0]; countTo(b, r.coord_pct, pct);
-    p.textContent = `${fmt(r.coord_ok)} من ${fmt(r.total)} قيد بإحداثيات صحيحة`;
+    p.textContent = `${fmt(r.coord_ok)} من ${fmt(r.total)} موقع لها إحداثيات`;
     const C = 490.1; requestAnimationFrame(() => { arc.style.strokeDashoffset = String(C * (1 - Math.max(0, Math.min(100, r.coord_pct)) / 100)); });
   });
 
@@ -524,14 +524,14 @@ window.AC = (function () {
   dash.draw('entityBars', (el) => {
     const d = dash.data('by_entity'); if (d.status !== 'ok') return placeholder(el, d);
     const rows = d.data.slice().sort((a, b) => b.sites - a.sites);
-    bars(el, rows, { label: 'entity', value: 'sites', param: 'entity', selected: (dash.params() || {}).entity, aria: 'عدد القيود لكل جهة',
+    bars(el, rows, { label: 'entity', value: 'sites', param: 'entity', selected: (dash.params() || {}).entity, aria: 'عدد المواقع لكل جهة',
       color: () => '#2DBE7E',
       tip: (r) => [r.entity, `عدد المواقع: ${fmt(r.sites)}`, r.diplomatic ? `منها منشآت دبلوماسية: ${fmt(r.diplomatic)}` : ''] });
   });
   dash.draw('catBars', (el) => {
     const d = dash.data('by_category'); if (d.status !== 'ok') return placeholder(el, d);
     bars(el, d.data.slice().sort((a, b) => b.sites - a.sites), { label: 'category', value: 'sites', param: 'category', selected: (dash.params() || {}).category,
-      aria: 'عدد القيود لكل فئة', color: (r) => (r.category === DIP ? '#5BB8D6' : '#2DBE7E'), tip: (r) => [r.category, `عدد المواقع: ${fmt(r.sites)}`, `النسبة: ${r.share}%`] });
+      aria: 'عدد المواقع لكل فئة', color: (r) => (r.category === DIP ? '#5BB8D6' : '#2DBE7E'), tip: (r) => [r.category, `عدد المواقع: ${fmt(r.sites)}`, `النسبة: ${r.share}%`] });
   });
 
   const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
