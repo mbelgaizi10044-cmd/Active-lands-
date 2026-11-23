@@ -232,7 +232,8 @@ body.unlocked #lock{display:none}
 .ac-ec .bar span{display:block;height:100%;background:linear-gradient(90deg,#2DBE7E,#5BB8D6);border-radius:4px}
 .ac-ec .go{position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;color:var(--gold);border:1px solid rgba(212,178,106,.4);transition:transform .3s}
 .ac-ec:hover .go{transform:translateX(-4px)}
-.ac-stage{position:relative;perspective:1800px;transform-style:preserve-3d}
+.ac-stage{position:relative;perspective:1800px}
+.ac-file.done .fi,.ac-sa.done .fi{opacity:1!important;animation:none!important;transform:none!important}
 .ac-stage [hidden]{display:none!important}
 .ac-ents-grid.out{animation:acGridOut .45s cubic-bezier(.5,0,.75,0) forwards;pointer-events:none}
 .ac-ents-grid.back{animation:acGridBack .6s cubic-bezier(.2,.8,.2,1) both}
@@ -270,7 +271,7 @@ body.unlocked #lock{display:none}
 .ac-file .fi{opacity:0;animation:acFadeUp .6s ease forwards}
 @keyframes acFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (max-width:760px){.ac-file .st{grid-template-columns:repeat(2,1fr)}.ac-file .fb{grid-template-columns:1fr}.ac-file .cr{grid-template-columns:120px 1fr 34px}.ac-file .back{position:static;margin-bottom:10px}}
-.ac-sa-stage{position:relative;perspective:2000px;transform-style:preserve-3d}
+.ac-sa-stage{position:relative;perspective:2000px}
 .ac-sa-stage [hidden]{display:none!important}
 .ac-sa-launch{font-family:inherit;width:100%;text-align:right;cursor:pointer;position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(212,178,106,.5);padding:34px 32px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
   background:radial-gradient(600px 300px at 15% 50%,rgba(45,190,126,.22),transparent 60%),radial-gradient(500px 260px at 90% 0%,rgba(212,178,106,.25),transparent 60%),linear-gradient(135deg,#071A14,#0A2A22 45%,#08131C);
@@ -577,11 +578,6 @@ body.unlocked #lock{display:none}
     <div class='ac-sa' id='saPanel' data-source='security' hidden></div>
   </div>
 
-  <details id='notes'>
-    <summary>كيف حُسبت الأرقام؟</summary>
-    <p>• إجمالي المواقع المسجلة: كل سطر في أوراق الجهات الأربع عشرة.<br>• المواقع الفعلية: المكان الذي سجّلته أكثر من جهة يُحسب مرة واحدة.<br>• حُذف التكرار داخل الورقة الواحدة، وصُحّحت الإحداثيات المكتوبة خطأً، ونُقلت المواقع إلى فئاتها الصحيحة.<br>• كل المواقع لها إحداثيات؛ ما لم يُعثر على موقعه الدقيق وُضع في مركز منطقته وعُلّم «موقع تقريبي».</p>
-  </details>
-
   <footer class='ac-foot'><span>إدارة أمن الهيئات والمنشآت الحيوية — شرطة دبي</span><span>تاريخ البيانات: 23 نوفمبر 2026</span></footer>
 </div>
 <script>
@@ -811,17 +807,20 @@ window.AC = (function () {
     d.data.filter((r) => r.sites).sort((a, b) => b.sites - a.sites).forEach((r) => {
       const c = mk('button', 'ac-ec'); c.type = 'button'; c.dataset.key = r.entity;
       c.appendChild(mk('span', 'go', '←')); c.appendChild(mk('div', 'nm', r.entity));
-      const big = mk('b', 'big', fmt(r.sites)); big.dataset.source = 'by_entity'; big.dataset.field = 'sites'; big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
+      const big = mk('b', 'big', fmt(r.sites)); big.appendChild(mk('small', null, 'موقع')); c.appendChild(big);
       const ln = mk('div', 'ln'); const add = (t) => { const x = mk('div'); x.textContent = t; ln.appendChild(x); };
       if (r.top1) add(`${r.top1}: ${fmt(r.top1_n)}`); if (r.top2) add(`${r.top2}: ${fmt(r.top2_n)}`);
       c.appendChild(ln);
       c.appendChild(mk('span', 'ok', 'اضغط لفتح ملف الجهة'));
-      c.onclick = () => openFile(r.entity, c);
+      c.querySelectorAll('*').forEach((x) => { x.style.pointerEvents = 'none'; });
+      c.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); openFile(r.entity, c); }, true);
       el.appendChild(c); });
   });
   function openFile(ent, card) {
     const stage = document.getElementById('entStage'), file = document.getElementById('entFile'), grid = stage && stage.querySelector('.ac-ents-grid');
-    const src = dash.data('ent_sites'); if (!stage || !file || !grid || src.status !== 'ok') return;
+    const src = dash.data('ent_sites'); if (!stage || !file || !grid) return;
+    if (src.status !== 'ok' || !src.data) { const n = (card._try || 0) + 1; card._try = n; card.style.opacity = '.6'; setTimeout(() => { card.style.opacity = ''; if (n < 30) openFile(ent, card); else card._try = 0; }, 300); return; }
+    card._try = 0; const seq = ++FSEQ; file.classList.remove('in', 'out', 'done');
     const rows = src.data.filter((x) => x.entity === ent);
     const cats = d3.rollups(rows, (v) => v.length, (x) => x.category).sort((a, b) => b[1] - a[1]);
     const areas = d3.rollups(rows.filter((x) => x.area), (v) => v.length, (x) => x.area).sort((a, b) => b[1] - a[1]).slice(0, 10);
@@ -876,11 +875,14 @@ window.AC = (function () {
         const c = td(tr, a); if (x.approx) { const g = pill('موقع تقريبي', 'w'); g.title = x.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } body.appendChild(tr); });
     }
     renderList();
-    grid.classList.remove('back'); grid.classList.add('out');
-    setTimeout(() => { grid.hidden = true; grid.classList.remove('out'); file.hidden = false; file.classList.remove('out'); void file.offsetWidth; file.classList.add('in');
+    const show = () => { if (seq !== FSEQ) return; grid.hidden = true; grid.classList.remove('out', 'back'); file.hidden = false; file.classList.remove('out', 'done'); void file.offsetWidth; file.classList.add('in');
+      setTimeout(() => { if (seq === FSEQ) { file.classList.remove('in'); file.classList.add('done'); } }, 950);
       requestAnimationFrame(() => spans.forEach(([s, w]) => { s.style.width = w + '%'; }));
-      const t = document.getElementById('sec-ents'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
+      const t = document.getElementById('sec-ents'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    if (!file.hidden) { show(); return; }
+    grid.classList.remove('back'); grid.classList.add('out'); setTimeout(show, 430);
   }
+  let FSEQ = 0;
   const TC = { 1: '#E07171', 2: '#D4B26A', 3: '#2DBE7E' }, TL = { 1: 'حرجة', 2: 'عالية', 3: 'تجمعات بشرية' };
   const TD = { 1: 'دبلوماسية، عسكرية، حكومية، منافذ، خزانات مياه', 2: 'مترو، بنوك، إعلام، مستشفيات، فنادق، دور عبادة', 3: 'مراكز تجارية، تجمعات خارجية، رياضة، تعليم، واجهات بحرية' };
   const kmd = (a, b) => { const dx = (a.lo - b.lo) * 111.32 * Math.cos(((a.la + b.la) / 2) * Math.PI / 180), dy = (a.la - b.la) * 110.57; return Math.sqrt(dx * dx + dy * dy); };
@@ -963,7 +965,7 @@ window.AC = (function () {
     c6.appendChild(ul);
     P.appendChild(sb);
     L.classList.remove('back'); L.classList.add('out');
-    setTimeout(() => { L.hidden = true; L.classList.remove('out'); P.hidden = false; P.classList.remove('out'); void P.offsetWidth; P.classList.add('in');
+    setTimeout(() => { L.hidden = true; L.classList.remove('out'); P.hidden = false; P.classList.remove('out'); void P.offsetWidth; P.classList.add('in'); setTimeout(() => { if (!P.hidden && P.classList.contains('in')) { P.classList.remove('in'); P.classList.add('done'); } }, 1000);
       setTimeout(() => grow.forEach(([s, w]) => { s.style.width = Math.max(0, w) + '%'; }), 350);
       st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
   }
@@ -1075,7 +1077,7 @@ window.AC = (function () {
   dash.draw('mainMap', mainMap);
   function saClose() {
     const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel'); if (!L || !P) return;
-    P.classList.remove('in'); P.classList.add('out');
+    P.classList.remove('in', 'done'); P.classList.add('out');
     setTimeout(() => { P.hidden = true; P.classList.remove('out'); L.hidden = false; L.classList.add('back'); if (st) st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 380);
   }
   window.__acOpenSA = saOpen;
@@ -1083,8 +1085,8 @@ window.AC = (function () {
   function closeFile() {
     const stage = document.getElementById('entStage'), file = document.getElementById('entFile'), grid = stage && stage.querySelector('.ac-ents-grid');
     if (!file || !grid) return;
-    file.classList.remove('in'); file.classList.add('out');
-    setTimeout(() => { file.hidden = true; file.classList.remove('out'); grid.hidden = false; grid.classList.add('back');
+    const seq = ++FSEQ; file.classList.remove('in', 'done'); file.classList.add('out');
+    setTimeout(() => { if (seq !== FSEQ) return; file.hidden = true; file.classList.remove('out'); grid.hidden = false; grid.classList.remove('out'); grid.classList.add('back');
       const t = document.getElementById('sec-ents'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 380);
   }
 })();
