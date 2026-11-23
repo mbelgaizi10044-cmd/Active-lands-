@@ -547,7 +547,7 @@ body.unlocked #lock{display:none}
       <div>
         <div class='k'>إدارة أمن الهيئات والمنشآت الحيوية</div>
         <h3>التحليل الأمني للمواقع</h3>
-        <p>مؤشر الخطورة لكل موقع، والبؤر الحرجة، وتصنيف المواقع حسب حساسيتها، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
+        <p>مؤشر الخطورة لكل موقع، ومناطق التركّز الحرج، وتصنيف المواقع حسب حساسيتها، وأكثر المناطق تركزاً، والمواقع التي تتابعها جهة واحدة فقط، مع مهام مقترحة مبنية على البيانات.</p>
         <span class='cta'>افتح التحليل الأمني ←</span>
       </div>
       <div class='ac-sa-orb' aria-hidden='true'><i></i><i></i><i></i><i></i></div>
@@ -658,7 +658,7 @@ window.AC = (function () {
   });
   dash.calc('security', {
     inputs: ['sites'], title: 'التحليل الأمني',
-    description: 'تحليل المواقع الفعلية (كل مكان مرة واحدة) بعد التصفية: مستوى الحساسية، ومؤشر الخطورة التقديري لكل موقع (الفئة + المواقع الحرجة القريبة + عدد الجهات المتابعة + دقة الإحداثيات)، والبؤر الحرجة (3 مواقع حرجة أو أكثر ضمن 400 م)، ومناطق التركز، والبعثات الدبلوماسية.',
+    description: 'تحليل المواقع الفعلية (كل مكان مرة واحدة) بعد التصفية: مستوى الحساسية، ومؤشر الخطورة التقديري لكل موقع (الفئة + المواقع الحرجة القريبة + عدد الجهات المتابعة + دقة الإحداثيات)، ومناطق التركّز الحرج (3 مواقع حرجة أو أكثر ضمن 400 م)، ومناطق التركز، والبعثات الدبلوماسية.',
     fn: (sites) => {
       const W = { 'المنشآت الدبلوماسية': 45, 'المراكز العسكرية': 45, 'المنافذ': 40, 'خزانات المياه الرئيسية': 40, 'الجهات الحكومية': 35, 'محطات المترو': 30, 'البنوك والمصارف': 25, 'المراكز الإعلامية': 25, 'المراكز الطبية': 25, 'الفنادق': 25, 'دور العبادة': 25, 'مواقع التجمع الخارجية': 22, 'المراكز التجارية': 20, 'مراكز التعليم': 18, 'المراكز الرياضية والاجتماعية': 15, 'الواجهة البحرية': 15, 'المسطحات المائية': 12 };
       const T1 = ['المنشآت الدبلوماسية', 'المراكز العسكرية', 'الجهات الحكومية', 'المنافذ', 'خزانات المياه الرئيسية'];
@@ -867,7 +867,7 @@ window.AC = (function () {
     sh.appendChild(mk('div', 'tag fi', 'التحليل الأمني')); const h = mk('h3', 'fi', 'قراءة أمنية للمواقع الحيوية'); h.style.animationDelay = '.05s'; sh.appendChild(h);
     sh.appendChild(mk('p', 'fi', 'كل الأرقام هنا للمواقع الفعلية (كل مكان مرة واحدة) وتتغير مع عوامل التصفية أعلى اللوحة.'));
     const stt = mk('div', 'st');
-    [[r.tiers[0].n, 'مواقع حرجة'], [r.high, 'مواقع عالية الخطورة (70+)'], [r.clusters.length, 'بؤر حرجة'], [r.t1_single, 'مواقع حرجة تتابعها جهة واحدة']].forEach(([v, l], i) => {
+    [[r.tiers[0].n, 'مواقع حرجة'], [r.high, 'مواقع عالية الخطورة (70+)'], [r.clusters.length, 'مناطق تركّز حرج'], [r.t1_single, 'مواقع حرجة تتابعها جهة واحدة']].forEach(([v, l], i) => {
       const b = mk('div', 'fi'); b.style.animationDelay = (0.12 + i * 0.06) + 's'; b.appendChild(mk('b', null, fmt(v))); b.appendChild(mk('small', null, l)); stt.appendChild(b); });
     sh.appendChild(stt); P.appendChild(sh);
     const sb = mk('div', 'sb'); let dl = 0.3; const card = (title, sub, wide) => { const c = mk('div', 'card fi' + (wide ? ' w' : '')); c.style.animationDelay = (dl += 0.06) + 's'; c.appendChild(mk('h4', null, title)); if (sub) c.appendChild(mk('p', 'sub', sub)); sb.appendChild(c); return c; };
@@ -885,11 +885,11 @@ window.AC = (function () {
     const rk = mk('div', 'lg'); [['#E07171', 'الفئة'], ['#D4B26A', 'مواقع حرجة قريبة'], ['#5BB8D6', 'قلة الجهات المتابعة'], ['#9BB0A7', 'إحداثيات تقريبية']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); rk.appendChild(s); }); cr.appendChild(rk);
 
     /* ── clusters ── */
-    const cc = card('البؤر الحرجة', `${fmt(r.clusters.length)} بؤرة: كل بؤرة 3 مواقع حرجة أو أكثر تبعد عن بعضها 400 م أو أقل، فأي حادث فيها قد يمس أكثر من موقع حساس. اضغط على البؤرة لعرضها على خريطة المواقع.`, true);
+    const cc = card('مناطق التركّز الحرج', `${fmt(r.clusters.length)} منطقة: في كل منطقة 3 مواقع حرجة أو أكثر تبعد عن بعضها 400 م أو أقل، فأي حادث فيها قد يمس أكثر من موقع حساس. اضغط على المنطقة لعرضها على خريطة المواقع.`, true);
     const cg2 = mk('div', 'clist'); r.clusters.slice(0, 12).forEach((c, i) => { const b = mk('button', 'cl'); b.type = 'button'; b.appendChild(mk('span', 'cn', String(i + 1)));
-      const t = mk('div'); t.appendChild(mk('b', null, c.area || 'بؤرة ' + (i + 1))); t.appendChild(mk('small', null, c.cats)); b.appendChild(t);
+      const t = mk('div'); t.appendChild(mk('b', null, c.area || 'منطقة التركّز ' + (i + 1))); t.appendChild(mk('small', null, c.cats)); b.appendChild(t);
       const m = mk('div', 'cm'); m.appendChild(mk('b', null, fmt(c.n))); m.appendChild(mk('small', null, 'موقع حرج')); b.appendChild(m);
-      b.onclick = () => { if (window.__acMap) window.__acMap.go(c.lat, c.lon, 'بؤرة ' + (i + 1) + ' — ' + c.area, 5); };
+      b.onclick = () => { if (window.__acMap) window.__acMap.go(c.lat, c.lon, 'منطقة التركّز ' + (i + 1) + ' — ' + c.area, 5); };
       cg2.appendChild(b); }); cc.appendChild(cg2);
 
     /* ── existing cards ── */
@@ -909,7 +909,7 @@ window.AC = (function () {
     const c6 = card('المهام المقترحة', 'مهام عملية مبنية على الأرقام أعلاه.', true);
     const ul = mk('ul', 'tasks'); const top = r.clusters[0]; const tr1 = r.sites.slice().sort((a, b) => b.r - a.r)[0];
     [tr1 ? [`أولوية قصوى: ${tr1.s}`, `أعلى مؤشر خطورة (${tr1.r} من 100)؛ يُقترح إدراجه في أول جولة ميدانية ومراجعة خطته الأمنية.`, '#E07171'] : null,
-     top ? [`البؤرة الأولى: ${top.area}`, `${fmt(top.n)} مواقع حرجة ضمن 400 م؛ تحتاج خطة استجابة موحدة بين الجهات بدلاً من خطة لكل موقع.`, '#E9CF8F'] : null,
+     top ? [`منطقة التركّز الأولى: ${top.area}`, `${fmt(top.n)} مواقع حرجة ضمن 400 م؛ تحتاج خطة استجابة موحدة بين الجهات بدلاً من خطة لكل موقع.`, '#E9CF8F'] : null,
      [`متابعة ${fmt(r.t1_single)} موقعاً حرجاً`, 'تتابعها جهة واحدة فقط؛ يُقترح إشراك مركز الشرطة المختص أو جهة ثانية.', '#5BB8D6'],
      [`تأكيد ${fmt(r.approx)} موقعاً ميدانياً`, 'إحداثياتها تدل على المنطقة وليس على المبنى. يكفي إرسال الرقم المكاني لكل منها.', '#D4B26A'],
      [`تحديث بيانات ${fmt(r.residences)} مسكناً دبلوماسياً`, 'المساكن تتغير مع تغير رؤساء البعثات؛ يُقترح تحديثها كل ستة أشهر.', '#B58CFF']].filter(Boolean).forEach(([t, dd, c]) => {
@@ -969,16 +969,16 @@ window.AC = (function () {
     svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
     inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 5); } });
     const zb = mk('div', 'zb'); [['+', 1.6], ['−', 1 / 1.6], ['⌂', 0]].forEach(([t, f]) => { const b = mk('button', null, t); b.type = 'button'; b.onclick = (ev) => { ev.stopPropagation(); if (f) svg.transition().duration(350).call(zoom.scaleBy, f); else { const [ix, iy] = PJ(25.165, 55.29); svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); } }; zb.appendChild(b); }); mapBox.appendChild(zb);
-    const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'بؤرة حرجة']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
+    const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'منطقة تركّز حرج']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
     if (outside) lgd.appendChild(mk('span', null, `${fmt(outside)} مواقع في حتا وأطراف الإمارة خارج حدود الخريطة`));
     const cr0 = mk('span', null, 'الخريطة: Esri World Street Map (Night)'); cr0.style.opacity = '.65'; lgd.appendChild(cr0);
     el.appendChild(lgd);
     function overview() {
       res.replaceChildren(); res.appendChild(mk('div', 'pt', 'المواقع على الخريطة'));
-      const k3 = mk('div', 'k3'); [[r.sites.length, 'موقع'], [r.high, 'عالية الخطورة'], [r.clusters.length, 'بؤرة حرجة']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); }); res.appendChild(k3);
+      const k3 = mk('div', 'k3'); [[r.sites.length, 'موقع'], [r.high, 'عالية الخطورة'], [r.clusters.length, 'منطقة تركّز حرج']].forEach(([v, l]) => { const q = mk('div'); q.appendChild(mk('b', null, fmt(v))); q.appendChild(mk('small', null, l)); k3.appendChild(q); }); res.appendChild(k3);
       const ul = mk('div', 'how'); ['اضغط على أي نقطة لعرض بيانات الموقع والمواقع المحيطة به.', 'اضغط على أي مكان فارغ لمعرفة المواقع التي قد يتأثر بها حادث في هذا المكان.', 'اختر نطاق الأثر من الأعلى، وكبّر بالعجلة أو بالإصبعين أو بالأزرار.', 'عوامل التصفية أعلى اللوحة (الجهة، الفئة، البحث) تنطبق على الخريطة.'].forEach((t, i) => { const p = mk('p'); p.appendChild(mk('b', null, String(i + 1))); p.appendChild(document.createTextNode(t)); ul.appendChild(p); }); res.appendChild(ul);
-      const tc = mk('div', 'hl'); tc.appendChild(mk('small', null, 'البؤر الحرجة:'));
-      r.clusters.slice(0, 8).forEach((c, i) => { const row = mk('button', 'hr cb'); row.type = 'button'; const n = mk('i', null, String(i + 1)); row.appendChild(n); row.appendChild(mk('span', null, c.area || 'بؤرة ' + (i + 1))); row.appendChild(mk('em', null, fmt(c.n) + ' مواقع حرجة')); row.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'بؤرة ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5); }; tc.appendChild(row); });
+      const tc = mk('div', 'hl'); tc.appendChild(mk('small', null, 'مناطق التركّز الحرج:'));
+      r.clusters.slice(0, 8).forEach((c, i) => { const row = mk('button', 'hr cb'); row.type = 'button'; const n = mk('i', null, String(i + 1)); row.appendChild(n); row.appendChild(mk('span', null, c.area || 'منطقة التركّز ' + (i + 1))); row.appendChild(mk('em', null, fmt(c.n) + ' مواقع حرجة')); row.onclick = () => { simulate({ la: c.lat, lo: c.lon, label: 'منطقة التركّز ' + (i + 1) + ' — ' + c.area }); focus(c.lat, c.lon, 5); }; tc.appendChild(row); });
       res.appendChild(tc);
     }
     function simulate(p) {
