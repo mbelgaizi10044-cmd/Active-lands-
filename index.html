@@ -17,7 +17,7 @@ body.unlocked #lock{display:none}
 #lock{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23D4B26A' stroke-opacity='.17' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0L24 24M88 0L64 24M0 88L24 64M88 88L64 64M44 0V15M44 73V88M0 44H15M73 44H88'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,radial-gradient(640px 300px at 88% -10%,rgba(212,178,106,.28),transparent 62%),linear-gradient(135deg,#0D4A3F 0%,#0B3438 46%,#0A1E2B 100%)!important}#lock .box{background:rgba(5,20,22,.55);border-color:rgba(212,178,106,.45);backdrop-filter:blur(8px)}#lock button{background:#D4B26A!important;box-shadow:0 0 18px rgba(212,178,106,.35)!important;color:#1A1405!important}#lock input:focus{outline-color:#D4B26A!important}
 #lock .box{width:min(440px,100%);background:rgba(8,34,24,.72);border:1px solid rgba(25,227,141,.25);border-radius:18px;padding:26px 24px;text-align:center}
 #lock .logos{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px}
-#lock .logos img{height:40px}#lock .logos img.acis{height:26px}#lock .logos div{display:flex;gap:10px;align-items:center}
+#lock .logos{background:linear-gradient(180deg,#fff,#FBF8F1);border-radius:12px;padding:10px 14px;box-shadow:inset 0 -2px 0 #C9AE72}#lock .logos img{height:36px;width:auto;max-width:100%}#lock .logos img.gov{height:44px;margin-block:-4px}#lock .logos img.acis{height:18px}#lock .logos div{display:flex;gap:10px;align-items:center}
 #lock h1{font:700 20px '29LT Bukra','Dubai Medium','Dubai',sans-serif;margin:0 0 6px;color:#fff}
 #lock p{margin:0 0 18px;color:#8FB5A4;font-size:13px}
 #lock input{width:100%;height:46px;border-radius:12px;border:1px solid rgba(25,227,141,.3);background:#06190F;color:#fff;font-size:20px;text-align:center;letter-spacing:.3em;font-family:inherit}
@@ -90,7 +90,7 @@ body.unlocked #lock{display:none}
 </head>
 <body>
 <div id="lock"><form class="box" id="lockForm" autocomplete="off">
-  <div class="logos"><div><img src="assets/police.png" alt="شرطة دبي"><img class="acis" src="assets/acis.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img src="assets/gov.png" alt="حكومة دبي"></div>
+  <div class="logos"><div><img class="pol" src="assets/police_full.png" alt="شرطة دبي"><img class="acis" src="assets/acis_dark.png" alt="إدارة أمن الهيئات والمنشآت الحيوية"></div><img class="gov" src="assets/gov_full.png" alt="حكومة دبي"></div>
   <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
   <p>هذه اللوحة محمية. يُرجى إدخال كلمة المرور لعرضها.</p>
   <input id="lockPw" type="password" inputmode="numeric" aria-label="كلمة المرور" placeholder="كلمة المرور">
@@ -102,44 +102,80 @@ body.unlocked #lock{display:none}
 @font-face{font-family:'ACBukra';src:local('29LT Bukra'),local('29LT Bukra Rg'),local('29LTBukra-Regular');font-weight:400;font-display:swap}
 @font-face{font-family:'ACBukra';src:local('29LT Bukra Bold'),local('29LTBukra-Bold');font-weight:700;font-display:swap}
 #dash-root{--dash-gutter:0}
-.ac{--bg:#0A1712;--s1:#0F211A;--s2:#132A21;--bd:#1F3B30;--tx:#EEF5F1;--mu:#9BB0A7;--ac:#2DBE7E;--ac2:#5BB8D6;--gd:#D8B25C;--rd:#E07171;
+.ac{--bg:#0A1712;--s1:#0F211A;--s2:#132A21;--bd:#1F3B30;--tx:#EEF5F1;--mu:#9BB0A7;--ac:#2DBE7E;--ac2:#5BB8D6;--gd:#D8B25C;--rd:#E07171;--gold:#D4B26A;--px:30px;
   direction:rtl;font-family:'ACBukra',var(--font-anthropic-sans),sans-serif;font-weight:400;color:var(--tx);background:var(--bg);
-  border-radius:18px;padding:28px 30px 22px;font-variant-numeric:tabular-nums;line-height:1.7;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.ac *{box-sizing:border-box}
-.ac b,.ac strong,.ac th,.ac h1,.ac h2,.ac h3{font-weight:700}
-.ac-banner{position:relative;margin:calc(-1 * var(--pt,28px)) calc(-1 * var(--px,30px)) 0;padding:24px var(--px,30px) 30px;border-radius:18px 18px 0 0;overflow:hidden;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23D4B26A' stroke-opacity='.17' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0L24 24M88 0L64 24M0 88L24 64M88 88L64 64M44 0V15M44 73V88M0 44H15M73 44H88'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,radial-gradient(640px 300px at 88% -10%,rgba(212,178,106,.28),transparent 62%),radial-gradient(520px 260px at 0% 110%,rgba(45,190,126,.18),transparent 60%),linear-gradient(135deg,#0D4A3F 0%,#0B3438 46%,#0A1E2B 100%);
-  border-bottom:1px solid rgba(212,178,106,.55);box-shadow:inset 0 -40px 60px -40px rgba(0,0,0,.45)}
-.ac-brand{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.14)}
-.ac-brand .r{display:flex;align-items:center;gap:24px}
-.ac-brand img{display:block;height:58px;width:auto;max-width:100%;filter:drop-shadow(0 2px 10px rgba(0,0,0,.35))}
-.ac-brand img.acis{height:36px}
-.ac-head{position:relative;padding:26px 0 0}
-.ac-over{display:inline-block;font-size:12px;color:#D4B26A;border:1px solid rgba(212,178,106,.5);border-radius:99px;padding:3px 14px;background:rgba(212,178,106,.08)}
-.ac h1{font-size:clamp(24px,3.4vw,36px);line-height:1.3;margin:12px 0 6px;color:#fff;letter-spacing:-.01em}
+  border-radius:20px;padding:0 var(--px) 22px;font-variant-numeric:tabular-nums;line-height:1.7;overflow:clip;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.ac *{box-sizing:border-box;scrollbar-width:thin;scrollbar-color:#2A4A3D transparent}
+.ac ::-webkit-scrollbar{width:8px;height:8px}.ac ::-webkit-scrollbar-thumb{background:#2A4A3D;border-radius:8px}.ac ::-webkit-scrollbar-track{background:transparent}
+.ac b,.ac strong,.ac th,.ac h1,.ac h2,.ac h3,.ac h4{font-weight:700}
+
+/* ── letterhead ── */
+.ac-letter{position:relative;margin:0 calc(-1 * var(--px));padding:18px var(--px) 16px;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23B8954A' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,
+  linear-gradient(180deg,#FFFFFF 0%,#FBF8F1 100%)}
+.ac-letter::after{content:'';position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,#8E6E2E,#E9CF8F 30%,#B8954A 50%,#E9CF8F 70%,#8E6E2E)}
+.ac-brand{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.ac-brand .r{display:flex;align-items:center;gap:20px;min-width:0}
+.ac-brand img{display:block;width:auto;max-width:100%}
+.ac-brand .pol{height:62px}
+.ac-brand .gov{height:76px;margin-block:-7px}
+.ac-brand .sep{width:1px;height:44px;background:linear-gradient(180deg,transparent,#C9AE72,transparent);flex:none}
+.ac-brand .acis{height:34px}
+
+/* ── hero ── */
+.ac-hero{position:relative;margin:0 calc(-1 * var(--px));padding:30px var(--px) 30px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;overflow:hidden;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23D4B26A' stroke-opacity='.15' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0L24 24M88 0L64 24M0 88L24 64M88 88L64 64M44 0V15M44 73V88M0 44H15M73 44H88'/%3E%3C/g%3E%3C/svg%3E") center/88px 88px,
+  radial-gradient(640px 300px at 90% -20%,rgba(212,178,106,.26),transparent 62%),radial-gradient(520px 280px at 0% 120%,rgba(45,190,126,.20),transparent 60%),linear-gradient(135deg,#0D4A3F 0%,#0B3438 46%,#0A1E2B 100%);
+  border-bottom:1px solid rgba(212,178,106,.45)}
+.ac-over{display:inline-block;font-size:12px;color:var(--gold);border:1px solid rgba(212,178,106,.5);border-radius:99px;padding:3px 14px;background:rgba(212,178,106,.08)}
+.ac h1{font-size:clamp(24px,3.4vw,38px);line-height:1.3;margin:12px 0 6px;color:#fff;letter-spacing:-.01em}
 .ac-meta{font-size:12.5px;color:rgba(238,245,241,.72)}
-.ac-lede{margin:20px 0 0;padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:14px;font-size:14px;line-height:2;color:#E3EEE8;backdrop-filter:blur(6px)}
+.ac-lede{margin:18px 0 0;padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:14px;font-size:14px;line-height:2;color:#E3EEE8;backdrop-filter:blur(6px)}
 .ac-lede b{color:#fff}
-.ac-filters{display:grid;grid-template-columns:1fr 1fr 1.4fr auto;gap:12px;align-items:end;margin:22px 0 4px}
+.ac-ring{position:relative;width:184px;text-align:center}
+.ac-ring svg{display:block;width:184px;height:184px;direction:ltr}
+.ac-ring .val{position:absolute;inset:0 0 auto 0;height:184px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ac-ring .val b{font-size:34px;color:#fff;line-height:1.1}
+.ac-ring .val small{font-size:11.5px;color:rgba(238,245,241,.75)}
+.ac-ring p{margin:8px 0 0;font-size:12px;color:rgba(238,245,241,.8)}
+.ac-ring .arc{transition:stroke-dashoffset 1.4s cubic-bezier(.2,.7,.2,1)}
+
+/* ── nav ── */
+.ac-nav{position:sticky;top:0;z-index:20;margin:0 calc(-1 * var(--px));padding:10px var(--px);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+  background:rgba(10,23,18,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.ac-nav::-webkit-scrollbar{display:none}
+.ac-nav a{flex:none;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mu);text-decoration:none;padding:6px 14px;border-radius:99px;border:1px solid transparent;transition:all .25s}
+.ac-nav a span{font-size:11px;color:var(--gold)}
+.ac-nav a:hover{color:#fff;border-color:var(--bd)}
+.ac-nav a.on{color:#fff;background:rgba(212,178,106,.12);border-color:rgba(212,178,106,.45)}
+
+/* ── filters ── */
+.ac-filters{display:grid;grid-template-columns:1fr 1fr 1.4fr auto;gap:12px;align-items:end;margin:20px 0 4px}
 .ac-filters label{font-size:12px;color:var(--mu);display:flex;flex-direction:column;gap:6px;min-width:0}
 .ac .dash-select,.ac-input{font-family:inherit;font-size:13px;color:var(--tx);background-color:var(--s1);border:1px solid var(--bd);border-radius:10px;min-height:40px;width:100%}
 .ac-input{padding:0 12px}
 .ac-input::placeholder{color:#6F857C}
 .ac-input:focus,.ac .dash-select:focus{outline:2px solid var(--ac);outline-offset:1px}
 .ac-btn{font-family:inherit;font-size:13px;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:10px;padding:0 18px;min-height:40px;cursor:pointer;white-space:nowrap}
-.ac-btn:hover{border-color:var(--ac);color:var(--ac)}
+.ac-btn:hover{border-color:var(--gold);color:var(--gold)}
 .ac-chips{display:flex;flex-wrap:wrap;gap:8px;min-height:8px;margin:10px 0 0}
 .ac-chip{font-family:inherit;font-size:12px;border:1px solid var(--ac);color:var(--ac);border-radius:99px;padding:3px 12px;background:rgba(45,190,126,.08);cursor:pointer}
-.ac-sec{display:flex;align-items:baseline;gap:10px;margin:30px 0 14px;font-size:18px;color:#fff}
-.ac-sec span{font-size:13px;color:#D4B26A}
+
+/* ── sections ── */
+.ac-sec{display:flex;align-items:center;gap:12px;margin:34px 0 14px;font-size:19px;color:#fff;scroll-margin-top:64px}
+.ac-sec span{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;font-size:13px;color:var(--gold);border:1px solid rgba(212,178,106,.45);background:rgba(212,178,106,.07)}
+.ac-sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bd))}
 .ac-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.ac-k{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:18px 20px}
+.ac-k{position:relative;background:linear-gradient(160deg,#122A21 0%,var(--s1) 60%);border:1px solid var(--bd);border-radius:16px;padding:18px 20px;overflow:hidden;transition:transform .25s,border-color .25s}
+.ac-k:hover{transform:translateY(-2px);border-color:rgba(212,178,106,.45)}
+.ac-k::before{content:'';position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,transparent,var(--kc,var(--ac)),transparent);opacity:.8}
+.ac-k svg.ic{position:absolute;left:16px;top:16px;width:30px;height:30px;stroke:var(--kc,var(--ac));opacity:.85}
 .ac-kl{font-size:13px;color:var(--mu)}
-.ac-kv{display:block;font-size:clamp(30px,3.4vw,40px);font-weight:700;color:#fff;margin:8px 0 4px;line-height:1.15}
+.ac-kv{display:block;font-size:clamp(30px,3.4vw,42px);font-weight:700;color:#fff;margin:8px 0 4px;line-height:1.15}
 .ac-k.warn .ac-kv{color:var(--gd)}
 .ac-ks{font-size:12px;color:var(--mu);line-height:1.7}
 .ac-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px}
-.ac-p{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:18px 20px;min-width:0}
+.ac-p{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:18px 20px;min-width:0}
 .ac-p h3{font-size:15px;margin:0;color:#fff}
 .ac-sub{font-size:12px;color:var(--mu);margin:4px 0 14px;line-height:1.8}
 .ac-wide{grid-column:1/-1}
@@ -153,52 +189,107 @@ body.unlocked #lock{display:none}
 .ac th{position:sticky;top:0;background:var(--s2);color:var(--mu);text-align:right;padding:10px 12px;font-size:12px;border-bottom:1px solid var(--bd);white-space:nowrap}
 .ac td{padding:9px 12px;border-bottom:1px solid rgba(31,59,48,.7);vertical-align:top}
 .ac tbody tr:hover td{background:rgba(255,255,255,.025)}
-.ac-tbl{max-height:460px;overflow:auto;border:1px solid var(--bd);border-radius:12px}
+.ac-tbl{max-height:500px;overflow:auto;border:1px solid var(--bd);border-radius:12px}
 .ac td a{color:var(--ac2);text-decoration:none}
 .ac td a:hover{text-decoration:underline}
 .ac-pill{display:inline-block;font-size:11px;padding:2px 10px;border-radius:99px;background:rgba(45,190,126,.12);color:var(--ac);white-space:nowrap}
 .ac-pill.w{background:rgba(216,178,92,.14);color:var(--gd)}
 .ac-pill.b{background:rgba(224,113,113,.14);color:var(--rd)}
 .ac-pill.t{background:rgba(91,184,214,.13);color:var(--ac2)}
+.ac-pill.g{background:rgba(255,255,255,.06);color:var(--mu)}
+.ac-ents{font-size:11.5px;color:var(--mu);margin-top:3px}
 .ac-meter{height:6px;border-radius:6px;background:rgba(255,255,255,.07);overflow:hidden;min-width:70px}
-.ac-meter span{display:block;height:100%;background:var(--ac);border-radius:6px}
+.ac-meter span{display:block;height:100%;background:var(--ac);border-radius:6px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.ac td.ac-nw{white-space:nowrap}
 .ac-count{font-size:12px;color:var(--mu);margin:10px 2px 0}
+.ac-err{color:var(--rd);font-size:12.5px;padding:20px 0}
+
+/* ── data quality ── */
+.ac-q3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+.ac-qa{position:relative;border-radius:16px;padding:18px 20px;border:1px solid var(--bd);background:var(--s1);overflow:hidden}
+.ac-qa::before{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:var(--qc,var(--ac))}
+.ac-qa .q{font-size:13px;color:var(--mu);display:flex;gap:8px;align-items:center}
+.ac-qa .q i{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:11px;background:rgba(212,178,106,.12);color:var(--gold)}
+.ac-qa .a{font-size:22px;color:#fff;margin:10px 0 2px;line-height:1.4}
+.ac-qa .a em{font-style:normal;color:var(--qc,var(--ac))}
+.ac-qa .d{font-size:12px;color:var(--mu);line-height:1.8}
+.ac-qlist{display:flex;flex-direction:column;gap:10px}
+.ac-qrow{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--bd);border-radius:12px;background:var(--s2)}
+.ac-qrow .n{font-weight:700;color:#fff}
+.ac-qrow .t{font-size:12.5px;color:#DCE8E2;line-height:1.8}
+.ac-qrow .t b{color:#fff}
+.ac-qrow .t small{display:block;color:var(--mu);font-size:11.5px}
+.ac-okrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px;font-size:12px;color:var(--mu)}
 .ac-rtypes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 14px}
-.ac-rt{font-family:inherit;text-align:right;background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;color:var(--tx);cursor:pointer}
+.ac-rt{font-family:inherit;text-align:right;background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;color:var(--tx);cursor:pointer;transition:border-color .2s}
 .ac-rt b{display:flex;align-items:center;gap:8px;font-size:24px;line-height:1.2;color:#fff}
 .ac-rt b::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--c,var(--ac));flex:none}
-.ac-rt small{display:block;font-size:12px;color:var(--mu);margin-top:4px}
+.ac-rt strong{display:block;font-size:12.5px;color:#fff;margin-top:6px}
+.ac-rt small{display:block;font-size:11.5px;color:var(--mu);margin-top:2px;line-height:1.7}
 .ac-rt:hover{border-color:var(--c,var(--ac))}
 .ac-rt.on{border-color:var(--c,var(--ac));background:rgba(255,255,255,.04)}
 .ac-rt.dim{opacity:.45}
-.ac-sug{color:var(--ac2)}
-.ac td.ac-nw{white-space:nowrap}
-.ac-err{color:var(--rd);font-size:12.5px;padding:20px 0}
+.ac-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:12px;max-height:720px;overflow:auto;padding:2px}
+.ac-card{border:1px solid var(--bd);border-radius:14px;background:var(--s2);padding:14px 16px;border-top:3px solid var(--c,var(--ac));display:flex;flex-direction:column;gap:8px}
+.ac-card .top{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:12px}
+.ac-card .top span:first-child{color:var(--c,var(--ac));font-weight:700}
+.ac-card h4{margin:0;font-size:14px;color:#fff;line-height:1.6}
+.ac-card .e{font-size:11.5px;color:var(--mu)}
+.ac-card .cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch;font-size:12px}
+.ac-card .cmp div{border-radius:10px;padding:8px 10px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.05);word-break:break-word}
+.ac-card .cmp small{display:block;font-size:10.5px;color:var(--mu);margin-bottom:2px}
+.ac-card .cmp .s{color:var(--ac2)}
+.ac-card .cmp .ar{align-self:center;color:var(--gold);font-size:15px}
+.ac-card .act{font-size:12.5px;line-height:1.8;color:#DCE8E2}
+.ac-card .act b{color:var(--gold)}
 .ac details{margin-top:24px;border:1px solid var(--bd);border-radius:12px;padding:12px 16px;background:var(--s1);font-size:12.5px;color:var(--mu);line-height:2}
 .ac summary{cursor:pointer;color:var(--tx)}
 .ac-foot{margin-top:18px;font-size:11.5px;color:var(--mu);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:1px solid var(--bd);padding-top:14px}
-@media (max-width:900px){.ac-kpis{grid-template-columns:repeat(2,1fr)}.ac-rtypes{grid-template-columns:repeat(2,1fr)}.ac-filters{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.ac{padding:18px 14px;--pt:18px;--px:14px}.ac-brand img{height:36px}.ac-brand img.acis{height:22px}.ac-brand img.emb{height:42px}.ac-brand .r{gap:10px}.ac-kpis,.ac-filters{grid-template-columns:1fr}}
-@media print{.ac-filters,.ac-chips,#sec-sites,#sites-panel{display:none}.ac-tbl{max-height:none;overflow:visible}.ac-p,.ac-k,.ac-rt{break-inside:avoid}.ac-sec{break-after:avoid}}
+.ac.anim .ac-rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.ac.anim .ac-rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.ac.anim .ac-rv{opacity:1;transform:none;transition:none}.ac-ring .arc,.ac-meter span{transition:none}}
+@media (max-width:900px){.ac-kpis{grid-template-columns:repeat(2,1fr)}.ac-rtypes{grid-template-columns:repeat(2,1fr)}.ac-filters{grid-template-columns:1fr 1fr}.ac-q3{grid-template-columns:1fr}.ac-hero{grid-template-columns:1fr}.ac-ring{margin:0 auto}}
+@media (max-width:560px){.ac{--px:14px}.ac-brand{flex-wrap:wrap;row-gap:10px}.ac-brand .r{display:contents}.ac-brand .sep{display:none}.ac-brand .pol{height:40px;order:1}.ac-brand .gov{height:48px;margin-block:-4px;order:2}.ac-brand .acis{order:3;flex:0 0 100%;width:100%;height:20px;object-fit:contain;padding-top:8px;border-top:1px solid rgba(184,149,74,.25)}.ac-kpis,.ac-filters{grid-template-columns:1fr}.ac-qrow{grid-template-columns:1fr}}
+@media print{.ac-nav,.ac-filters,.ac-chips,#sec-sites,#sites-panel{display:none}.ac-tbl,.ac-cards{max-height:none;overflow:visible}.ac-p,.ac-k,.ac-rt,.ac-card,.ac-qa,.ac-qrow{break-inside:avoid}.ac-sec{break-after:avoid}.ac.anim .ac-rv{opacity:1;transform:none}}
 </style>
 
 <div class='ac' id='top'>
-  <div class='ac-banner'>
-  <header class='ac-brand' id='brand'>
-    <div class='r'>
-      <img src='assets/police.png' alt='شرطة دبي'>
-      <img class='acis' src='assets/acis.png' alt='إدارة أمن الهيئات والمنشآت الحيوية'>
-    </div>
-    <img src='assets/gov.png' alt='حكومة دبي'>
-  </header>
-
-  <section class='ac-head' id='hero'>
-    <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
-    <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
-    <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لست عشرة جهة</div>
-    <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
-  </section>
+  <div class='ac-letter'>
+    <header class='ac-brand' id='brand'>
+      <div class='r'>
+        <img class='pol' src='assets/police_full.png' alt='شرطة دبي'>
+        <i class='sep' aria-hidden='true'></i>
+        <img class='acis' src='assets/acis_dark.png' alt='إدارة أمن الهيئات والمنشآت الحيوية'>
+      </div>
+      <img class='gov' src='assets/gov_full.png' alt='حكومة دبي'>
+    </header>
   </div>
+
+  <section class='ac-hero' id='hero'>
+    <div>
+      <div class='ac-over'>إدارة أمن الهيئات والمنشآت الحيوية</div>
+      <h1>لوحة المواقع الحيوية في إمارة دبي</h1>
+      <div class='ac-meta'>تاريخ البيانات: 23 نوفمبر 2026 · المصدر: سجل المواقع الحيوية لست عشرة جهة</div>
+      <p class='ac-lede' id='lede'>يتضمن السجل <b data-draw='l_total' data-source='kpis' data-field='total' data-row='0'>—</b> قيداً موزعة على <b data-draw='l_ent' data-source='kpis' data-field='entities' data-row='0'>—</b> جهة، تمثل نحو <b data-draw='l_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b> موقعاً مستقلاً بعد استبعاد التكرار بين الجهات. وتُعد فئة <b data-draw='l_topcat' data-source='kpis' data-field='top_category' data-row='0'>—</b> الأكبر بواقع <b data-draw='l_topn' data-source='kpis' data-field='top_category_sites' data-row='0'>—</b> قيداً، فيما تتوفر إحداثيات صحيحة لنسبة <b data-draw='l_cov' data-source='kpis' data-field='coord_pct' data-row='0'>—</b> من القيود. آخر تحديث مستلم من إدارة المرونة بتاريخ 23/11/2026.</p>
+    </div>
+    <div class='ac-ring' data-draw='covRing' data-source='kpis'>
+      <svg viewBox='0 0 184 184' aria-hidden='true'>
+        <defs><linearGradient id='acRingG' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#E9CF8F'/><stop offset='.55' stop-color='#2DBE7E'/><stop offset='1' stop-color='#5BB8D6'/></linearGradient></defs>
+        <circle cx='92' cy='92' r='78' fill='none' stroke='rgba(255,255,255,.10)' stroke-width='12'/>
+        <circle cx='92' cy='92' r='64' fill='none' stroke='rgba(212,178,106,.25)' stroke-width='1' stroke-dasharray='2 5'/>
+        <circle class='arc' cx='92' cy='92' r='78' fill='none' stroke='url(#acRingG)' stroke-width='12' stroke-linecap='round' transform='rotate(-90 92 92)' stroke-dasharray='490.1' stroke-dashoffset='490.1'/>
+      </svg>
+      <div class='val'><b data-source='kpis' data-field='coord_pct' data-row='0'>—</b><small>توفر الإحداثيات</small></div>
+      <p data-source='kpis' data-field='coord_ok' data-row='0'>—</p>
+    </div>
+  </section>
+
+  <nav class='ac-nav' id='acNav' aria-label='أقسام اللوحة'>
+    <a href='#sec-numbers' data-t='sec-numbers'><span>01</span>المؤشرات الرئيسية</a>
+    <a href='#sec-dist' data-t='sec-dist'><span>02</span>توزيع القيود</a>
+    <a href='#sec-sites' data-t='sec-sites'><span>03</span>سجل المواقع</a>
+    <a href='#sec-quality' data-t='sec-quality'><span>04</span>جودة البيانات</a>
+  </nav>
 
   <div class='ac-filters' id='filters'>
     <label>الجهة<select class='dash-select' data-draw='entitySel' aria-label='الجهة' data-source='by_entity'></select></label>
@@ -209,15 +300,15 @@ body.unlocked #lock{display:none}
   <div class='ac-chips' data-draw='chips'>—</div>
 
   <h2 class='ac-sec' id='sec-numbers'><span>01</span>المؤشرات الرئيسية</h2>
-  <section class='ac-kpis' id='kpis'>
-    <div class='ac-k' id='k-total'><div class='ac-kl'>إجمالي القيود</div><b class='ac-kv dash-skeleton' data-draw='k_total' data-source='kpis' data-field='total' data-row='0'>—</b><div class='ac-ks'>عدد الصفوف المسجلة لدى جميع الجهات</div></div>
-    <div class='ac-k' id='k-unique'><div class='ac-kl'>المواقع المستقلة</div><b class='ac-kv dash-skeleton' data-draw='k_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b><div class='ac-ks'>بعد استبعاد المواقع المكررة بين الجهات</div></div>
-    <div class='ac-k' id='k-dip'><div class='ac-kl'>المنشآت الدبلوماسية</div><b class='ac-kv dash-skeleton' data-draw='k_dip' data-source='kpis' data-field='diplomatic' data-row='0'>—</b><div class='ac-ks'>القنصليات ومقار رؤساء البعثات</div></div>
-    <div class='ac-k warn' id='k-rev'><div class='ac-kl'>ملاحظات تستوجب المراجعة</div><b class='ac-kv dash-skeleton' data-draw='k_rev' data-source='review_open' data-field='open_items' data-row='0'>—</b><div class='ac-ks'>إحداثيات غير صحيحة، وتكرار، وتصنيف غير دقيق</div></div>
+  <section class='ac-kpis ac-rv' id='kpis'>
+    <div class='ac-k' id='k-total' style='--kc:#2DBE7E'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 3 3 7.5 12 12l9-4.5L12 3Z'/><path d='m3 12 9 4.5 9-4.5'/><path d='m3 16.5 9 4.5 9-4.5'/></svg><div class='ac-kl'>إجمالي القيود</div><b class='ac-kv dash-skeleton' data-draw='k_total' data-source='kpis' data-field='total' data-row='0'>—</b><div class='ac-ks'>عدد الصفوف المسجلة لدى جميع الجهات</div></div>
+    <div class='ac-k' id='k-unique' style='--kc:#5BB8D6'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z'/><circle cx='12' cy='9.5' r='2.5'/></svg><div class='ac-kl'>المواقع المستقلة</div><b class='ac-kv dash-skeleton' data-draw='k_uniq' data-source='kpis' data-field='unique_sites' data-row='0'>—</b><div class='ac-ks'>بعد دمج الموقع المسجّل لدى أكثر من جهة</div></div>
+    <div class='ac-k' id='k-dip' style='--kc:#D4B26A'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 21V4'/><path d='M5 4h11l-2 4 2 4H5'/></svg><div class='ac-kl'>المنشآت الدبلوماسية</div><b class='ac-kv dash-skeleton' data-draw='k_dip' data-source='kpis' data-field='diplomatic' data-row='0'>—</b><div class='ac-ks'>القنصليات ومقار رؤساء البعثات</div></div>
+    <div class='ac-k warn' id='k-rev' style='--kc:#D8B25C'><svg class='ic' viewBox='0 0 24 24' fill='none' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 3 2 20h20L12 3Z'/><path d='M12 10v4'/><path d='M12 17h.01'/></svg><div class='ac-kl'>ملاحظات تستوجب المراجعة</div><b class='ac-kv dash-skeleton' data-draw='k_rev' data-source='review_open' data-field='open_items' data-row='0'>—</b><div class='ac-ks'>إحداثيات غير صحيحة، وتكرار، وتصنيف غير دقيق</div></div>
   </section>
 
   <h2 class='ac-sec' id='sec-dist'><span>02</span>توزيع القيود</h2>
-  <div class='ac-grid'>
+  <div class='ac-grid ac-rv'>
     <section class='ac-p' id='by-entity-panel'>
       <h3>حسب الجهة</h3>
       <p class='ac-sub'>انقر على أي جهة لعرض بياناتها فقط.</p>
@@ -233,11 +324,11 @@ body.unlocked #lock{display:none}
   </div>
 
   <h2 class='ac-sec' id='sec-sites'><span>03</span>سجل المواقع</h2>
-  <section class='ac-p' id='sites-panel'>
-    <p class='ac-sub' style='margin-top:0'>تتحدث القائمة وفق عوامل التصفية والبحث. انقر على الإحداثيات لعرض الموقع على خرائط Google.</p>
+  <section class='ac-p ac-rv' id='sites-panel'>
+    <p class='ac-sub' style='margin-top:0'>يظهر كل موقع مرة واحدة حتى لو سجّلته أكثر من جهة، وتظهر أسماء الجهات تحت اسمه. انقر على الإحداثيات لعرض الموقع على خرائط Google.</p>
     <div class='ac-tbl'>
       <table data-source='sites_view' data-row-key='id' aria-label='سجل المواقع'>
-        <thead><tr><th data-field='site'>الموقع</th><th data-field='category'>الفئة</th><th data-field='entity'>الجهة</th><th data-field='area'>المنطقة</th><th data-field='makani'>الرقم المكاني</th><th data-field='coords'>الإحداثيات</th></tr></thead>
+        <thead><tr><th data-field='site'>الموقع والجهات</th><th data-field='category'>الفئة</th><th data-field='area'>المنطقة</th><th data-field='makani'>الرقم المكاني</th><th data-field='coords'>الإحداثيات</th></tr></thead>
         <tbody data-draw='siteRows'></tbody>
       </table>
     </div>
@@ -246,39 +337,36 @@ body.unlocked #lock{display:none}
   </section>
 
   <h2 class='ac-sec' id='sec-quality'><span>04</span>جودة البيانات</h2>
-  <div class='ac-grid'>
-    <section class='ac-p ac-wide' id='quality-panel'>
-      <h3>مطابقة الأعداد وتوفر الإحداثيات حسب الجهة</h3>
-      <p class='ac-sub'>مقارنة العدد الفعلي للقيود بالإجمالي المدوَّن يدوياً في الملف الأصلي، ونسبة القيود التي تتوفر لها إحداثيات صحيحة.</p>
-      <div class='ac-tbl'>
-        <table data-source='by_entity' data-row-key='entity' aria-label='جودة البيانات حسب الجهة'>
-          <thead><tr><th data-field='entity'>الجهة</th><th data-field='sites'>العدد الفعلي</th><th data-field='stated_total'>الإجمالي المدوَّن</th><th data-field='diff'>الفرق</th><th data-field='coverage'>نسبة توفر الإحداثيات</th></tr></thead>
-          <tbody data-draw='qualityRows'></tbody>
-        </table>
-      </div>
-    </section>
+  <p class='ac-sub' style='margin-top:-6px'>ثلاثة أسئلة تلخّص حالة الملف، ولكل سؤال تفاصيله أدناه.</p>
+  <div class='ac-q3 ac-rv' data-draw='qAnswers' data-source='by_entity'></div>
 
-    <section class='ac-p ac-wide' id='review-panel'>
-      <h3>ملاحظات تستوجب المراجعة</h3>
-      <p class='ac-sub'>تُدرج كل ملاحظة مرة واحدة وإن تكررت في أكثر من جهة، مرتبةً حسب الأولوية. ولا تُعد الفروع المختلفة للجهة الواحدة تكراراً متى اختلفت منطقتها ورقمها المكاني. انقر على أي نوع لعرض ملاحظاته فقط.</p>
-      <div class='ac-rtypes' data-draw='reviewTypes' data-source='review_summary'></div>
-      <div class='ac-tbl' style='max-height:560px'>
-        <table data-source='review' data-row-key='id' aria-label='ملاحظات تستوجب المراجعة'>
-          <thead><tr><th data-field='priority'>الأولوية</th><th data-field='site'>الموقع</th><th data-field='type'>نوع الملاحظة</th><th data-field='entities'>الجهات</th><th data-field='current'>الوارد في الملف</th><th data-field='suggested'>التصويب المقترح</th><th data-field='action'>الإجراء المطلوب</th></tr></thead>
-          <tbody data-draw='reviewRows'></tbody>
-        </table>
-      </div>
+  <div class='ac-grid ac-rv'>
+    <section class='ac-p' id='q-counts'>
+      <h3>① هل الإجمالي المكتوب في كل ورقة صحيح؟</h3>
+      <p class='ac-sub'>في أسفل كل ورقة من الملف الأصلي رقم إجمالي مكتوب يدوياً. قارنّاه بعدد المواقع الموجودة فعلاً في الورقة.</p>
+      <div class='ac-qlist' data-draw='qCounts' data-source='by_entity'></div>
+    </section>
+    <section class='ac-p' id='q-coords'>
+      <h3>② هل لكل موقع إحداثيات؟</h3>
+      <p class='ac-sub'>الجهات التي ينقصها إحداثيات، وعدد المواقع الناقصة لدى كل منها.</p>
+      <div class='ac-qlist' data-draw='qCoords' data-source='by_entity'></div>
     </section>
   </div>
 
+  <section class='ac-p ac-rv' id='review-panel' style='margin-top:14px'>
+    <h3>③ ما الذي يحتاج قراراً منكم؟</h3>
+    <p class='ac-sub'>كل بطاقة ملاحظة واحدة: ما الوارد في الملف، والتصحيح المقترح، والمطلوب. انقر على أي نوع لعرض بطاقاته فقط.</p>
+    <div class='ac-rtypes' data-draw='reviewTypes' data-source='review_summary'></div>
+    <div class='ac-cards' data-draw='reviewCards' data-source='review'></div>
+  </section>
+
   <details id='notes'>
     <summary>منهجية الاحتساب</summary>
-    <p>اعتُمد ملف سجل المواقع الحيوية الوارد من ست عشرة جهة، ويُحتسب كل صف يتضمن اسم موقع قيداً واحداً. ولأن سجلّي التحريات والمنشآت والطوارئ يتضمنان مواقع مدرجة أيضاً لدى مراكز الشرطة، يزيد إجمالي القيود على عدد المواقع المستقلة. وقد احتُسبت المواقع المستقلة بمطابقة الأسماء بعد توحيد الهمزات والتاء المربوطة والمسافات، فهي تقديرية. ويُقصد بالإحداثيات الصحيحة الإحداثيات المقروءة الواقعة داخل حدود إمارة دبي.</p>
+    <p>اعتُمد ملف سجل المواقع الحيوية الوارد من ست عشرة جهة، ويُحتسب كل صف يتضمن اسم موقع قيداً واحداً. ولأن عدداً من المواقع مسجّل لدى أكثر من جهة (مثل سجلّي التحريات والمنشآت والطوارئ ومراكز الشرطة)، يزيد إجمالي القيود على عدد المواقع المستقلة. ويُعد القيدان موقعاً واحداً إذا تطابق الاسم بعد توحيد الهمزات والتاء المربوطة والمسافات، وتطابقت الإحداثيات أو تقاربت ضمن 300 متر، أو كانا بلا إحداثيات في المنطقة نفسها؛ أما الفروع التي تحمل الاسم نفسه في أماكن مختلفة فتبقى مواقع منفصلة. ويُقصد بالإحداثيات الصحيحة الإحداثيات المقروءة الواقعة داخل حدود إمارة دبي.</p>
   </details>
 
   <footer class='ac-foot'><span>إدارة أمن الهيئات والمنشآت الحيوية — شرطة دبي</span><span>تاريخ البيانات: 23 نوفمبر 2026</span></footer>
 </div>
-
 <script>
 window.AC = (function () {
   const CATS = ['المنشآت الدبلوماسية','الجهات الحكومية','المراكز العسكرية','المنافذ','الفنادق','المراكز التجارية','محطات المترو','المراكز الرياضية والاجتماعية','مواقع التجمع الخارجية','البنوك والمصارف','المراكز الطبية','دور العبادة','مراكز التعليم','المراكز الإعلامية','المسطحات المائية','خزانات المياه الرئيسية','الواجهة البحرية'];
@@ -321,8 +409,11 @@ window.AC = (function () {
     g.append('text').attr('x', W).attr('y', rowH / 2).attr('dy', '.35em').attr('text-anchor', 'end').attr('font-size', 12)
       .style('fill', (d) => (sel && d[opt.label] !== sel ? '#5E7369' : '#DCE8E2')).text((d) => d[opt.label]);
     g.append('rect').attr('class', 'bar').attr('y', 7).attr('height', rowH - 16).attr('rx', 3)
-      .attr('x', (d) => right - x(d[opt.value])).attr('width', (d) => Math.max(d[opt.value] ? 2 : 0, x(d[opt.value])))
+      .attr('x', right).attr('width', 0)
       .style('fill', (d) => (opt.color ? opt.color(d) : '#2DBE7E')).style('opacity', (d) => (sel && d[opt.label] !== sel ? 0.25 : 1));
+    g.select('rect.bar').transition().duration(el.dataset.drawn ? 350 : 900).delay((d, i) => (el.dataset.drawn ? 0 : i * 35)).ease(d3.easeCubicOut)
+      .attr('x', (d) => right - x(d[opt.value])).attr('width', (d) => Math.max(d[opt.value] ? 2 : 0, x(d[opt.value])));
+    el.dataset.drawn = '1';
     g.append('text').attr('x', (d) => right - x(d[opt.value]) - 8).attr('y', rowH / 2).attr('dy', '.35em').attr('text-anchor', 'end')
       .attr('font-size', 12).attr('font-weight', 700).style('fill', (d) => (d[opt.value] ? '#EEF5F1' : '#5E7369')).text((d) => (d[opt.value] ? fmt(d[opt.value]) : '–'));
     g.on('mousemove', (ev, d) => tipAt(el, tip, ev, opt.tip(d))).on('mouseleave', () => { tip.style.display = 'none'; })
@@ -331,7 +422,6 @@ window.AC = (function () {
   return { CATS, DIP, fmt, inDubai, norm, placeholder, bars, tipAt, textW };
 })();
 </script>
-
 <script>
 (function () {
   const { CATS, DIP, inDubai, norm } = window.AC;
@@ -342,26 +432,26 @@ window.AC = (function () {
   };
   dash.calc('kpis', {
     inputs: ['sites'], title: 'المؤشرات الرئيسية',
-    description: 'تُحتسب من سجل المواقع بعد تطبيق التصفية: إجمالي القيود، والمواقع المستقلة، والمنشآت الدبلوماسية، والجهات، ونسبة توفر الإحداثيات.',
+    description: 'تُحتسب من سجل المواقع بعد تطبيق التصفية: إجمالي القيود، والمواقع المستقلة (بعد دمج الموقع المسجّل لدى أكثر من جهة)، والمنشآت الدبلوماسية، والجهات، ونسبة توفر الإحداثيات.',
     fn: (sites) => {
       const r = pick(sites);
       const byCat = d3.rollups(r, (v) => v.length, (d) => d.category).sort((a, b) => b[1] - a[1]);
       const ok = r.filter(inDubai).length;
-      return [{ total: r.length, unique_sites: new Set(r.map((d) => d.site_key)).size, diplomatic: r.filter((d) => d.category === DIP).length,
-        entities: new Set(r.map((d) => d.entity)).size, coord_ok: ok, coord_pct: r.length ? Math.round((ok / r.length) * 1000) / 10 : 0,
+      return [{ total: r.length, unique_sites: new Set(r.map((d) => d.uid)).size, diplomatic: r.filter((d) => d.category === DIP).length,
+        entities: new Set(r.map((d) => d.entity)).size, coord_ok: ok, coord_missing: r.length - ok, coord_pct: r.length ? Math.round((ok / r.length) * 1000) / 10 : 0,
         top_category: byCat.length ? byCat[0][0] : '', top_category_sites: byCat.length ? byCat[0][1] : 0 }];
     }
   });
   dash.calc('by_entity', {
     inputs: ['sites', 'entities'], title: 'القيود حسب الجهة',
-    description: 'عدد القيود لكل جهة (مع تصفية الفئة والبحث)، والإجمالي المدوَّن يدوياً في الملف الأصلي، والفرق بينهما، ونسبة توفر الإحداثيات الصحيحة.',
+    description: 'عدد القيود لكل جهة (مع تصفية الفئة والبحث)، والإجمالي المدوَّن يدوياً في الملف الأصلي، والفرق بينهما، وعدد المواقع التي تنقصها إحداثيات.',
     fn: (sites, entities) => {
       const r = pick(sites, true, false);
       return entities.slice().sort((a, b) => a.order - b.order).map((e) => {
         const v = r.filter((d) => d.entity === e.entity); const all = sites.filter((d) => d.entity === e.entity);
         const ok = v.filter(inDubai).length;
         return { entity: e.entity, sites: v.length, all_sites: all.length, stated_total: e.stated_total == null ? null : +e.stated_total,
-          diff: e.stated_total == null ? null : all.length - +e.stated_total, coord_ok: ok, coverage: v.length ? Math.round((ok / v.length) * 1000) / 10 : null };
+          diff: e.stated_total == null ? null : all.length - +e.stated_total, coord_ok: ok, missing: v.length - ok, coverage: v.length ? Math.round((ok / v.length) * 1000) / 10 : null };
       });
     }
   });
@@ -371,9 +461,15 @@ window.AC = (function () {
       return CATS.map((c) => { const n = r.filter((d) => d.category === c).length; return { category: c, sites: n, share: Math.round((n / tot) * 1000) / 10 }; }); }
   });
   dash.calc('sites_view', {
-    inputs: ['sites'], title: 'المواقع المعروضة', description: 'المواقع بعد تطبيق التصفية والبحث، مع الإحداثيات بصيغة N/E.',
-    fn: (sites) => pick(sites).map((d) => ({ id: d.id, site: d.site, category: d.category, entity: d.entity, area: d.area, makani: d.makani,
-      lat: d.lat, lon: d.lon, valid: inDubai(d) ? 1 : 0, src: d.coord_src || '', conf: d.coord_conf || '', note: d.coord_note || '', coords: d.lat != null ? `N${(+d.lat).toFixed(5)} E${(+d.lon).toFixed(5)}` : '' }))
+    inputs: ['sites'], title: 'المواقع المعروضة دون تكرار',
+    description: 'المواقع بعد التصفية والبحث، ويظهر الموقع المسجّل لدى أكثر من جهة مرة واحدة مع أسماء الجهات، وإحداثياته بصيغة N/E.',
+    fn: (sites) => d3.groups(pick(sites), (d) => d.uid).map(([uid, v]) => {
+      const g = v.find(inDubai) || v.find((d) => d.lat != null) || v[0];
+      const ents = [...new Set(v.map((d) => d.entity))]; const areas = [...new Set(v.map((d) => d.area).filter(Boolean))];
+      return { id: uid, site: g.site, category: g.category, entities: ents.join('، '), n_entities: ents.length, rows: v.length, area: areas.slice(0, 2).join('، '),
+        makani: (v.find((d) => d.makani) || {}).makani || '', lat: g.lat, lon: g.lon, valid: inDubai(g) ? 1 : 0,
+        src: g.coord_src || '', conf: g.coord_conf || '', note: g.coord_note || '', coords: g.lat != null ? `N${(+g.lat).toFixed(5)} E${(+g.lon).toFixed(5)}` : '' };
+    })
   });
   const pickReview = (items, skipType) => {
     const p = dash.params() || {}; const q = norm(String(p.q || '').trim());
@@ -399,16 +495,36 @@ window.AC = (function () {
 <script>
 (function () {
   const { fmt, placeholder, bars, CATS, DIP } = window.AC;
-  const kp = (field, f) => (el) => { const d = dash.data('kpis'); if (d.status !== 'ok' || !d.data || !d.data.length) return placeholder(el, d); el.classList.remove('dash-skeleton'); el.textContent = f(d.data[0][field]); };
+  const RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const countTo = (el, v, f) => {
+    el.classList.remove('dash-skeleton');
+    if (typeof v !== 'number' || RM || el.dataset.done) { el.textContent = f(v); el.dataset.done = '1'; return; }
+    el.dataset.done = '1'; const t0 = performance.now(), D = 1100;
+    let fin = false;
+    const step = () => { if (fin) return; const k = Math.max(0, Math.min(1, (performance.now() - t0) / D)), e = 1 - Math.pow(1 - k, 3); const x = v * e;
+      el.textContent = f(k < 1 ? (Number.isInteger(v) ? Math.round(x) : Math.round(x * 10) / 10) : v); if (k < 1) requestAnimationFrame(step); else fin = true; };
+    requestAnimationFrame(step); setTimeout(() => { fin = true; el.textContent = f(v); }, D + 400);
+  };
+  const kp = (field, f, anim) => (el) => { const d = dash.data('kpis'); if (d.status !== 'ok' || !d.data || !d.data.length) return placeholder(el, d);
+    if (anim) countTo(el, d.data[0][field], f); else { el.classList.remove('dash-skeleton'); el.textContent = f(d.data[0][field]); } };
   const n = (v) => fmt(v), pct = (v) => v + '%';
-  dash.draw('k_total', kp('total', n)); dash.draw('k_uniq', kp('unique_sites', n)); dash.draw('k_dip', kp('diplomatic', n));
-  dash.draw('k_rev', (el) => { const d = dash.data('review_open'); if (d.status !== 'ok' || !d.data || !d.data.length) return placeholder(el, d); el.classList.remove('dash-skeleton'); el.textContent = fmt(d.data[0].open_items); });
+  dash.draw('k_total', kp('total', n, 1)); dash.draw('k_uniq', kp('unique_sites', n, 1)); dash.draw('k_dip', kp('diplomatic', n, 1));
+  dash.draw('k_rev', (el) => { const d = dash.data('review_open'); if (d.status !== 'ok' || !d.data || !d.data.length) return placeholder(el, d); countTo(el, d.data[0].open_items, n); });
   dash.draw('l_total', kp('total', n)); dash.draw('l_ent', kp('entities', n)); dash.draw('l_uniq', kp('unique_sites', n));
   dash.draw('l_topcat', kp('top_category', (v) => v || '—')); dash.draw('l_topn', kp('top_category_sites', n)); dash.draw('l_cov', kp('coord_pct', pct));
 
-  const TYPE_LABEL = { 'إحداثية خاطئة': 'إحداثيات غير صحيحة', 'تكرار مؤكد': 'تكرار مؤكد', 'تكرار محتمل': 'تكرار محتمل', 'تصنيف يحتاج مراجعة': 'تصنيف غير دقيق', 'تم تصحيحه تلقائياً': 'تصويبات تلقائية' };
+  dash.draw('covRing', (el) => {
+    const d = dash.data('kpis'); const b = el.querySelector('.val b'), p = el.querySelector('p'), arc = el.querySelector('.arc');
+    if (d.status !== 'ok' || !d.data || !d.data.length) { b.textContent = '—'; return; }
+    const r = d.data[0]; countTo(b, r.coord_pct, pct);
+    p.textContent = `${fmt(r.coord_ok)} من ${fmt(r.total)} قيد بإحداثيات صحيحة`;
+    const C = 490.1; requestAnimationFrame(() => { arc.style.strokeDashoffset = String(C * (1 - Math.max(0, Math.min(100, r.coord_pct)) / 100)); });
+  });
+
+  const TYPE_LABEL = { 'إحداثية خاطئة': 'إحداثيات مكتوبة بشكل خاطئ', 'تكرار مؤكد': 'موقع مكرر', 'تكرار محتمل': 'قد يكون مكرراً', 'تصنيف يحتاج مراجعة': 'في الفئة الخطأ', 'تم تصحيحه تلقائياً': 'صُحّح تلقائياً' };
+  const TYPE_HELP = { 'إحداثية خاطئة': 'رقم أو فاصلة ناقصة، فلا يظهر الموقع في مكانه. صحّحناها ونحتاج تأكيدكم.', 'تكرار مؤكد': 'الموقع نفسه مسجّل مرتين بالرقم المكاني نفسه.', 'تكرار محتمل': 'قيدان متشابهان قد يكونان الموقع نفسه.', 'تصنيف يحتاج مراجعة': 'الموقع مدرج تحت فئة لا تناسبه.', 'تم تصحيحه تلقائياً': 'أخطاء بسيطة صُحّحت، للعلم فقط.' };
   const TYPE_COLOR = { 'إحداثية خاطئة': '#E07171', 'تكرار مؤكد': '#D8B25C', 'تكرار محتمل': '#B9A77A', 'تصنيف يحتاج مراجعة': '#5BB8D6', 'تم تصحيحه تلقائياً': '#2DBE7E' };
-  const PRI = { 1: ['عالية', 'b'], 2: ['متوسطة', 'w'], 3: ['منخفضة', ''] };
+  const PRI = { 1: ['أولوية عالية', 'b'], 2: ['أولوية متوسطة', 'w'], 3: ['أولوية منخفضة', 'g'] };
 
   dash.draw('entitySel', (sel) => {
     const g = dash.data('by_entity'); const cur = (dash.params() || {}).entity || '';
@@ -441,63 +557,100 @@ window.AC = (function () {
       aria: 'عدد القيود لكل فئة', color: (r) => (r.category === DIP ? '#5BB8D6' : '#2DBE7E'), tip: (r) => [r.category, `عدد القيود: ${fmt(r.sites)}`, `النسبة من المعروض: ${r.share}%`] });
   });
 
+  const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
   const td = (tr, txt, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; if (txt instanceof Node) c.appendChild(txt); else c.textContent = txt == null ? '' : txt; tr.appendChild(c); return c; };
-  const pill = (txt, k) => { const s = document.createElement('span'); s.className = 'ac-pill' + (k ? ' ' + k : ''); s.textContent = txt; return s; };
+  const pill = (txt, k) => mk('span', 'ac-pill' + (k ? ' ' + k : ''), txt);
   const errRow = (tb, cols, d) => { tb.replaceChildren(); const tr = document.createElement('tr'); const c = td(tr, d.status === 'error' ? 'تعذّر تحميل البيانات.' : 'جارٍ التحميل…'); c.colSpan = cols; tb.appendChild(tr); };
-
-  dash.draw('qualityRows', (tb) => {
-    const d = dash.data('by_entity'); if (d.status !== 'ok') return errRow(tb, 5, d);
-    tb.replaceChildren();
-    d.data.forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = encodeURIComponent(r.entity);
-      const e = td(tr, r.entity); e.style.fontWeight = '700'; td(tr, fmt(r.sites)); td(tr, r.stated_total == null ? '—' : fmt(r.stated_total));
-      td(tr, r.diff == null ? pill('غير مدوَّن', 'w') : r.diff === 0 ? pill('مطابق') : pill((r.diff > 0 ? '+' : '') + fmt(r.diff), 'w'));
-      const m = document.createElement('div'); m.style.display = 'flex'; m.style.alignItems = 'center'; m.style.gap = '10px';
-      const bar = document.createElement('div'); bar.className = 'ac-meter'; bar.style.flex = '1'; const sp = document.createElement('span'); sp.style.width = (r.coverage || 0) + '%';
-      if (r.coverage != null && r.coverage < 50) sp.style.background = '#E07171'; else if (r.coverage != null && r.coverage < 90) sp.style.background = '#D8B25C';
-      bar.appendChild(sp);
-      const t = document.createElement('span'); t.textContent = r.coverage == null ? '—' : r.coverage + '%'; t.style.minWidth = '48px';
-      m.appendChild(t); m.appendChild(bar); td(tr, m); tb.appendChild(tr); });
-  });
+  const errBox = (el, d) => { el.replaceChildren(mk('div', 'ac-err', d.status === 'error' ? 'تعذّر تحميل البيانات.' : 'جارٍ التحميل…')); };
 
   dash.draw('siteRows', (tb) => {
-    const d = dash.data('sites_view'); if (d.status !== 'ok') return errRow(tb, 6, d);
+    const d = dash.data('sites_view'); if (d.status !== 'ok') return errRow(tb, 5, d);
     tb.replaceChildren(); const LIM = 300;
-    if (!d.data.length) { const tr = document.createElement('tr'); const c = td(tr, 'لا توجد نتائج مطابقة لعوامل التصفية الحالية.'); c.colSpan = 6; tb.appendChild(tr); return; }
+    if (!d.data.length) { const tr = document.createElement('tr'); const c = td(tr, 'لا توجد نتائج مطابقة لعوامل التصفية الحالية.'); c.colSpan = 5; tb.appendChild(tr); return; }
     d.data.slice(0, LIM).forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = String(r.id);
-      td(tr, r.site); td(tr, r.category === DIP ? pill(r.category, 't') : r.category); td(tr, r.entity); td(tr, r.area);
-      td(tr, r.makani ? String(r.makani).replace(/^(\d+)(\d{5})$/, '$1 $2') : '—');
-      if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr'; const c = td(tr, a); if (r.src) { const g = pill(r.conf === 'متوسطة' ? 'مُضافة · تقريبية' : 'مُضافة', r.conf === 'متوسطة' ? 'w' : 't'); g.title = r.src + ' — ' + r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
-      else td(tr, r.coords ? pill('تستوجب التحقق', 'w') : '—');
+      const s = mk('div'); const nm = mk('b', null, r.site); nm.style.color = '#fff'; s.appendChild(nm);
+      const e = mk('div', 'ac-ents', r.n_entities > 1 ? `${r.entities} · مسجّل لدى ${r.n_entities === 2 ? 'جهتين' : fmt(r.n_entities) + ' جهات'}` : r.entities); s.appendChild(e); td(tr, s);
+      td(tr, r.category === DIP ? pill(r.category, 't') : r.category); td(tr, r.area);
+      td(tr, r.makani ? String(r.makani).replace(/^(\d+)(\d{5})$/, '$1 $2') : '—', 'ac-nw');
+      if (r.coords && r.valid) { const a = document.createElement('a'); a.href = `https://www.google.com/maps?q=${r.lat},${r.lon}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.coords; a.dir = 'ltr';
+        const c = td(tr, a); if (r.src) { const g = pill(r.conf === 'متوسطة' ? 'مُضافة · تقريبية' : 'مُضافة', r.conf === 'متوسطة' ? 'w' : 't'); g.title = r.src + ' — ' + r.note; g.style.marginInlineStart = '8px'; c.appendChild(g); } }
+      else td(tr, r.coords ? pill('تستوجب التحقق', 'w') : pill('غير متوفرة', 'g'));
       tb.appendChild(tr); });
   });
   dash.draw('siteCount', (el) => { const d = dash.data('sites_view'); if (d.status !== 'ok') return placeholder(el, d);
-    el.textContent = d.data.length > 300 ? `تُعرض أول 300 نتيجة من أصل ${fmt(d.data.length)}. استخدم عوامل التصفية أو البحث لتضييق النتائج.` : `عدد النتائج: ${fmt(d.data.length)}`; });
+    const k = dash.data('kpis'); const tot = k.status === 'ok' && k.data && k.data.length ? k.data[0].total : null; const merged = tot == null ? 0 : tot - d.data.length;
+    const base = d.data.length > 300 ? `تُعرض أول 300 موقع من أصل ${fmt(d.data.length)}. استخدم عوامل التصفية أو البحث لتضييق النتائج.` : `عدد المواقع: ${fmt(d.data.length)}.`;
+    el.textContent = merged > 0 ? `${base} دُمج ${fmt(merged)} قيداً مكرراً لأنها تخص مواقع مسجّلة لدى أكثر من جهة.` : base; });
+
+  /* ── data quality ── */
+  const state = (r) => (r.stated_total == null ? (r.all_sites ? 'nostated' : 'empty') : r.diff === 0 ? 'ok' : 'diff');
+  dash.draw('qAnswers', (el) => {
+    const d = dash.data('by_entity'), k = dash.data('kpis'), o = dash.data('review_open');
+    if (d.status !== 'ok' || k.status !== 'ok' || !k.data.length) return errBox(el, d.status !== 'ok' ? d : k);
+    const st = d.data.map(state); const ok = st.filter((s) => s === 'ok').length, bad = st.filter((s) => s === 'diff').length, emp = st.filter((s) => s === 'empty').length;
+    const kv = k.data[0]; const open = o.status === 'ok' && o.data.length ? o.data[0].open_items : null;
+    const tile = (num, q, a, dsc, col, src, field) => { const t = mk('div', 'ac-qa'); t.style.setProperty('--qc', col);
+      const qq = mk('div', 'q'); qq.appendChild(mk('i', null, num)); qq.appendChild(document.createTextNode(q)); t.appendChild(qq);
+      const aa = mk('div', 'a'); aa.dataset.source = src; if (field) aa.dataset.field = field; aa.innerHTML = a; t.appendChild(aa); t.appendChild(mk('div', 'd', dsc)); el.appendChild(t); };
+    el.replaceChildren();
+    tile('١', 'هل الإجمالي المكتوب صحيح؟', `<em style="color:#2DBE7E">${fmt(ok)}</em> نعم · <em style="color:#D8B25C">${fmt(bad)}</em> لا`,
+      `${fmt(bad)} جهات إجماليها المكتوب لا يساوي عدد مواقعها الفعلي${emp === 2 ? '، وورقتان فارغتان بلا مواقع' : emp ? `، و${fmt(emp)} أوراق فارغة` : ''}.`, bad ? '#D8B25C' : '#2DBE7E', 'by_entity', 'diff');
+    tile('٢', 'هل لكل موقع إحداثيات؟', `<em>${kv.coord_pct}%</em> نعم`,
+      `ينقص ${fmt(kv.coord_missing)} قيداً من أصل ${fmt(kv.total)}، معظمها مساكن خاصة ومواقع حساسة لا تُستكمل من الإنترنت.`, '#5BB8D6', 'kpis', 'coord_pct');
+    tile('٣', 'هل توجد ملاحظات تحتاج قراراً؟', open == null ? '—' : `<em style="color:#E07171">${fmt(open)}</em> ملاحظة`,
+      'مرتبة في البطاقات أدناه حسب الأولوية، مع التصحيح المقترح لكل منها.', '#E07171', 'review_open', 'open_items');
+  });
+  dash.draw('qCounts', (el) => {
+    const d = dash.data('by_entity'); if (d.status !== 'ok') return errBox(el, d);
+    el.replaceChildren();
+    d.data.filter((r) => state(r) === 'diff').sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff)).forEach((r) => {
+      const row = mk('div', 'ac-qrow'); row.appendChild(mk('div', 'n', r.entity));
+      const t = mk('div', 't'); t.innerHTML = `المكتوب في الملف <b>${fmt(r.stated_total)}</b> · الموجود فعلاً <b>${fmt(r.all_sites)}</b>`;
+      t.appendChild(mk('small', null, r.diff > 0 ? `يُرجى تحديث الإجمالي المكتوب إلى ${fmt(r.all_sites)}.` : `قد تكون ${fmt(-r.diff)} مواقع ناقصة من الورقة؛ يُرجى التحقق.`));
+      row.appendChild(t); row.appendChild(pill(r.diff > 0 ? `زيادة ${fmt(r.diff)}` : `نقص ${fmt(-r.diff)}`, 'w')); el.appendChild(row); });
+    const okE = d.data.filter((r) => state(r) === 'ok'), emp = d.data.filter((r) => state(r) === 'empty'), ns = d.data.filter((r) => state(r) === 'nostated');
+    const add = (lab, arr, k) => { if (!arr.length) return; const w = mk('div', 'ac-okrow'); w.appendChild(mk('span', null, lab)); arr.forEach((r) => w.appendChild(pill(r.entity, k))); el.appendChild(w); };
+    add('مطابقة:', okE, ''); add('بلا إجمالي مكتوب:', ns, 'w'); add('ورقة فارغة بلا مواقع:', emp, 'g');
+  });
+  dash.draw('qCoords', (el) => {
+    const d = dash.data('by_entity'); if (d.status !== 'ok') return errBox(el, d);
+    el.replaceChildren();
+    const miss = d.data.filter((r) => r.sites && r.missing > 0).sort((a, b) => b.missing - a.missing);
+    if (!miss.length) el.appendChild(mk('div', 'ac-sub', 'جميع المواقع المعروضة لها إحداثيات.'));
+    miss.forEach((r) => { const row = mk('div', 'ac-qrow'); row.appendChild(mk('div', 'n', r.entity));
+      const t = mk('div', 't'); t.innerHTML = `ينقص <b>${fmt(r.missing)}</b> من <b>${fmt(r.sites)}</b> موقعاً`;
+      const bar = mk('div', 'ac-meter'); bar.style.marginTop = '6px'; const sp = mk('span'); sp.style.width = '0%';
+      sp.style.background = r.coverage < 50 ? '#E07171' : r.coverage < 90 ? '#D8B25C' : '#2DBE7E'; bar.appendChild(sp); t.appendChild(bar);
+      requestAnimationFrame(() => { sp.style.width = (r.coverage || 0) + '%'; });
+      row.appendChild(t); row.appendChild(pill(r.coverage + '%', r.coverage < 50 ? 'b' : r.coverage < 90 ? 'w' : '')); el.appendChild(row); });
+    const full = d.data.filter((r) => r.sites && r.missing === 0);
+    if (full.length) { const w = mk('div', 'ac-okrow'); w.appendChild(mk('span', null, 'مكتملة 100%:')); full.forEach((r) => w.appendChild(pill(r.entity))); el.appendChild(w); }
+  });
 
   dash.draw('reviewTypes', (el) => {
     const d = dash.data('review_summary'); el.replaceChildren();
-    if (d.status !== 'ok') { if (d.status === 'error') { const p = document.createElement('div'); p.className = 'ac-err'; p.textContent = 'تعذّر تحميل ملخص الملاحظات.'; el.appendChild(p); } return; }
+    if (d.status !== 'ok') { if (d.status === 'error') el.appendChild(mk('div', 'ac-err', 'تعذّر تحميل ملخص الملاحظات.')); return; }
     const cur = (dash.params() || {}).rtype || null;
     d.data.forEach((r) => {
       const b = document.createElement('button'); b.type = 'button'; b.className = 'ac-rt' + (cur === r.type ? ' on' : cur ? ' dim' : '');
       b.style.setProperty('--c', TYPE_COLOR[r.type] || '#2DBE7E');
-      const num = document.createElement('b'); num.textContent = fmt(r.items); num.dataset.source = 'review_summary'; num.dataset.field = 'items'; num.dataset.where = 'type=' + encodeURIComponent(r.type);
-      const lab = document.createElement('small'); lab.textContent = `${TYPE_LABEL[r.type] || r.type} · ${fmt(r.rows)} قيد`;
-      b.appendChild(num); b.appendChild(lab); b.onclick = () => dash.setParams({ rtype: cur === r.type ? null : r.type }); el.appendChild(b);
+      const num = mk('b', null, fmt(r.items)); num.dataset.source = 'review_summary'; num.dataset.field = 'items'; num.dataset.where = 'type=' + encodeURIComponent(r.type);
+      b.appendChild(num); b.appendChild(mk('strong', null, TYPE_LABEL[r.type] || r.type)); b.appendChild(mk('small', null, TYPE_HELP[r.type] || ''));
+      b.onclick = () => dash.setParams({ rtype: cur === r.type ? null : r.type }); el.appendChild(b);
     });
   });
-  dash.draw('reviewRows', (tb) => {
-    const d = dash.data('review'); if (d.status !== 'ok') return errRow(tb, 7, d);
-    tb.replaceChildren();
-    if (!d.data.length) { const tr = document.createElement('tr'); const c = td(tr, 'لا توجد ملاحظات مطابقة لعوامل التصفية الحالية.'); c.colSpan = 7; tb.appendChild(tr); return; }
-    d.data.forEach((r) => { const tr = document.createElement('tr'); tr.dataset.key = String(r.id);
-      const pr = PRI[r.priority] || PRI[3]; td(tr, pill(pr[0], pr[1]), 'ac-nw');
-      const s = td(tr, r.site); s.style.fontWeight = '700';
-      const tp = document.createElement('span'); tp.textContent = TYPE_LABEL[r.type] || r.type; tp.style.color = TYPE_COLOR[r.type] || ''; td(tr, tp, 'ac-nw');
-      td(tr, r.entities);
-      const cu = td(tr, r.current); cu.dir = 'auto'; cu.style.color = 'var(--mu)';
-      const sg = td(tr, r.suggested, 'ac-sug'); sg.dir = 'auto';
-      td(tr, r.action);
-      tb.appendChild(tr); });
+  dash.draw('reviewCards', (el) => {
+    const d = dash.data('review'); if (d.status !== 'ok') return errBox(el, d);
+    el.replaceChildren();
+    if (!d.data.length) { el.appendChild(mk('div', 'ac-sub', 'لا توجد ملاحظات مطابقة لعوامل التصفية الحالية.')); return; }
+    d.data.forEach((r) => { const c = mk('article', 'ac-card'); c.dataset.key = String(r.id); c.style.setProperty('--c', TYPE_COLOR[r.type] || '#2DBE7E');
+      const top = mk('div', 'top'); top.appendChild(mk('span', null, TYPE_LABEL[r.type] || r.type)); const pr = PRI[r.priority] || PRI[3]; top.appendChild(pill(pr[0], pr[1])); c.appendChild(top);
+      c.appendChild(mk('h4', null, r.site)); c.appendChild(mk('div', 'e', 'الجهات: ' + r.entities));
+      const cmp = mk('div', 'cmp'); const a = mk('div'); a.appendChild(mk('small', null, 'الوارد في الملف')); const av = mk('span', null, r.current); av.dir = 'auto'; a.appendChild(av);
+      const s = mk('div', 's'); s.appendChild(mk('small', null, 'التصحيح المقترح')); const sv = mk('span', null, r.suggested); sv.dir = 'auto'; s.appendChild(sv);
+      cmp.appendChild(a); cmp.appendChild(mk('span', 'ar', '←')); cmp.appendChild(s); c.appendChild(cmp);
+      const act = mk('div', 'act'); act.appendChild(mk('b', null, 'المطلوب: ')); act.appendChild(document.createTextNode(r.action)); c.appendChild(act);
+      el.appendChild(c); });
   });
 })();
 </script>
@@ -513,6 +666,22 @@ window.AC = (function () {
     dash.setParams({ entity: null, category: null, q: null, rtype: null });
     document.querySelectorAll('#acSearch').forEach((i) => { i.value = ''; });
   }));
+  const root = document.getElementById('top');
+  if (root && 'IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    root.classList.add('anim');
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.08 });
+    root.querySelectorAll('.ac-rv').forEach((s) => io.observe(s));
+    setTimeout(() => root.querySelectorAll('.ac-rv').forEach((s) => s.classList.add('in')), 2500);
+  }
+  const nav = document.getElementById('acNav');
+  if (nav) {
+    const links = [...nav.querySelectorAll('a')];
+    links.forEach((a) => a.addEventListener('click', (ev) => { const s = document.getElementById(a.dataset.t); if (s) { ev.preventDefault(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
+    if ('IntersectionObserver' in window) {
+      const spy = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) links.forEach((a) => a.classList.toggle('on', a.dataset.t === e.target.id)); }), { rootMargin: '-20% 0px -70% 0px' });
+      links.forEach((a) => { const s = document.getElementById(a.dataset.t); if (s) spy.observe(s); });
+    }
+  }
 })();
 </script>
 
