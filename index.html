@@ -501,6 +501,59 @@ body.unlocked #lock{display:none}
 @keyframes acSplLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (max-width:560px){.ac-splash .sl{gap:14px}.ac-splash .sl img{height:40px}.ac-splash .sl img.i-acis{height:28px}.ac-globe{width:290px;height:260px}}
 @media (prefers-reduced-motion:reduce){.ac-globe .g3p,.ac-globe .g3p i,.ac-sa .mapbox circle.pr{animation:none}}
+.ac-sa .mapbox path.arc{fill:none;stroke:#8FD8FF;stroke-width:2.6;filter:drop-shadow(0 0 4px rgba(91,184,214,.9));stroke-dasharray:7 6;animation:acFlow .9s linear infinite,acFadeIn .6s ease both}
+@keyframes acFlow{to{stroke-dashoffset:-13}}
+@keyframes acFadeIn{from{opacity:0}to{opacity:1}}
+.ac-sa .mapbox circle.pop{transform-box:fill-box;transform-origin:center;animation:acPop .35s ease-out both}
+@keyframes acPop{from{transform:scale(0)}to{transform:scale(1)}}
+.ac-sa .mapbox rect.pq{fill:#1E6FB8;stroke:#fff;stroke-width:1.2}
+.ac-sa .mapbox text.arcl,.ac-sa .mapbox text.etat{fill:#CFE8FF;stroke:#03101A;paint-order:stroke;stroke-linejoin:round;font-weight:700;font-family:'ACBukra',sans-serif}
+.ac-sa .mapbox text.etat{fill:#E9CF8F}
+.ac-sa .mapbox circle.eta{fill:none;stroke:#E9CF8F;stroke-dasharray:100;stroke-dashoffset:0;animation:acEta 8s linear forwards;transform-box:fill-box;transform-origin:center;transform:rotate(-90deg)}
+@keyframes acEta{to{stroke-dashoffset:100}}
+.ac-sa .simres .etab{border:1px solid rgba(212,178,106,.45);background:rgba(212,178,106,.08);border-radius:10px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.ac-sa .simres .etab b{font-size:20px;color:#E9CF8F;white-space:nowrap}
+.ac-sa .simres .etab small{font-size:11px;color:#CFE0D8;line-height:1.6}
+.ac-sa .mapbox .p3{position:absolute;inset:0;pointer-events:none;perspective:1100px;perspective-origin:50% 60%;display:none}
+.ac-sa.m3d .mapbox .p3{display:block}
+.ac-sa .mapbox .p3p{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(50deg) scale(.92);transform-origin:50% 60%}
+.ac-sa .mapbox .p3p i{position:absolute;width:3px;margin-left:-1.5px;transform-origin:50% 100%;transform:rotateX(-90deg);background:linear-gradient(to top,var(--c),rgba(255,255,255,0));box-shadow:0 0 8px var(--c);border-radius:2px}
+.ac-sa .mapbox svg{transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-origin:50% 60%}
+.ac-sa.m3d .mapbox svg{transform:perspective(1100px) rotateX(50deg) scale(.92)}
+.ac-sa.m3d .mapbox{background:radial-gradient(120% 60% at 50% 0%,#0B2740,#02080C 70%)}
+.ac-sa .mapbox image.esri{transition:filter 1.2s ease}
+.ac-sa .mapbox.day image.esri{filter:invert(1) hue-rotate(180deg) brightness(1.02) contrast(.92) saturate(.8)}
+.ac-sa .mapbox.day svg>rect:first-child{fill:#E6EBEF}
+.ac-sa .mapbox.day{background:#E6EBEF}
+.ac-sa .mapbox.day .labs text{fill:#0B1B2B;stroke:#fff}
+.ac-glow{position:fixed;left:0;top:0;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:30;background:radial-gradient(circle,rgba(233,207,143,.09),rgba(233,207,143,.03) 40%,transparent 68%);mix-blend-mode:screen;opacity:0;transition:opacity .4s}
+.ac-glow.on{opacity:1}
+.ac-net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.ac-hero>div{position:relative;z-index:1}
+.ac-k::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:42%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.08) 42%,rgba(233,207,143,.16) 50%,rgba(255,255,255,.08) 58%,transparent);transform:skewX(-14deg);animation:acHolo 7s ease-in-out infinite;pointer-events:none}
+.ac-k:nth-child(2)::after{animation-delay:.5s}.ac-k:nth-child(3)::after{animation-delay:1s}.ac-k:nth-child(4)::after{animation-delay:1.5s}
+@keyframes acHolo{0%,72%{left:-60%}100%{left:130%}}
+.ac-k .ib svg *{stroke-dasharray:100;stroke-dashoffset:100;animation:acDraw 1.8s ease .3s forwards}
+.ac-k .ib svg{animation:acBreath 3.4s ease-in-out infinite}
+@keyframes acDraw{to{stroke-dashoffset:0}}
+@keyframes acBreath{50%{filter:drop-shadow(0 0 13px var(--kc)) brightness(1.25)}}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.ac-map,#saPanel{position:relative}
+.ac-map::before,#saPanel::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 72%,rgba(233,207,143,.15) 80%,#E9CF8F 88%,#FFF3C9 90%,transparent 94% 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:acFrame 7s linear infinite;pointer-events:none;z-index:3}
+@keyframes acFrame{to{--ang:360deg}}
+.ac-map.ops::before{display:none}
+.ac-scan{position:fixed;left:0;right:0;top:-14%;height:14%;z-index:550;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(125,255,200,.08) 42%,rgba(233,207,143,.6) 50%,rgba(125,255,200,.08) 58%,transparent);animation:acScanDown .85s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes acScanDown{to{top:104%}}
+.ac-ticker{position:sticky;bottom:0;z-index:15;margin:26px calc(-1 * var(--px)) 0;display:flex;align-items:center;height:40px;background:rgba(3,6,5,.93);border-top:1px solid rgba(212,178,106,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow:hidden}
+.ac-ticker .tk-l{flex:none;height:100%;display:flex;align-items:center;gap:7px;padding:0 16px;font-size:12px;font-weight:700;color:#1A1405;background:linear-gradient(90deg,#E9CF8F,#D4B26A);position:relative;z-index:1}
+.ac-ticker .tk-l::before{content:'';width:7px;height:7px;border-radius:50%;background:#C0392B;animation:acBlink 1s infinite}
+.ac-ticker .tk-v{flex:1;overflow:hidden;height:100%;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ac-ticker .tk-t{position:absolute;top:0;bottom:0;right:0;display:flex;align-items:center;gap:44px;white-space:nowrap;width:max-content;animation:acTick linear infinite}
+.ac-ticker:hover .tk-t{animation-play-state:paused}
+.ac-ticker .tk-i{font-size:13px;color:#E3EEE8;display:inline-flex;align-items:center;gap:10px}
+.ac-ticker .tk-i i{width:6px;height:6px;border-radius:50%;background:#E9CF8F;box-shadow:0 0 8px #E9CF8F}
+@keyframes acTick{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@media (prefers-reduced-motion:reduce){.ac-k .ib svg *{stroke-dasharray:none;stroke-dashoffset:0;animation:none}.ac-k .ib svg,.ac-k::after,.ac-map::before,#saPanel::before,.ac-ticker .tk-t{animation:none}}
 @media (prefers-reduced-motion:reduce){.ac-file.in,.ac-file.out,.ac-ents-grid.out,.ac-ents-grid.back,.ac-file .fi{animation:none;opacity:1}}
 /* ── data quality ── */
 .ac-q3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
@@ -637,6 +690,7 @@ body.unlocked #lock{display:none}
     <div class='ac-sa' id='saPanel' data-source='security' hidden></div>
   </div>
 
+  <div class='ac-ticker' data-draw='ticker' data-source='security' aria-label='شريط المؤشرات'></div>
   <footer class='ac-foot'><span>إدارة أمن الهيئات والمنشآت الحيوية — شرطة دبي</span><span>تاريخ البيانات: 23 نوفمبر 2026</span></footer>
 </div>
 <script>
@@ -1031,7 +1085,7 @@ window.AC = (function () {
       st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 430);
   }
   /* ── main map: Esri World Street Map (Night) ── */
-  let MV = null, RAD = 1, RADAR = true, LOOP = 0; const CATS_ON = new Set();
+  let MV = null, RAD = 1, RADAR = true, LOOP = 0, M3D = false, LIGHT = 'night'; const CATS_ON = new Set();
   const SHORT = { 'المنشآت الدبلوماسية': 'دبلوماسية', 'الجهات الحكومية': 'حكومية', 'المراكز العسكرية': 'عسكرية', 'المنافذ': 'منافذ', 'الفنادق': 'فنادق', 'المراكز التجارية': 'تجارية', 'محطات المترو': 'مترو', 'المراكز الرياضية والاجتماعية': 'رياضية واجتماعية', 'مواقع التجمع الخارجية': 'تجمعات خارجية', 'البنوك والمصارف': 'بنوك', 'المراكز الطبية': 'طبية', 'دور العبادة': 'دور عبادة', 'مراكز التعليم': 'تعليم', 'المراكز الإعلامية': 'إعلام', 'المسطحات المائية': 'مسطحات مائية', 'خزانات المياه الرئيسية': 'خزانات مياه', 'الواجهة البحرية': 'واجهة بحرية' };
   function mainMap(el) {
     const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) return errBox(el, d);
@@ -1043,8 +1097,8 @@ window.AC = (function () {
     const rl = mk('span', 'rl', 'نطاق الأثر:'); tools.appendChild(rl);
     const rads = mk('div', 'rads'); [[0.5, '500 م'], [1, '1 كم'], [2, '2 كم'], [5, '5 كم']].forEach(([v, l]) => { const b = mk('button', 'rb' + (v === RAD ? ' on' : ''), l); b.type = 'button'; b.onclick = () => { RAD = v; rads.querySelectorAll('.rb').forEach((x) => x.classList.toggle('on', x === b)); if (cur) simulate(cur); }; rads.appendChild(b); });
     tools.appendChild(rads);
-    const tb = mk('button', 'rb', 'ابدأ الجولة'); tb.type = 'button'; const ob = mk('button', 'rb', 'غرفة العمليات'); ob.type = 'button'; const rbn = mk('button', 'rb' + (RADAR ? ' on' : ''), 'الرادار'); rbn.type = 'button';
-    const clr = mk('button', 'rb', 'مسح'); clr.type = 'button'; clr.onclick = () => { cur = null; simg.selectAll('*').remove(); overview(); }; tools.appendChild(clr); tools.append(tb, ob, rbn);
+    const tb = mk('button', 'rb', 'ابدأ الجولة'); tb.type = 'button'; const ob = mk('button', 'rb', 'غرفة العمليات'); ob.type = 'button'; const rbn = mk('button', 'rb' + (RADAR ? ' on' : ''), 'الرادار'); rbn.type = 'button'; const b3d = mk('button', 'rb', 'ثلاثي الأبعاد'); b3d.type = 'button'; const blt = mk('button', 'rb', 'الإضاءة: ليلي'); blt.type = 'button';
+    const clr = mk('button', 'rb', 'مسح'); clr.type = 'button'; clr.onclick = () => { cur = null; simg.selectAll('*').remove(); overview(); }; tools.appendChild(clr); tools.append(tb, ob, rbn, b3d, blt);
     el.appendChild(tools);
     const chips = mk('div', 'catchips'); const cnt = d3.rollup(r.sites, (v) => v.length, (x) => x.c);
     const allc = mk('button', 'cc' + (CATS_ON.size ? '' : ' on'), 'كل الفئات'); allc.type = 'button'; allc.onclick = () => { CATS_ON.clear(); syncChips(); applyVis(); }; chips.appendChild(allc);
@@ -1129,14 +1183,25 @@ window.AC = (function () {
     if (window.__acKey) document.removeEventListener('keydown', window.__acKey);
     window.__acKey = (ev) => { if (ev.key === 'Escape' && el.isConnected && el.classList.contains('ops')) setOps(false); }; document.addEventListener('keydown', window.__acKey);
     document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && el.isConnected && el.classList.contains('ops')) setOps(false); });
+    /* ── 3D view + lighting ── */
+    const p3 = mk('div', 'p3'); const p3p = mk('div', 'p3p'); p3.appendChild(p3p); mapBox.appendChild(p3); let pils = [];
+    function build3d() { p3p.replaceChildren(); pils = data.filter((x) => x.r >= 50).map((x) => { const b = mk('i'); const h = Math.round(10 + (x.r - 45) * 1.7); b.style.height = h + 'px'; b.style.marginTop = -h + 'px'; b.style.setProperty('--c', riskCol(x.r)); p3p.appendChild(b); return [b, x]; }); place3d(); }
+    function place3d() { if (!M3D) return; const bw = mapBox.clientWidth, sc = bw / W, t = MV || d3.zoomIdentity; pils.forEach(([b, x]) => { const [px, py] = PJ(x.la, x.lo), X = (px * t.k + t.x) * sc, Y = (py * t.k + t.y) * sc; const ok = vis(x) && X > 0 && X < bw && Y > 0 && Y < H * sc; b.style.display = ok ? '' : 'none'; if (ok) { b.style.left = X.toFixed(1) + 'px'; b.style.top = Y.toFixed(1) + 'px'; } }); }
+    b3d.onclick = () => { M3D = !M3D; el.classList.toggle('m3d', M3D); b3d.classList.toggle('on', M3D); if (M3D) build3d(); else p3p.replaceChildren(); };
+    if (M3D) { el.classList.add('m3d'); b3d.classList.add('on'); setTimeout(build3d, 0); }
+    const LL = { night: 'الإضاءة: ليلي', auto: 'الإضاءة: حسب الوقت', day: 'الإضاءة: نهاري' };
+    const hourDXB = () => +new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dubai', hour: '2-digit', hour12: false }).format(new Date()) % 24;
+    function applyLight() { const h = hourDXB(); const mode = LIGHT === 'auto' ? (h >= 6 && h < 18 ? 'day' : 'night') : LIGHT; mapBox.classList.toggle('day', mode === 'day'); blt.textContent = LL[LIGHT]; blt.classList.toggle('on', LIGHT !== 'night'); }
+    blt.onclick = () => { LIGHT = LIGHT === 'night' ? 'auto' : LIGHT === 'auto' ? 'day' : 'night'; applyLight(); };
+    applyLight(); const LT = setInterval(() => { if (!el.isConnected) return clearInterval(LT); if (LIGHT === 'auto') applyLight(); }, 60000);
     hits.on('click', (ev, x) => { ev.stopPropagation(); simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 3); });
     let cur = null;
-    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); pulses.attr('r', 3.2 * s); placeLabels(); };
-    const zoom = d3.zoom().scaleExtent([1, 10]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); MV = ev.transform; if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
+    const sizes = () => { const s = U / Math.pow(K, 0.75); dots.attr('r', (x) => (x.t === 1 ? 3 : 2.3) * s); hits.attr('r', 7 * s); badges.forEach((b) => b.attr('transform', `scale(${U / K})`)); simg.selectAll('circle.hd').attr('r', 3 * s); simg.selectAll('circle.ctr').attr('r', 3.6 * s); simg.selectAll('circle.sel').attr('r', 8 * s); pulses.attr('r', 3.2 * s); simg.selectAll('text.arcl,text.etat').attr('font-size', (11 * U) / K).attr('stroke-width', (3 * U) / K); simg.selectAll('text.etat').attr('y', function () { return +this.getAttribute('data-cy') - 18 * s; }); simg.selectAll('circle.eta').attr('r', 13 * s).attr('stroke-width', (2.4 * U) / K); simg.selectAll('rect.pq').each(function () { const x = +this.getAttribute('data-x'), y = +this.getAttribute('data-y'); d3.select(this).attr('x', x - 5 * s).attr('y', y - 5 * s).attr('width', 10 * s).attr('height', 10 * s); }); placeLabels(); };
+    const zoom = d3.zoom().scaleExtent([1, 10]).translateExtent([[0, 0], [W, H]]).on('zoom', (ev) => { gz.attr('transform', ev.transform); MV = ev.transform; if (M3D) place3d(); if (ev.transform.k !== K) { K = ev.transform.k; sizes(); } });
     svg.call(zoom); applyVis(); sizes();
     if (MV) svg.call(zoom.transform, MV); else { const [ix, iy] = PJ(25.165, 55.29); svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(1.5).translate(-ix, -iy)); }
     const focus = (la, lo, k) => { const [x, y] = PJ(la, lo); svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(Math.max(k, K)).translate(-x, -y)); };
-    svg.on('click', (ev) => { if (ev.defaultPrevented) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
+    svg.on('click', (ev) => { if (ev.defaultPrevented || M3D) return; const [mx, my] = d3.pointer(ev, gz.node()); const q = UP(mx, my); simulate({ la: q.la, lo: q.lo, label: 'نقطة مختارة على الخريطة' }); });
     inp.addEventListener('change', () => { const x = r.sites.find((z) => z.s === inp.value); if (x) { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, 5); } });
     const zb = mk('div', 'zb'); [['+', 1.6], ['−', 1 / 1.6], ['⌂', 0]].forEach(([t, f]) => { const b = mk('button', null, t); b.type = 'button'; b.onclick = (ev) => { ev.stopPropagation(); if (f) svg.transition().duration(350).call(zoom.scaleBy, f); else home(); }; zb.appendChild(b); }); mapBox.appendChild(zb);
     const lgd = mk('div', 'lg'); [['#E07171', 'خطورة عالية (70+)'], ['#D4B26A', 'متوسطة (50–69)'], ['#2DBE7E', 'منخفضة'], ['#E9CF8F', 'منطقة تركّز حرج']].forEach(([c, t]) => { const s = mk('span'); const i = mk('i'); i.style.background = c; s.appendChild(i); s.appendChild(document.createTextNode(t)); lgd.appendChild(s); });
@@ -1155,10 +1220,12 @@ window.AC = (function () {
       cur = p; simg.selectAll('*').remove();
       const hit = r.sites.map((x) => ({ ...x, d: kmd(p, x) })).filter((x) => x.d <= RAD && (!p.site || x.s !== p.site.s || x.d > 0.001)).sort((a, b) => a.t - b.t || b.r - a.r);
       const [px0, py0] = PJ(p.la, p.lo);
-      simg.append('circle').attr('cx', px0).attr('cy', py0).attr('r', RAD * pxPerKm).attr('fill', 'rgba(224,113,113,.13)').attr('stroke', '#FF8A8A').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke');
-      hit.filter(onMap).forEach((x) => { const [hx, hy] = PJ(x.la, x.lo); simg.append('circle').attr('class', 'hd').attr('cx', hx).attr('cy', hy).attr('fill', TC[x.t]).attr('stroke', '#fff').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke'); });
+      simg.append('circle').attr('class', 'wave').attr('cx', px0).attr('cy', py0).attr('r', 0).attr('fill', 'rgba(224,113,113,.13)').attr('stroke', '#FF8A8A').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke').transition().duration(900).ease(d3.easeCubicOut).attr('r', RAD * pxPerKm);
+      simg.append('circle').attr('cx', px0).attr('cy', py0).attr('r', 0).attr('fill', 'none').attr('stroke', '#FFB3B3').attr('stroke-width', 3).attr('vector-effect', 'non-scaling-stroke').transition().duration(1100).ease(d3.easeCubicOut).attr('r', RAD * pxPerKm * 1.1).attr('opacity', 0).remove();
+      hit.filter(onMap).forEach((x) => { const [hx, hy] = PJ(x.la, x.lo); simg.append('circle').attr('class', 'hd').attr('data-d', x.d).attr('cx', hx).attr('cy', hy).attr('fill', TC[x.t]).attr('stroke', '#fff').attr('stroke-width', 1).attr('vector-effect', 'non-scaling-stroke'); });
       if (p.site) simg.append('circle').attr('class', 'sel').attr('cx', px0).attr('cy', py0).attr('fill', 'none').attr('stroke', '#fff').attr('stroke-width', 2.5).attr('vector-effect', 'non-scaling-stroke');
       simg.append('circle').attr('class', 'ctr').attr('cx', px0).attr('cy', py0).attr('fill', p.site ? riskCol(p.site.r) : '#fff').attr('stroke', '#fff').attr('stroke-width', 2).attr('vector-effect', 'non-scaling-stroke'); sizes();
+      simg.selectAll('circle.hd').classed('pop', true).style('animation-delay', function () { return Math.min(900, (+this.getAttribute('data-d') / RAD) * 900) + 'ms'; });
       res.replaceChildren();
       if (p.site) { const x = p.site; const sc = mk('div', 'sc'); sc.style.setProperty('--rc', riskCol(x.r));
         const top = mk('div', 'st1'); const nm = mk('div'); nm.appendChild(mk('b', null, x.s)); nm.appendChild(mk('small', null, `${x.c} · ${x.a || '—'}`)); top.appendChild(nm);
@@ -1174,6 +1241,17 @@ window.AC = (function () {
       const ents = [...new Set(hit.flatMap((x) => x.e.split('، ')))]; if (ents.length) { const ec = mk('div', 'ec'); ec.appendChild(mk('small', null, 'الجهات التي يجب إبلاغها:')); ents.forEach((e) => ec.appendChild(pill(e))); res.appendChild(ec); }
       const pol = r.sites.filter((x) => /شرطة/.test(x.s) && (!p.site || x.s !== p.site.s)).map((x) => ({ ...x, d: kmd(p, x) })).sort((a, b) => a.d - b.d).slice(0, 3);
       if (pol.length) { const pc = mk('div', 'ec'); pc.appendChild(mk('small', null, 'أقرب مراكز الشرطة:')); pol.forEach((x) => pc.appendChild(pill(`${x.s} · ${x.d.toFixed(1)} كم`, 't'))); res.appendChild(pc); }
+      if (pol.length) { simg.raise(); const s0 = U / Math.pow(K, 0.75), ag = simg.append('g').attr('class', 'arcs');
+        pol.forEach((q, j) => { const [qx, qy] = PJ(q.la, q.lo), dx = qx - px0, dy = qy - py0, cx = (px0 + qx) / 2 - dy * 0.28, cy = (py0 + qy) / 2 + dx * 0.28;
+          ag.append('path').attr('class', 'arc').attr('d', `M${px0},${py0}Q${cx},${cy} ${qx},${qy}`).attr('vector-effect', 'non-scaling-stroke').style('animation-delay', '0s,' + j * 0.2 + 's');
+          ag.append('rect').attr('class', 'pq').attr('data-x', qx).attr('data-y', qy).attr('x', qx - 5 * s0).attr('y', qy - 5 * s0).attr('width', 10 * s0).attr('height', 10 * s0).attr('transform', `rotate(45 ${qx} ${qy})`).attr('vector-effect', 'non-scaling-stroke');
+          ag.append('text').attr('class', 'arcl').attr('x', 0.25 * px0 + 0.5 * cx + 0.25 * qx).attr('y', 0.25 * py0 + 0.5 * cy + 0.25 * qy).attr('text-anchor', 'middle').text(q.d.toFixed(1) + ' كم'); });
+        const eta = Math.max(2, Math.round(2 + (pol[0].d / 45) * 60));
+        simg.append('circle').attr('class', 'eta').attr('cx', px0).attr('cy', py0).attr('pathLength', 100);
+        const et = simg.append('text').attr('class', 'etat').attr('x', px0).attr('data-cy', py0).attr('text-anchor', 'middle');
+        const er = mk('div', 'etab'); er.appendChild(mk('b', null, `~${eta} دقيقة`)); er.appendChild(mk('small', null, `زمن الوصول التقديري من ${pol[0].s} (${pol[0].d.toFixed(1)} كم)`)); k3.after(er);
+        const left = eta * 60, t0 = performance.now(); const tm = setInterval(() => { if (!et.node().isConnected) return clearInterval(tm); const f = Math.min(1, (performance.now() - t0) / 8000), v = Math.round(left * (1 - f)); et.text(f >= 1 ? 'وصول' : `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`); if (f >= 1) clearInterval(tm); }, 80);
+        sizes(); }
       const ls = mk('div', 'hl'); hit.slice(0, 60).forEach((x) => { const row = mk('button', 'hr'); row.type = 'button'; const dot = mk('i'); dot.style.background = TC[x.t]; row.appendChild(dot); row.appendChild(mk('span', null, x.s)); row.appendChild(mk('em', null, `${x.d < 1 ? Math.round(x.d * 1000) + ' م' : x.d.toFixed(1) + ' كم'}`)); row.onclick = () => { simulate({ la: x.la, lo: x.lo, label: x.s, site: x }); focus(x.la, x.lo, Math.max(5, K)); }; ls.appendChild(row); });
       if (!hit.length) ls.appendChild(mk('div', 'hint', 'لا توجد مواقع أخرى ضمن هذا النطاق.')); res.appendChild(ls);
     }
@@ -1195,6 +1273,16 @@ window.AC = (function () {
     const lb = mk('div', 'g3l'); lb.appendChild(mk('b', null, fmt(r.high))); lb.appendChild(document.createTextNode(' موقعاً عالي الخطورة · طول كل عمود حسب مؤشر الخطورة')); el.appendChild(lb);
     el.onpointermove = (ev) => { if (ev.pointerType === 'touch') return; const b = el.getBoundingClientRect(); sc.style.transform = `rotateX(${(58 - ((ev.clientY - b.top) / b.height - 0.5) * 16).toFixed(1)}deg) rotateZ(${(((ev.clientX - b.left) / b.width - 0.5) * 22).toFixed(1)}deg)`; };
     el.onpointerleave = () => { sc.style.transform = ''; };
+  });
+  dash.draw('ticker', (el) => {
+    const d = dash.data('security'); if (d.status !== 'ok' || !d.data || !d.data.length) return; const r = d.data[0];
+    const top = r.sites.slice().sort((a, b) => b.r - a.r).slice(0, 2), c0 = r.clusters[0], ta = r.top_areas[0];
+    const items = [top[0] ? `أعلى موقع خطورة: ${top[0].s} — ${top[0].r} من 100` : null, `${fmt(r.high)} موقعاً عالي الخطورة (70+)`, `${fmt(r.clusters.length)} منطقة تركّز حرج`, c0 ? `${c0.area}: ${fmt(c0.n)} مواقع حرجة ضمن 400 م` : null,
+      `${fmt(r.t1_single)} موقعاً حرجاً تتابعه جهة واحدة فقط`, `${fmt(r.tiers[0].n)} موقعاً حرجاً من أصل ${fmt(r.total)} موقع`, top[1] ? `ثاني أعلى خطورة: ${top[1].s} — ${top[1].r}` : null,
+      ta ? `أكثر المناطق تركزاً: ${ta.area} (${fmt(ta.n)} موقعاً)` : null, `القنصليات: ${fmt(r.consulates)} · مساكن رؤساء البعثات: ${fmt(r.residences)}`].filter(Boolean);
+    el.replaceChildren(); const lab = mk('span', 'tk-l', 'مباشر'); const vp = mk('div', 'tk-v'); const tr = mk('div', 'tk-t');
+    for (let k = 0; k < 2; k++) items.forEach((t) => { const s = mk('span', 'tk-i'); s.appendChild(mk('i')); s.appendChild(document.createTextNode(t)); tr.appendChild(s); });
+    tr.style.animationDuration = items.length * 7 + 's'; vp.appendChild(tr); el.append(lab, vp);
   });
   function saClose() {
     const st = document.getElementById('saStage'), L = document.getElementById('saLaunch'), P = document.getElementById('saPanel'); if (!L || !P) return;
@@ -1231,6 +1319,27 @@ window.AC = (function () {
     root.querySelectorAll('.ac-rv').forEach((s) => io.observe(s));
     setTimeout(() => root.querySelectorAll('.ac-rv').forEach((s) => s.classList.add('in')), 2500);
   }
+  const RMX = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function glow() { if (RMX || !(window.matchMedia && window.matchMedia('(pointer: fine)').matches)) return; const root = document.getElementById('top'); if (!root) return;
+    const g = document.createElement('div'); g.className = 'ac-glow'; root.appendChild(g); let x = 0, y = 0, raf = 0;
+    window.addEventListener('pointermove', (ev) => { x = ev.clientX; y = ev.clientY; g.classList.add('on'); if (!raf) raf = requestAnimationFrame(() => { raf = 0; g.style.transform = `translate(${x - 160}px,${y - 160}px)`; }); }, { passive: true });
+    document.addEventListener('pointerleave', () => g.classList.remove('on')); })();
+  (function net() { const hero = document.getElementById('hero'); if (RMX || !hero) return; const cv = document.createElement('canvas'); cv.className = 'ac-net'; hero.prepend(cv); const ctx = cv.getContext('2d'); if (!ctx) return;
+    let W = 0, H = 0; const dpr = Math.min(2, window.devicePixelRatio || 1), N = 46, P = [];
+    const size = () => { W = hero.clientWidth; H = hero.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }; size(); window.addEventListener('resize', size);
+    for (let i = 0; i < N; i++) P.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3 });
+    let vis = true; if ('IntersectionObserver' in window) new IntersectionObserver((es) => { vis = es[0].isIntersecting; }).observe(hero);
+    const step = () => { requestAnimationFrame(step); if (!vis || document.hidden) return; if (hero.clientHeight !== H || hero.clientWidth !== W) size(); ctx.clearRect(0, 0, W, H);
+      for (const p of P) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      for (let i = 0; i < N; i++) { const a = P[i]; for (let j = i + 1; j < N; j++) { const b = P[j], dd = Math.hypot(a.x - b.x, a.y - b.y); if (dd < 125) { ctx.strokeStyle = `rgba(233,207,143,${((1 - dd / 125) * 0.22).toFixed(3)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } }
+        ctx.fillStyle = 'rgba(233,207,143,.55)'; ctx.beginPath(); ctx.arc(a.x, a.y, 1.6, 0, 6.283); ctx.fill(); } };
+    requestAnimationFrame(step); })();
+  (function decode() { if (RMX || !('IntersectionObserver' in window)) return; const CH = 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي٠١٢٣٤٥٦٧٨٩#%&@';
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; io.unobserve(e.target); const tn = [...e.target.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim()); if (!tn) return;
+      const T = tn.textContent; let f = 0; const F = 18; const iv = setInterval(() => { f++; const k = Math.floor((T.length * f) / F); tn.textContent = T.slice(0, k) + [...T.slice(k)].map((c) => (c === ' ' ? ' ' : CH[Math.floor(Math.random() * CH.length)])).join(''); if (f >= F) { clearInterval(iv); tn.textContent = T; } }, 35); }), { threshold: 0.6 });
+    document.querySelectorAll('.ac-sec').forEach((h) => io.observe(h)); })();
+  document.querySelectorAll('.ac-k .ib svg').forEach((s) => s.querySelectorAll('path,ellipse,circle,rect,line,polyline').forEach((e) => e.setAttribute('pathLength', '100')));
+  const scanFx = () => { if (RMX) return; const root = document.getElementById('top'); if (!root) return; const b = document.createElement('div'); b.className = 'ac-scan'; root.appendChild(b); setTimeout(() => b.remove(), 900); };
   (function splash() {
     const root = document.getElementById('top'); if (!root || document.getElementById('acSplash')) return; let seen = false;
     try { seen = sessionStorage.getItem('acSplash') === '1'; sessionStorage.setItem('acSplash', '1'); } catch (e) {}
@@ -1246,7 +1355,7 @@ window.AC = (function () {
   const nav = document.getElementById('acNav');
   if (nav) {
     const links = [...nav.querySelectorAll('a')];
-    links.forEach((a) => a.addEventListener('click', (ev) => { const s = document.getElementById(a.dataset.t); if (s) { ev.preventDefault(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (a.dataset.t === 'sec-sa' && window.__acOpenSA) setTimeout(window.__acOpenSA, 500); } }));
+    links.forEach((a) => a.addEventListener('click', (ev) => { const s = document.getElementById(a.dataset.t); if (s) { ev.preventDefault(); scanFx(); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (a.dataset.t === 'sec-sa' && window.__acOpenSA) setTimeout(window.__acOpenSA, 500); } }));
     if ('IntersectionObserver' in window) {
       const spy = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) links.forEach((a) => a.classList.toggle('on', a.dataset.t === e.target.id)); }), { rootMargin: '-20% 0px -70% 0px' });
       links.forEach((a) => { const s = document.getElementById(a.dataset.t); if (s) spy.observe(s); });
